@@ -1,3 +1,4 @@
+
 /*----------------------------------------------
 navigation header
 ----------------------------------------------*/
@@ -27,6 +28,21 @@ navigation header
 #header h1 a:hover {
 	background-color: transparent;
 	color: #e1f7ef;
+
+#header li a {
+        display: block;
+        background-color: #b3c7c3;
+        text-decoration: none;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 5px;
+        font-size: 1.2em;
+        color: #333333;
+        transition: background-color 0.3s;
+    }
+#header    li a:hover {
+        background-color: #cafff4;
+        list-style-type: none;
  }	
 * html #header h1 { padding-top: 23px; }	
 /*----------------------------------------------
