@@ -1,3 +1,37 @@
+/*----------------------------------------------
+navigation header
+----------------------------------------------*/
+#header { 
+	width: 750px; 
+	margin: 0 auto;	
+	padding: 0;
+	}
+#header div { 
+	background: #b3c7c3; 
+	text-align: left;
+	padding: 45px 0 97px 20px;	
+	}	
+#header h1 {
+	margin: 0; 
+	clear: both;
+	padding: 43px 0 0 40px;	
+	font-size: 4em;	
+	}
+#header h1 a { 
+	padding: 0;
+	color: #000;
+	font-family: Impact, sans-serif;
+	font-weight: normal;
+	color: #000;	
+	}	
+#header h1 a:hover {
+	background-color: transparent;
+	color: #e1f7ef;
+ }	
+* html #header h1 { padding-top: 23px; }	
+/*----------------------------------------------
+page body
+----------------------------------------------*/
 body {
     font-family: Impact, sans-serif;
     background-color: #e1f7ef;
