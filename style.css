@@ -87,4 +87,5 @@ li a{
 }
 li a:hover {
     background-color: #cafff4;
+    list-style-type: none;
 }
