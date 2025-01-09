@@ -1,107 +1,211 @@
-
 /*----------------------------------------------
-navigation header
+Reset and Basic Styling
 ----------------------------------------------*/
-#header { 
-	width: 750px; 
-	margin: 0 auto;	
-	padding: 0;
-	}
-#header div { 
-	background: #b3c7c3; 
-	text-align: left;
-	padding: 45px 0 97px 20px;	
-	}	
-#header h1 {
-	margin: 0; 
-	clear: both;
-	padding: 43px 0 0 40px;	
-	font-size: 4em;	
-	}
-#header h1 a { 
-	padding: 0;
-	color: #000;
-	font-family: Impact, sans-serif;
-	font-weight: normal;
-	color: #000;	
-	}	
-#header h1 a:hover {
-	background-color: transparent;
-	color: #e1f7ef;
-
-#header li a {
-        display: block;
-        background-color: #b3c7c3;
-        text-decoration: none;
-        padding: 15px;
-        margin: 10px 0;
-        border-radius: 5px;
-        font-size: 1.2em;
-        color: #333333;
-        transition: background-color 0.3s;
-    }
-#header    li a:hover {
-        background-color: #cafff4;
-        list-style-type: none;
- }	
-* html #header h1 { padding-top: 23px; }	
-/*----------------------------------------------
-page body
-----------------------------------------------*/
-body {
-    font-family: Impact, sans-serif;
-    background-color: #e1f7ef;
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.5;
+    font-size: 16px;
+}
+
+/*----------------------------------------------
+Header & Navigation Styling
+----------------------------------------------*/
+header {
+    background-color: #f7faff; /* Light blue background */
+    color: #333;
+    text-align: center;
+    padding: 100px 20px 50px;
+    position: relative;
+    z-index: 10;
+    border-bottom: 5px solid #a0e3e2; /* Soft green border for postmodern touch */
+}
+
+nav {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    z-index: 5;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.2em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #e1306c;  /* Instagram pink color */
+}
+
+.header-content h1 {
+    font-size: 4em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.header-content h2 {
+    font-size: 1.5em;
+    font-weight: 300;
+    color: #777;
+}
+
+/*----------------------------------------------
+Main Content and Image Styling
+----------------------------------------------*/
+main {
+    text-align: center;
+    padding: 50px 20px;
+    position: relative;
+}
+
+.image-container {
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.main-image {
+    width: 80%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.main-image:hover {
+    transform: scale(1.05);  /* Slight zoom effect on hover */
+}
+
+/*----------------------------------------------
+Contact Info Styling
+----------------------------------------------*/
+.contact-info h3 {
+    font-size: 2.2em;
+    margin-bottom: 10px;
+    color: #52c2b0;  /* Postmodern green accent */
+}
+
+.contact-info p {
+    font-size: 1.2em;
+    color: #333;
+}
+
+/*----------------------------------------------
+Social Media Icons
+----------------------------------------------*/
+.social-media {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+}
+
+.social-icon {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-}
-.container {
-    text-align: center;
-    background-color: #ffff;
-    padding: 50px;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 600px;
-}
-h1 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    color: #333333;
-}
-h2{
-font-size: 1.5em;
-margin-bottom: 15px;
-color: #333333;
-}
-.links a {
-    display: block;
-    background-color: #b3c7c3;
+    width: 60px;
+    height: 60px;
+    background-color: #333;
+    color: white;
+    border-radius: 50%;
+    font-size: 1.5em;
     text-decoration: none;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 5px;
-    font-size: 1.2em;
-    color: #333333;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
 }
-.links a:hover {
-    background-color: #cafff4;
+
+.social-icon:hover {
+    background-color: #52c2b0;  /* Light green hover effect */
 }
-li a{
-    display: block;
-    background-color: #b3c7c3;
-    text-decoration: none;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 5px;
-    font-size: 1.2em;
-    color: #333333;
-    transition: background-color 0.3s;
+
+.social-icon.linkedin {
+    background-color: #0077b5;
 }
-li a:hover {
-    background-color: #cafff4;
-    list-style-type: none;
+
+.social-icon.instagram {
+    background-color: #e1306c;
+}
+
+/*----------------------------------------------
+Postmodern Background Elements (Geometric Shapes)
+----------------------------------------------*/
+body {
+    background-image: linear-gradient(135deg, rgba(0, 183, 255, 0.2), rgba(0, 255, 162, 0.2));  /* Light blue and green gradient */
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+/* Decorative shapes (can add randomness or abstract appeal) */
+header::after {
+    content: '';
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 200px;
+    background-color: rgba(0, 183, 255, 0.3);
+    border-radius: 50%;
+    z-index: -1; /* To place it behind content */
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    right: 50px;
+    width: 100px;
+    height: 100px;
+    background-color: rgba(0, 255, 162, 0.3);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+/*----------------------------------------------
+Mobile Responsiveness
+----------------------------------------------*/
+@media only screen and (max-width: 768px) {
+    .header-content h1 {
+        font-size: 2.5em;
+    }
+
+    .header-content h2 {
+        font-size: 1.2em;
+    }
+
+    .main-image {
+        width: 100%;
+    }
+
+    .social-media {
+        bottom: 10px;
+    }
 }
