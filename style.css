@@ -209,3 +209,44 @@ Mobile Responsiveness
         bottom: 10px;
     }
 }
+
+/*----------------------------------------------
+Gallery Styling
+----------------------------------------------*/
+.gallery {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.gallery h3 {
+    font-size: 2.5em;
+    color: #52c2b0; /* Postmodern green accent */
+    margin-bottom: 20px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+.gallery-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+}
+
