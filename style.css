@@ -9,8 +9,8 @@ Reset and Basic Styling
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
+    background-color: #d6edf3;
+    color: #070e3c;
     line-height: 1.5;
     font-size: 16px;
 }
@@ -19,13 +19,13 @@ body {
 Header & Navigation Styling
 ----------------------------------------------*/
 header {
-    background-color: #f7faff; /* Light blue background */
-    color: #333;
+    background-color: #556970; /*Darker green background */
+    color: #070e3c;
     text-align: center;
     padding: 100px 20px 50px;
     position: relative;
     z-index: 10;
-    border-bottom: 5px solid #a0e3e2; /* Soft green border for postmodern touch */
+    border-bottom: 5px solid #070e3c; /* Dark blue border */
 }
 
 nav {
@@ -48,7 +48,7 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: #333;
+    color: #ffff;
     font-size: 1.2em;
     font-weight: bold;
     letter-spacing: 1px;
@@ -57,14 +57,15 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #e1306c;  /* Instagram pink color */
+    color: #becbf6; 
+    transform: scale(1.05);  /* Slight zoom effect on hover */
 }
 
 .header-content h1 {
     font-size: 4em;
     font-weight: bold;
     margin-bottom: 20px;
-    color: #333;
+    color: #070e3c;
 }
 
 .header-content h2 {
@@ -141,7 +142,7 @@ main {
 .content-layer {
     text-align: center;
     width: 100%;
-    color: #333;
+    color: #070e3c;
 }
 
 .content-layer h1 {
@@ -160,12 +161,12 @@ Contact Info Styling
 .contact-info h3 {
     font-size: 2.2em;
     margin-bottom: 10px;
-    color: #52c2b0;  /* Postmodern green accent */
+    color: #556970; 
 }
 
 .contact-info p {
     font-size: 1.2em;
-    color: #333;
+    color: #070e3c;
 }
 
 /*----------------------------------------------
@@ -195,15 +196,16 @@ Social Media Icons
 }
 
 .social-icon:hover {
-    background-color: #52c2b0;  /* Light green hover effect */
+    background-color: #ccac86;/* Light brown hover effect */
+    transform: scale(1.05);  /* Slight zoom effect on hover */
 }
 
 .social-icon.linkedin {
-    background-color: #0077b5;
+    background-color: #824323;
 }
 
 .social-icon.instagram {
-    background-color: #e1306c;
+    background-color: #824323;
 }
 
 /*----------------------------------------------
@@ -224,7 +226,7 @@ header::after {
     transform: translateX(-50%);
     width: 200px;
     height: 200px;
-    background-color: rgba(0, 183, 255, 0.3);
+    background-color:#becbf6;
     border-radius: 50%;
     z-index: -1; /* To place it behind content */
 }
@@ -232,11 +234,11 @@ header::after {
 header::before {
     content: '';
     position: absolute;
-    bottom: 10px;
-    right: 50px;
+    bottom: 20px;
+    right: 700px;
     width: 100px;
     height: 100px;
-    background-color: rgba(0, 255, 162, 0.3);
+    background-color: #824323;
     border-radius: 50%;
     z-index: -1;
 }
@@ -272,7 +274,7 @@ Gallery Styling
 
 .gallery h3 {
     font-size: 2.5em;
-    color: #52c2b0; /* Postmodern green accent */
+    color: #556970; /* Postmodern green accent */
     margin-bottom: 20px;
 }
 
