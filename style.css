@@ -102,6 +102,58 @@ main {
     transform: scale(1.05);  /* Slight zoom effect on hover */
 }
 
+/* Content Layout */
+.container {
+    flex: 1; /* Ensures content takes up available space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.outer-margin {
+    margin: 40px;
+    background-color: #f7faff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    max-width: 800px;
+}
+
+.border-layer {
+    border: 5px solid #a0e3e2;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.padding-layer {
+    padding: 20px;
+    background-color: #ffffff;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-layer {
+    text-align: center;
+    width: 100%;
+    color: #333;
+}
+
+.content-layer h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.content-layer p {
+    font-size: 1.2em;
+}
+
+
 /*----------------------------------------------
 Contact Info Styling
 ----------------------------------------------*/
