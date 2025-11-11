@@ -1,4 +1,9 @@
 /*----------------------------------------------
+Import Fonts
+----------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap');
+
+/*----------------------------------------------
 Reset and Basic Styling
 ----------------------------------------------*/
 * {
@@ -8,24 +13,27 @@ Reset and Basic Styling
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #d6edf3;
-    color: #070e3c;
-    line-height: 1.5;
+    font-family: 'Lato', sans-serif;
+    background: linear-gradient(135deg, #0d3b4d 0%, #1a5f7a 25%, #d4775e 75%, #f4a261 100%);
+    background-attachment: fixed;
+    color: #f5f5f5;
+    line-height: 1.6;
     font-size: 16px;
+    min-height: 100vh;
 }
 
 /*----------------------------------------------
 Header & Navigation Styling
 ----------------------------------------------*/
 header {
-    background-color: #556970; /*Darker green background */
-    color: #070e3c;
+    background: linear-gradient(135deg, #0a2e3d 0%, #145263 50%, #c66b4f 100%);
+    color: #f5f5f5;
     text-align: center;
     padding: 100px 20px 50px;
     position: relative;
     z-index: 10;
-    border-bottom: 5px solid #070e3c; /* Dark blue border */
+    border-bottom: 5px solid #d4775e;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 nav {
@@ -40,6 +48,7 @@ nav ul {
     display: flex;
     justify-content: center;
     gap: 30px;
+    flex-wrap: wrap;
 }
 
 nav ul li {
@@ -48,30 +57,38 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: #ffff;
-    font-size: 1.2em;
-    font-weight: bold;
-    letter-spacing: 1px;
+    color: #f4a261;
+    font-size: 1.1em;
+    font-weight: 700;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    padding: 5px 10px;
+    border-bottom: 2px solid transparent;
 }
 
 nav ul li a:hover {
-    color: #becbf6; 
-    transform: scale(1.05);  /* Slight zoom effect on hover */
+    color: #ffd6a5;
+    border-bottom: 2px solid #d4775e;
+    transform: translateY(-2px);
 }
 
 .header-content h1 {
+    font-family: 'Playfair Display', serif;
     font-size: 4em;
-    font-weight: bold;
+    font-weight: 900;
     margin-bottom: 20px;
-    color: #070e3c;
+    color: #ffd6a5;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
 }
 
 .header-content h2 {
+    font-family: 'Lato', sans-serif;
     font-size: 1.5em;
     font-weight: 300;
-    color: #777;
+    color: #b8dfe6;
+    font-style: italic;
+    letter-spacing: 1px;
 }
 
 /*----------------------------------------------
@@ -94,18 +111,20 @@ main {
     width: 80%;
     max-width: 600px;
     height: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
+    border-radius: 50%;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    border: 5px solid #d4775e;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
 }
 
 .main-image:hover {
-    transform: scale(1.05);  /* Slight zoom effect on hover */
+    transform: scale(1.05);
+    box-shadow: 0 12px 35px rgba(212, 119, 94, 0.6);
 }
 
 /* Content Layout */
 .container {
-    flex: 1; /* Ensures content takes up available space */
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -114,59 +133,76 @@ main {
 
 .outer-margin {
     margin: 40px;
-    background-color: #f7faff;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
     display: flex;
     justify-content: center;
     align-items: center;
     width: 80%;
     max-width: 800px;
+    border-radius: 15px;
 }
 
 .border-layer {
-    border: 5px solid #a0e3e2;
+    border: 5px solid #d4775e;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 15px;
 }
 
 .padding-layer {
-    padding: 20px;
-    background-color: #ffffff;
+    padding: 40px;
+    background: linear-gradient(135deg, rgba(10, 46, 61, 0.9) 0%, rgba(20, 82, 99, 0.9) 100%);
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-radius: 10px;
 }
 
 .content-layer {
     text-align: center;
     width: 100%;
-    color: #070e3c;
+    color: #f5f5f5;
 }
 
 .content-layer h1 {
+    font-family: 'Playfair Display', serif;
     font-size: 2.5em;
     margin-bottom: 10px;
+    color: #ffd6a5;
 }
 
 .content-layer p {
     font-size: 1.2em;
+    color: #b8dfe6;
 }
-
 
 /*----------------------------------------------
 Contact Info Styling
 ----------------------------------------------*/
+.contact-info {
+    background: rgba(244, 162, 97, 0.15);
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 4px solid #f4a261;
+    margin-top: 20px;
+}
+
 .contact-info h3 {
+    font-family: 'Playfair Display', serif;
     font-size: 2.2em;
     margin-bottom: 10px;
-    color: #556970; 
+    color: #ffd6a5;
 }
 
 .contact-info p {
     font-size: 1.2em;
-    color: #070e3c;
+    color: #b8dfe6;
+    letter-spacing: 0.5px;
 }
 
 /*----------------------------------------------
@@ -179,6 +215,7 @@ Social Media Icons
     transform: translateX(-50%);
     display: flex;
     gap: 20px;
+    z-index: 100;
 }
 
 .social-icon {
@@ -187,37 +224,34 @@ Social Media Icons
     align-items: center;
     width: 60px;
     height: 60px;
-    background-color: #333;
-    color: white;
+    background: linear-gradient(135deg, #0a2e3d 0%, #145263 100%);
+    color: #f4a261;
     border-radius: 50%;
     font-size: 1.5em;
     text-decoration: none;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    border: 2px solid #d4775e;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .social-icon:hover {
-    background-color: #ccac86;/* Light brown hover effect */
-    transform: scale(1.05);  /* Slight zoom effect on hover */
+    background: linear-gradient(135deg, #d4775e 0%, #f4a261 100%);
+    color: #0a2e3d;
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0 6px 20px rgba(212, 119, 94, 0.5);
 }
 
 .social-icon.linkedin {
-    background-color: #824323;
+    background: linear-gradient(135deg, #0a2e3d 0%, #145263 100%);
 }
 
 .social-icon.instagram {
-    background-color: #824323;
+    background: linear-gradient(135deg, #0a2e3d 0%, #145263 100%);
 }
 
 /*----------------------------------------------
-Postmodern Background Elements (Geometric Shapes)
+Decorative Background Elements
 ----------------------------------------------*/
-body {
-    background-image: linear-gradient(135deg, rgba(0, 183, 255, 0.2), rgba(0, 255, 162, 0.2));  /* Light blue and green gradient */
-    background-size: 100% 100%;
-    background-position: center;
-}
-
-/* Decorative shapes (can add randomness or abstract appeal) */
 header::after {
     content: '';
     position: absolute;
@@ -226,19 +260,19 @@ header::after {
     transform: translateX(-50%);
     width: 200px;
     height: 200px;
-    background-color:#becbf6;
+    background: radial-gradient(circle, rgba(244, 162, 97, 0.3) 0%, rgba(212, 119, 94, 0.1) 100%);
     border-radius: 50%;
-    z-index: -1; /* To place it behind content */
+    z-index: -1;
 }
 
 header::before {
     content: '';
     position: absolute;
     bottom: 20px;
-    right: 700px;
+    right: 100px;
     width: 100px;
     height: 100px;
-    background-color: #824323;
+    background: radial-gradient(circle, rgba(184, 223, 230, 0.3) 0%, rgba(26, 95, 122, 0.1) 100%);
     border-radius: 50%;
     z-index: -1;
 }
@@ -255,12 +289,67 @@ Mobile Responsiveness
         font-size: 1.2em;
     }
 
+    nav ul {
+        gap: 15px;
+    }
+
+    nav ul li a {
+        font-size: 0.9em;
+        padding: 5px 8px;
+    }
+
     .main-image {
         width: 100%;
+        max-width: 300px;
     }
 
     .social-media {
         bottom: 10px;
+        gap: 15px;
+    }
+
+    .social-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2em;
+    }
+
+    .outer-margin {
+        width: 95%;
+        margin: 20px;
+    }
+
+    .padding-layer {
+        padding: 20px;
+    }
+
+    .contact-info h3 {
+        font-size: 1.8em;
+    }
+
+    header::before {
+        right: 20px;
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .header-content h1 {
+        font-size: 2em;
+    }
+
+    .header-content h2 {
+        font-size: 1em;
+    }
+
+    nav ul {
+        gap: 10px;
+    }
+
+    nav ul li a {
+        font-size: 0.8em;
+        letter-spacing: 1px;
     }
 }
 
@@ -273,9 +362,11 @@ Gallery Styling
 }
 
 .gallery h3 {
+    font-family: 'Playfair Display', serif;
     font-size: 2.5em;
-    color: #556970; /* Postmodern green accent */
+    color: #ffd6a5;
     margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .gallery-grid {
@@ -289,12 +380,14 @@ Gallery Styling
     position: relative;
     overflow: hidden;
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+    border: 3px solid #d4775e;
 }
 
 .gallery-item:hover {
-    transform: scale(1.05); /* Slight zoom effect on hover */
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(212, 119, 94, 0.5);
 }
 
 .gallery-image {
@@ -303,4 +396,3 @@ Gallery Styling
     display: block;
     border-radius: 10px;
 }
-
