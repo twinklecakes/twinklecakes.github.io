@@ -1,0 +1,46 @@
+# Site settings
+title: Avelyn Batts
+description: Nature. Storytelling. Untangling problems.
+url: "https://avelynb.com"
+baseurl: ""
+
+# Author information
+author:
+  name: Avelyn Batts
+  email: avelyn@stanford.edu
+
+# Build settings
+markdown: kramdown
+permalink: /blog/:year/:month/:day/:title/
+
+# Jekyll plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /blog/:year/:month/:day/:title/
+
+# Exclude from processing
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+
+# Include files
+include:
+  - _pages
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Avelyn Batts"
