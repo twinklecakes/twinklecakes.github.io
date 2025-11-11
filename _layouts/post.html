@@ -1,0 +1,35 @@
+---
+layout: default
+---
+
+<main>
+    <div class="container">
+        <div class="outer-margin">
+            <div class="border-layer">
+                <div class="padding-layer">
+                    <article class="blog-post">
+                        <header class="post-header-full">
+                            <h1 class="post-title-full">{{ page.title }}</h1>
+                            <p class="post-meta">
+                                <time datetime="{{ page.date | date_to_xmlschema }}">
+                                    {{ page.date | date: "%B %-d, %Y" }}
+                                </time>
+                                {% if page.author %}
+                                    <span class="post-author">by {{ page.author }}</span>
+                                {% endif %}
+                            </p>
+                        </header>
+
+                        <div class="post-content">
+                            {{ content }}
+                        </div>
+
+                        <footer class="post-footer">
+                            <a href="{{ '/blog' | relative_url }}" class="back-to-blog">← Back to Blog</a>
+                        </footer>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
