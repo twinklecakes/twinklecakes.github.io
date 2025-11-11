@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <link rel="stylesheet" href="{{ '/style.css' | relative_url }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ '/' | relative_url }}">Home</a></li>
+                <li><a href="{{ '/gallery' | relative_url }}">Gallery</a></li>
+                <li><a href="{{ '/cv' | relative_url }}">My CV</a></li>
+                <li><a href="{{ '/blog' | relative_url }}">Blog</a></li>
+            </ul>
+        </nav>
+        <div class="header-content">
+            <h1>Avelyn Batts</h1>
+            <h2>Nature. Storytelling. Untangling problems.</h2>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    {{ content }}
+
+    <!-- Footer with Social Media -->
+    <footer class="social-media">
+        <a href="https://www.linkedin.com/in/avelyn-batts-a457a0290" target="_blank" class="social-icon linkedin" aria-label="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://www.instagram.com/yourprofile" target="_blank" class="social-icon instagram" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </footer>
+</body>
+</html>
