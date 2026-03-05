@@ -1,52 +1,201 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avelyn Batts - My CV</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avelyn — Creative Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Page-specific hero adjustments */
+    .hero-subtitle {
+      font-size: 1.3rem;
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .hero-meta {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-xl);
+      margin-top: var(--spacing-xl);
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      flex-wrap: wrap;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+    }
+
+    /* Highlights section */
+    .highlights {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--spacing-lg);
+      padding: var(--spacing-2xl) var(--spacing-lg);
+      background: white;
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .highlight-card {
+      text-align: center;
+      padding: var(--spacing-lg);
+    }
+
+    .highlight-icon {
+      font-size: 2.5rem;
+      margin-bottom: var(--spacing-md);
+      color: var(--accent-warm);
+    }
+
+    .highlight-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .highlight-card p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+  </style>
 </head>
 <body>
-    <!-- Header with Navigation -->
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/gallery">Gallery</a></li>
-                <li><a href="/cv">My CV</a></li>
-                <li><a href="/blog">Blog</a></li>
-            </ul>
-        </nav>
-        <div class="header-content">
-            <h1>Avelyn Batts</h1>
-            <h2>Nature. Storytelling. Untangling problems.</h2>
-        </div>
-    </header>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="/" class="nav-logo">Avelyn</a>
+      <button class="nav-toggle" id="navToggle">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/work.html">Work</a></li>
+        <li><a href="/blog.html">Blog</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
 
-    <!-- Main Content -->
-    <main>
-        <div class="content-card">
-            <div class="image-container">
-                <img src="Headshot.jpeg" alt="Avelyn Batts" class="main-image">
-            </div>
-            <div class="contact-info">
-                <h3>Contact me here!</h3>
-                <p>avelyn@stanford.edu</p>
-            </div>
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Hi, I'm Avelyn</h1>
+        <p class="hero-subtitle">
+          Creative developer & writer exploring the intersection of design, technology, and human experience.
+        </p>
+        <div class="hero-cta">
+          <a href="/work.html" class="btn btn-primary">View My Work</a>
+          <a href="/contact.html" class="btn btn-secondary">Get In Touch</a>
         </div>
-    </main>
+      </div>
+    </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="social-media">
-            <a href="https://www.linkedin.com/in/avelyn-batts-a457a0290" target="_blank" class="social-icon linkedin" aria-label="LinkedIn">
-                <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="https://www.instagram.com/yourprofile" target="_blank" class="social-icon instagram" aria-label="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-        </div>
-    </footer>
+    <!-- Highlights -->
+    <div class="highlights">
+      <div class="highlight-card">
+        <div class="highlight-icon">✨</div>
+        <h3>Design</h3>
+        <p>Thoughtful interfaces and visual experiences</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">💻</div>
+        <h3>Development</h3>
+        <p>Clean code and modern web technologies</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">📝</div>
+        <h3>Writing</h3>
+        <p>Stories and insights about creativity</p>
+      </div>
+    </div>
+
+    <!-- Featured Work Section -->
+    <section class="container">
+      <h2 class="section-title">Featured Work</h2>
+      
+      <div class="card">
+        <div class="card-meta">CASE STUDY</div>
+        <h3 class="card-title">Personal Brand Redesign</h3>
+        <p>
+          Reimagining my online presence with a focus on clarity, consistency, and modern aesthetics. This project involved rethinking information architecture, establishing a cohesive design system, and building a scalable website foundation.
+        </p>
+        <a href="/work.html" class="btn btn-secondary">Read Case Study →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-meta">PROJECT</div>
+        <h3 class="card-title">Web Development</h3>
+        <p>
+          Building responsive, performant web experiences with attention to accessibility and user experience. From static sites to interactive applications.
+        </p>
+        <a href="/work.html" class="btn btn-secondary">Explore Projects →</a>
+      </div>
+    </section>
+
+    <!-- Latest Posts -->
+    <section class="container">
+      <h2 class="section-title">Latest Thoughts</h2>
+      
+      <div class="blog-list">
+        <a href="#" class="blog-post">
+          <div class="post-date">March 2026</div>
+          <h3 class="card-title">Building Websites That Feel Good</h3>
+          <p>On the intersection of design systems, craftsmanship, and the web.</p>
+        </a>
+        <a href="#" class="blog-post">
+          <div class="post-date">February 2026</div>
+          <h3 class="card-title">Thoughts on Creative Process</h3>
+          <p>How constraints breed creativity, and why limitations are features, not bugs.</p>
+        </a>
+        <a href="#" class="blog-post">
+          <div class="post-date">January 2026</div>
+          <h3 class="card-title">Designing for Clarity</h3>
+          <p>Making complex information accessible and beautiful.</p>
+        </a>
+      </div>
+      
+      <a href="/blog.html" class="btn btn-primary" style="margin-top: var(--spacing-xl);">View All Articles</a>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <ul class="footer-links">
+        <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+        <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+        <li><a href="https://github.com/twinklecakes" target="_blank">GitHub</a></li>
+        <li><a href="/contact.html">Email</a></li>
+      </ul>
+      <p class="footer-credit">
+        © 2026 Avelyn. Handcrafted with care.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Close menu when a link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+  </script>
 </body>
 </html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Avelyn</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    .about-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-2xl);
+      align-items: center;
+      padding: var(--spacing-2xl) var(--spacing-lg);
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .about-image {
+      border-radius: 4px;
+      overflow: hidden;
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, var(--accent-warm), var(--accent-gold));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 3rem;
+    }
+
+    .about-text h1 {
+      margin-bottom: var(--spacing-md);
+    }
+
+    .about-text p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text-primary);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-lg);
+    }
+
+    .skill-item {
+      background: white;
+      padding: var(--spacing-md);
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+    }
+
+    .skill-category {
+      font-weight: 600;
+      color: var(--accent-warm);
+      margin-bottom: var(--spacing-xs);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .skill-item ul {
+      list-style: none;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    .timeline {
+      position: relative;
+      padding: var(--spacing-xl) 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent-warm), transparent);
+    }
+
+    .timeline-item {
+      padding-left: var(--spacing-xl);
+      margin-bottom: var(--spacing-xl);
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -8px;
+      top: 4px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: white;
+      border: 3px solid var(--accent-warm);
+    }
+
+    .timeline-year {
+      font-weight: 600;
+      color: var(--accent-warm);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    @media (max-width: 768px) {
+      .about-hero {
+        grid-template-columns: 1fr;
+        padding: var(--spacing-xl) var(--spacing-md);
+      }
+
+      .about-image {
+        aspect-ratio: auto;
+        min-height: 250px;
+      }
+
+      .timeline::before {
+        left: -8px;
+      }
+
+      .timeline-item {
+        padding-left: var(--spacing-lg);
+      }
+
+      .timeline-item::before {
+        left: -14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="/" class="nav-logo">Avelyn</a>
+      <button class="nav-toggle" id="navToggle">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/work.html">Work</a></li>
+        <li><a href="/blog.html">Blog</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <!-- About Hero -->
+    <section class="about-hero">
+      <div class="about-image">
+        <!-- Replace emoji with actual image -->
+        <img src="Headshot.jpeg" alt="Avelyn" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+      <div class="about-text">
+        <h1>About Me</h1>
+        <p>
+          I'm a creative developer and writer based in California, passionate about building beautiful, functional digital experiences. With a background in design and development, I help bring ideas to life through thoughtful design and clean code.
+        </p>
+        <p>
+          When I'm not designing or coding, you'll find me writing about the creative process, experimenting with new technologies, or exploring the intersection of art and technology.
+        </p>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="container">
+      <h2 class="section-title">Skills & Tools</h2>
+      
+      <div class="skills-grid">
+        <div class="skill-item">
+          <div class="skill-category">Design</div>
+          <ul>
+            <li>UI/UX Design</li>
+            <li>Visual Design</li>
+            <li>Design Systems</li>
+            <li>Figma</li>
+          </ul>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-category">Development</div>
+          <ul>
+            <li>HTML & CSS</li>
+            <li>JavaScript</li>
+            <li>React</li>
+            <li>Web Performance</li>
+          </ul>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-category">Tools & Other</div>
+          <ul>
+            <li>Git & GitHub</li>
+            <li>VS Code</li>
+            <li>Command Line</li>
+            <li>Problem Solving</li>
+          </ul>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-category">Writing</div>
+          <ul>
+            <li>Technical Writing</li>
+            <li>Blog Posts</li>
+            <li>Case Studies</li>
+            <li>Creative Content</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="container">
+      <h2 class="section-title">Experience</h2>
+      
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">2024 - Present</div>
+          <h3 class="card-title">Freelance Designer & Developer</h3>
+          <p>Building custom websites and digital products for clients, focusing on design systems and developer experience.</p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">2023 - 2024</div>
+          <h3 class="card-title">Frontend Developer</h3>
+          <p>Developed responsive web applications, improved site performance, and collaborated with design teams.</p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">2022 - 2023</div>
+          <h3 class="card-title">Junior Web Developer</h3>
+          <p>Started my journey in web development, learning HTML, CSS, JavaScript, and modern frameworks.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="container" style="text-align: center;">
+      <h2 class="section-title">Let's Work Together</h2>
+      <p style="font-size: 1.05rem; margin-bottom: var(--spacing-lg);">
+        I'm always interested in new projects and collaborations. Feel free to reach out!
+      </p>
+      <a href="/contact.html" class="btn btn-primary">Get In Touch</a>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <ul class="footer-links">
+        <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+        <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+        <li><a href="https://github.com/twinklecakes" target="_blank">GitHub</a></li>
+        <li><a href="/contact.html">Email</a></li>
+      </ul>
+      <p class="footer-credit">
+        © 2026 Avelyn. Handcrafted with care.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>

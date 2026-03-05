@@ -1,53 +1,301 @@
----
-layout: default
-title: Blog - Avelyn Batts
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Avelyn</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    .blog-hero {
+      padding: var(--spacing-2xl) var(--spacing-lg);
+      text-align: center;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
 
-<main>
-    <!-- Blog Introduction Section -->
-    <div class="container">
-        <div class="outer-margin">
-            <div class="border-layer">
-                <div class="padding-layer">
-                    <section class="blog-intro">
-                        <h3 class="section-title">Welcome to My Blog</h3>
-                        <p class="blog-description">
-                            Exploring nature, storytelling, and the art of untangling complex problems. 
-                            Join me on this journey of discovery and insight.
-                        </p>
-                    </section>
-                </div>
-            </div>
-        </div>
-    </div>
+    .blog-hero h1 {
+      margin-bottom: var(--spacing-sm);
+    }
 
-    <!-- Blog Posts Grid -->
-    <div class="container">
-        <div class="outer-margin">
-            <div class="border-layer">
-                <div class="padding-layer">
-                    <section class="blog-posts">
-                        {% if site.posts.size > 0 %}
-                            <div class="posts-grid">
-                                {% for post in site.posts %}
-                                    <article class="post-card">
-                                        <div class="post-header">
-                                            <h3 class="post-title">
-                                                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-                                            </h3>
-                                            <p class="post-date">{{ post.date | date: "%B %-d, %Y" }}</p>
-                                        </div>
-                                        <div class="post-excerpt">
-                                            {{ post.excerpt }}
-                                        </div>
-                                        <a href="{{ post.url | relative_url }}" class="read-more">Read More →</a>
-                                    </article>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                    </section>
-                </div>
-            </div>
-        </div>
+    .blog-hero p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+    }
+
+    .blog-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-lg);
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: var(--spacing-lg);
+      padding: var(--spacing-lg) 0;
+    }
+
+    .blog-card {
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      padding: var(--spacing-lg);
+      display: flex;
+      flex-direction: column;
+      transition: all var(--transition-base);
+      cursor: pointer;
+    }
+
+    .blog-card:hover {
+      border-color: var(--accent-warm);
+      box-shadow: 0 8px 24px rgba(212, 149, 109, 0.1);
+      transform: translateY(-4px);
+    }
+
+    .blog-card-date {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .blog-card h3 {
+      flex-grow: 1;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .blog-card-excerpt {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: var(--spacing-md);
+      flex-grow: 1;
+    }
+
+    .blog-card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: var(--spacing-md);
+      border-top: 1px solid var(--border-color);
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .read-time {
+      font-style: italic;
+    }
+
+    .category-tag {
+      background: var(--background-overlay);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: 20px;
+      color: var(--accent-warm);
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+
+    .featured-post {
+      background: linear-gradient(135deg, var(--accent-warm), var(--accent-gold));
+      color: white;
+      border: none;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .featured-post:hover {
+      border-color: transparent;
+      box-shadow: 0 12px 32px rgba(212, 149, 109, 0.3);
+    }
+
+    .featured-post .blog-card-date {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .featured-post .blog-card-excerpt {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .featured-post .blog-card-meta {
+      border-top-color: rgba(255, 255, 255, 0.2);
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .featured-post .category-tag {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+
+    .no-posts {
+      text-align: center;
+      padding: var(--spacing-2xl) var(--spacing-lg);
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 768px) {
+      .blog-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .blog-hero {
+        padding: var(--spacing-xl) var(--spacing-md);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="/" class="nav-logo">Avelyn</a>
+      <button class="nav-toggle" id="navToggle">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/work.html">Work</a></li>
+        <li><a href="/blog.html">Blog</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
     </div>
-</main>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Page Header -->
+    <section class="blog-hero">
+      <h1>Blog</h1>
+      <p>Thoughts on design, development, and the creative process.</p>
+    </section>
+
+    <!-- Blog Posts -->
+    <section class="blog-container">
+      <div class="blog-grid">
+        <!-- Featured Post -->
+        <article class="blog-card featured-post">
+          <div class="blog-card-date">March 15, 2026</div>
+          <h3 class="card-title">Building Websites That Feel Good</h3>
+          <p class="blog-card-excerpt">
+            Exploring the intersection of design systems, craftsmanship, and modern web development. How can we create digital experiences that are both beautiful and functional?
+          </p>
+          <div class="blog-card-meta">
+            <span class="read-time">8 min read</span>
+            <span class="category-tag">Design</span>
+          </div>
+        </article>
+
+        <!-- Blog Post 1 -->
+        <article class="blog-card">
+          <div class="blog-card-date">March 10, 2026</div>
+          <h3 class="card-title">CSS Grid vs Flexbox: When to Use Each</h3>
+          <p class="blog-card-excerpt">
+            A practical guide to choosing between CSS Grid and Flexbox for your layout needs, with real-world examples and best practices.
+          </p>
+          <div class="blog-card-meta">
+            <span class="read-time">6 min read</span>
+            <span class="category-tag">Development</span>
+          </div>
+        </article>
+
+        <!-- Blog Post 2 -->
+        <article class="blog-card">
+          <div class="blog-card-date">March 5, 2026</div>
+          <h3 class="card-title">Thoughts on Creative Process</h3>
+          <p class="blog-card-excerpt">
+            How constraints breed creativity, and why limitations are features, not bugs. Reflections on what I've learned as a designer and developer.
+          </p>
+          <div class="blog-card-meta">
+            <span class="read-time">7 min read</span>
+            <span class="category-tag">Thoughts</span>
+          </div>
+        </article>
+
+        <!-- Blog Post 3 -->
+        <article class="blog-card">
+          <div class="blog-card-date">February 28, 2026</div>
+          <h3 class="card-title">Designing for Clarity</h3>
+          <p class="blog-card-excerpt">
+            Making complex information accessible and beautiful. Principles for creating clear visual hierarchies and intuitive interfaces.
+          </p>
+          <div class="blog-card-meta">
+            <span class="read-time">5 min read</span>
+            <span class="category-tag">Design</span>
+          </div>
+        </article>
+
+        <!-- Blog Post 4 -->
+        <article class="blog-card">
+          <div class="blog-card-date">February 20, 2026</div>
+          <h3 class="card-title">JavaScript Tips for Better Code</h3>
+          <p class="blog-card-excerpt">
+            Essential JavaScript patterns and practices that will improve your code quality, readability, and performance.
+          </p>
+          <div class="blog-card-meta">
+            <span class="read-time">9 min read</span>
+            <span class="category-tag">Development</span>
+          </div>
+        </article>
+
+        <!-- Blog Post 5 -->
+        <article class="blog-card">
+          <div class="blog-card-date">February 12, 2026</div>
+          <h3 class="card-title">My Website Redesign Journey</h3>
+          <p class="blog-card-excerpt">
+            A behind-the-scenes look at how I redesigned my personal website, including design decisions, technical challenges, and lessons learned.
+          </p>
+          <div class="blog-card-meta">
+            <span class="read-time">10 min read</span>
+            <span class="category-tag">Case Study</span>
+          </div>
+        </article>
+
+        <!-- Blog Post 6 -->
+        <article class="blog-card">
+          <div class="blog-card-date">February 5, 2026</div>
+          <h3 class="card-title">Web Performance Optimization Tips</h3>
+          <p class="blog-card-excerpt">
+            Practical strategies for improving your website's load time and performance, from image optimization to code splitting.
+          </p>
+          <div class="blog-card-meta">
+            <span class="read-time">7 min read</span>
+            <span class="category-tag">Development</span>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <ul class="footer-links">
+        <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+        <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+        <li><a href="https://github.com/twinklecakes" target="_blank">GitHub</a></li>
+        <li><a href="/contact.html">Email</a></li>
+      </ul>
+      <p class="footer-credit">
+        © 2026 Avelyn. Handcrafted with care.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>

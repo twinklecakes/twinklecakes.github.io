@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work — Avelyn</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    .work-intro {
+      padding: var(--spacing-2xl) var(--spacing-lg);
+      text-align: center;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .work-intro p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .project-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-2xl);
+      align-items: center;
+      padding: var(--spacing-2xl) var(--spacing-lg);
+      border-bottom: 1px solid var(--border-color);
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .project-card:nth-child(even) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .project-card:nth-child(even) .project-content {
+      order: 2;
+    }
+
+    .project-card:nth-child(even) .project-image {
+      order: 1;
+    }
+
+    .project-image {
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, var(--accent-warm), var(--accent-gold));
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 3rem;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .project-content h2 {
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .project-meta {
+      display: flex;
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-md);
+      font-size: 0.9rem;
+      flex-wrap: wrap;
+    }
+
+    .meta-tag {
+      color: var(--accent-warm);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .project-content p {
+      color: var(--text-primary);
+      line-height: 1.8;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .project-tech {
+      display: flex;
+      gap: var(--spacing-sm);
+      flex-wrap: wrap;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .tech-badge {
+      background: var(--background-overlay);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .project-links {
+      display: flex;
+      gap: var(--spacing-md);
+    }
+
+    @media (max-width: 768px) {
+      .project-card {
+        grid-template-columns: 1fr;
+        padding: var(--spacing-xl) var(--spacing-md);
+        gap: var(--spacing-lg);
+      }
+
+      .project-card:nth-child(even) {
+        grid-template-columns: 1fr;
+      }
+
+      .project-card:nth-child(even) .project-content {
+        order: unset;
+      }
+
+      .project-card:nth-child(even) .project-image {
+        order: unset;
+      }
+
+      .project-image {
+        aspect-ratio: auto;
+        min-height: 250px;
+      }
+
+      .project-meta {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+      }
+
+      .project-links {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="/" class="nav-logo">Avelyn</a>
+      <button class="nav-toggle" id="navToggle">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/work.html">Work</a></li>
+        <li><a href="/blog.html">Blog</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Page Intro -->
+    <section class="work-intro">
+      <h1>Selected Work</h1>
+      <p>
+        A collection of projects I'm proud of. Each one represents a unique challenge, creative solution, and lessons learned along the way.
+      </p>
+    </section>
+
+    <!-- Project 1 -->
+    <section class="project-card">
+      <div class="project-image">
+        <span>🎨</span>
+      </div>
+      <div class="project-content">
+        <h2>Personal Brand Redesign</h2>
+        <div class="project-meta">
+          <span class="meta-tag">2025</span>
+          <span class="meta-tag">Design & Development</span>
+        </div>
+        <p>
+          A complete redesign of my online presence, focusing on creating a cohesive visual identity and establishing a scalable design system. The project involved rethinking information architecture, creating a modern color palette, and building a responsive website from scratch.
+        </p>
+        <div class="project-tech">
+          <span class="tech-badge">HTML</span>
+          <span class="tech-badge">CSS</span>
+          <span class="tech-badge">Design System</span>
+          <span class="tech-badge">Responsive Design</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="btn btn-primary">View Project</a>
+          <a href="#" class="btn btn-secondary">Read Case Study</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project 2 -->
+    <section class="project-card">
+      <div class="project-image">
+        <span>💻</span>
+      </div>
+      <div class="project-content">
+        <h2>Interactive Web Application</h2>
+        <div class="project-meta">
+          <span class="meta-tag">2024</span>
+          <span class="meta-tag">Development</span>
+        </div>
+        <p>
+          Built a modern web application with React, focusing on user experience and performance. The application features real-time data updates, responsive design, and an intuitive interface that adapts to user needs.
+        </p>
+        <div class="project-tech">
+          <span class="tech-badge">React</span>
+          <span class="tech-badge">JavaScript</span>
+          <span class="tech-badge">CSS</span>
+          <span class="tech-badge">API Integration</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="btn btn-primary">View Project</a>
+          <a href="#" class="btn btn-secondary">GitHub Repo</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project 3 -->
+    <section class="project-card">
+      <div class="project-image">
+        <span>📱</span>
+      </div>
+      <div class="project-content">
+        <h2>Mobile-First Website</h2>
+        <div class="project-meta">
+          <span class="meta-tag">2023</span>
+          <span class="meta-tag">Design & Development</span>
+        </div>
+        <p>
+          Designed and developed a mobile-first website for a creative agency. Emphasized clean typography, intuitive navigation, and smooth animations. The site loads quickly and provides an excellent experience across all devices.
+        </p>
+        <div class="project-tech">
+          <span class="tech-badge">HTML</span>
+          <span class="tech-badge">CSS</span>
+          <span class="tech-badge">JavaScript</span>
+          <span class="tech-badge">Accessibility</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="btn btn-primary">View Project</a>
+          <a href="#" class="btn btn-secondary">Case Study</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="container" style="text-align: center; padding: var(--spacing-2xl) var(--spacing-lg);">
+      <h2 class="section-title">Have a Project in Mind?</h2>
+      <p style="font-size: 1.05rem; margin-bottom: var(--spacing-lg);">
+        I'd love to hear about your ideas and discuss how we can collaborate.
+      </p>
+      <a href="/contact.html" class="btn btn-primary">Let's Talk</a>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <ul class="footer-links">
+        <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+        <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+        <li><a href="https://github.com/twinklecakes" target="_blank">GitHub</a></li>
+        <li><a href="/contact.html">Email</a></li>
+      </ul>
+      <p class="footer-credit">
+        © 2026 Avelyn. Handcrafted with care.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>
