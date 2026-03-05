@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Avelyn</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    .contact-hero {
+      padding: var(--spacing-2xl) var(--spacing-lg);
+      text-align: center;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .contact-hero h1 {
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .contact-hero p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-2xl);
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: var(--spacing-xl) var(--spacing-lg);
+    }
+
+    .contact-info h3 {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .contact-method {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .contact-method h4 {
+      font-size: 1rem;
+      margin-bottom: var(--spacing-xs);
+      color: var(--primary-dark);
+    }
+
+    .contact-method p {
+      margin-bottom: 0;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .contact-method a {
+      color: var(--accent-warm);
+      font-weight: 500;
+    }
+
+    .social-links {
+      display: flex;
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-xl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border: 2px solid var(--border-color);
+      border-radius: 4px;
+      color: var(--primary-dark);
+      font-size: 1.3rem;
+      transition: all var(--transition-base);
+    }
+
+    .social-link:hover {
+      border-color: var(--accent-warm);
+      color: var(--accent-warm);
+      transform: translateY(-2px);
+    }
+
+    .form-group {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    label {
+      display: block;
+      margin-bottom: var(--spacing-xs);
+      font-weight: 500;
+      color: var(--primary-dark);
+      font-size: 0.95rem;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: var(--spacing-sm);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      transition: border-color var(--transition-base);
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--accent-warm);
+      box-shadow: 0 0 0 3px rgba(212, 149, 109, 0.1);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: var(--spacing-md);
+      background: var(--primary-dark);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-base);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .form-submit:hover {
+      background: var(--accent-warm);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(26, 26, 26, 0.15);
+    }
+
+    .form-notice {
+      background: var(--background-overlay);
+      padding: var(--spacing-md);
+      border-radius: 4px;
+      border-left: 4px solid var(--accent-warm);
+      margin-bottom: var(--spacing-lg);
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 768px) {
+      .contact-section {
+        grid-template-columns: 1fr;
+        padding: var(--spacing-xl) var(--spacing-md);
+      }
+
+      .contact-hero {
+        padding: var(--spacing-xl) var(--spacing-md);
+      }
+
+      .social-links {
+        gap: var(--spacing-md);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="/" class="nav-logo">Avelyn</a>
+      <button class="nav-toggle" id="navToggle">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/work.html">Work</a></li>
+        <li><a href="/blog.html">Blog</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Page Header -->
+    <section class="contact-hero">
+      <h1>Get In Touch</h1>
+      <p>Have a question or want to work together? I'd love to hear from you. Reach out via email or connect on social media.</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+      <!-- Contact Info -->
+      <div class="contact-info">
+        <h3>Contact Information</h3>
+        
+        <div class="contact-method">
+          <h4>Email</h4>
+          <p><a href="/cdn-cgi/l/email-protection#751d1019191a35140310190c1b175b161a18"><span class="__cf_email__" data-cfemail="cda5a8a1a1a28dacbba8a1b4a3afe3aea2a0">[email&#160;protected]</span></a></p>
+        </div>
+
+        <div class="contact-method">
+          <h4>Location</h4>
+          <p>California, USA</p>
+        </div>
+
+        <div class="contact-method">
+          <h4>Availability</h4>
+          <p>Open to freelance projects, collaborations, and interesting opportunities. Let's chat!</p>
+        </div>
+
+        <div class="social-links">
+          <a href="https://twitter.com" target="_blank" class="social-link" title="Twitter">𝕏</a>
+          <a href="https://linkedin.com" target="_blank" class="social-link" title="LinkedIn">in</a>
+          <a href="https://github.com/twinklecakes" target="_blank" class="social-link" title="GitHub">⚡</a>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="contact-form">
+        <h3>Send a Message</h3>
+        
+        <div class="form-notice">
+          I typically respond within 24-48 hours. Looking forward to hearing from you!
+        </div>
+
+        <form id="contactForm" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" required>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+
+          <button type="submit" class="form-submit">Send Message</button>
+        </form>
+
+        <p style="margin-top: var(--spacing-lg); font-size: 0.85rem; color: var(--text-secondary); text-align: center;">
+          Note: This form needs to be connected to Formspree or your preferred email service.
+        </p>
+      </div>
+    </section>
+
+    <!-- Alternative Contact -->
+    <section style="background: var(--background-overlay); padding: var(--spacing-2xl) var(--spacing-lg); text-align: center;">
+      <div style="max-width: 600px; margin: 0 auto;">
+        <h2 class="section-title">Prefer Direct Contact?</h2>
+        <p style="margin-bottom: var(--spacing-lg);">
+          You can always send me an email directly at <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b9d1dcd5d5d6f9d8cfdcd5c0d7db97dad6d4">[email&#160;protected]</a></strong> or find me on social media.
+        </p>
+        <div style="display: flex; gap: var(--spacing-md); justify-content: center;">
+          <a href="/cdn-cgi/l/email-protection#cda5a8a1a1a28dacbba8a1b4a3afe3aea2a0" class="btn btn-primary">Send Email</a>
+          <a href="https://twitter.com" target="_blank" class="btn btn-secondary">Follow on Twitter</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <ul class="footer-links">
+        <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+        <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+        <li><a href="https://github.com/twinklecakes" target="_blank">GitHub</a></li>
+        <li><a href="/contact.html">Email</a></li>
+      </ul>
+      <p class="footer-credit">
+        © 2026 Avelyn. Handcrafted with care.
+      </p>
+    </div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Form handling
+    const contactForm = document.getE
