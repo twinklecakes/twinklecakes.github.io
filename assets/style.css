@@ -60,33 +60,39 @@ body.quiet { max-width: none; padding: 50px 6vw 40px; font-size: 15px; line-heig
   grid-template-columns: minmax(200px, 1fr) 2fr;
   gap: 4vw;
   align-items: start;
-  min-height: calc(100vh - 100px);
+  overflow-x: clip;
 }
-.front-text { max-width: 26em; }
+.front-text { max-width: 26em; position: relative; z-index: 1; }
 .note p { margin: 0 0 2.6em; }
 .index-links { margin: 0; }
 
-/* sticker collage on the right two-thirds */
+/* Sticker collage on the right two-thirds, running down to the bottom of the
+   window. The .stage is a square pinned bottom-right; every sticker is sized
+   as a % of it, so the arrangement keeps its shape at any screen size. */
 .collage-board {
   position: relative;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  max-height: calc(100vh - 100px);
-  margin-left: auto;
+  height: calc(100vh - 90px);   /* top + bottom page padding */
+  min-height: 480px;
 }
-.stk { position: absolute; height: auto; max-width: none; pointer-events: none; }
-.stk-clock  { left: 34%; top: 2%;  width: 24%; transform: rotate(2deg); z-index: 1; }
-.stk-lily-a { left: 6%;  top: 6%;  width: 30%; transform: rotate(-6deg); z-index: 2; }
-.stk-squid  { left: 40%; top: 4%;  width: 58%; transform: rotate(-8deg); z-index: 3; }
-.stk-lily-b { left: 58%; top: 36%; width: 30%; transform: rotate(7deg); z-index: 4; }
+.stage { position: absolute; right: 0; bottom: -40px; height: calc(100% + 40px); aspect-ratio: 1 / 1; }
+.stk { position: absolute; max-width: none; width: auto; pointer-events: none; }
+/* squid: at the back, its body poking out to the left toward the text */
+.stk-squid  { left: -13%; top: 18%; height: 42%; transform: rotate(-8deg); z-index: 1; }
+/* clock: 50% bigger, standing on the bottom edge */
+.stk-clock  { left: 36%; bottom: 0; height: 100%; transform: rotate(1deg); transform-origin: bottom center; z-index: 2; }
+/* lilies: in front, overlapping either side of the clock */
+.stk-lily-a { left: 17%; bottom: 1%; height: 76%; transform: rotate(-5deg); transform-origin: bottom center; z-index: 3; }
+.stk-lily-b { left: 60%; bottom: 0;  height: 64%; transform: rotate(6deg);  transform-origin: bottom center; z-index: 3; }
 
 .quiet-page { max-width: 46em; }
 .quiet-page p { margin: 0 0 1.4em; }
 
 @media (max-width: 700px) {
   body.quiet { padding: 32px 20px; }
-  .front { grid-template-columns: 1fr; min-height: 0; }
-  .collage-board { max-height: none; }
+  .front { grid-template-columns: 1fr; }
+  .collage-board { height: 84vw; min-height: 0; margin-top: 24px; }
+  .stage { bottom: -32px; height: calc(100% + 32px); }
+  .stk-squid { left: 1%; }
 }
 
 /* ---------- pages, posts ---------- */
