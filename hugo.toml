@@ -17,3 +17,11 @@ enableRobotsTXT = true
   unsafe = true   # lets you drop raw HTML into posts when you need it
 
 [taxonomies]
+
+# Video that plays when you hover over the grandfather clock on the home page.
+# Put the file in static/video/. start/end are in seconds (set start = 0 and
+# end = 0 if the file is already trimmed to just the part you want).
+[params.clockVideo]
+  src = "/video/clock.mp4"
+  start = 4
+  end = 21
