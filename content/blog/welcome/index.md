@@ -28,7 +28,7 @@ I'll try to keep track of different projects I work on, and what comes of them..
 
 ### Let's Connect
 
-Have thoughts on what I've shared? Curious about a particular topic? I'd love to hear from you at [avelyn@stanford.edu](mailto:avelyn@stanford.edu).
+Have thoughts on what I've shared? Curious about a particular topic? I'd love to hear from you at {{< email >}}.
 
 ---
 

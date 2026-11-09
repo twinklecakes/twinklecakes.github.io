@@ -1,7 +1,7 @@
 {{ define "main" }}
 <article class="quiet-page">
   <p><a href="/" class="back-link">←</a></p>
-  <p><a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a>{{ with .Params.pdf }}<br><a href="{{ . }}">pdf</a>{{ end }}</p>
+  <p>{{ partial "email.html" . }}{{ with .Params.pdf }}<br><a href="{{ . }}">pdf</a>{{ end }}</p>
   {{ .Content }}
 </article>
 {{ end }}
