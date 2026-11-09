@@ -24,8 +24,14 @@
   <main>{{ block "main" . }}{{ end }}</main>
   <footer class="colophon">
     <span>© {{ now.Year }} Avelyn Batts</span>
-    <span><a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a></span>
+    <span>{{ partial "email.html" . }} · <a href="{{ site.Params.repo }}" rel="noopener">source</a></span>
   </footer>
+  <script>
+    /* turn the encoded email links back into real ones */
+    document.querySelectorAll("a.email[data-e]").forEach(function (a) {
+      var e = atob(a.dataset.e); a.href = "mailto:" + e; a.textContent = e;
+    });
+  </script>
   {{ block "scripts" . }}{{ end }}
 </body>
 </html>
