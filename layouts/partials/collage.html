@@ -5,11 +5,26 @@
   (dict "file" "lily-red"          "class" "stk-lily-a")
   (dict "file" "vampire-squid"     "class" "stk-squid")
   (dict "file" "lily-white"        "class" "stk-lily-b") }}
-<div class="collage-board" aria-hidden="true"><div class="stage">
+{{ $v := site.Params.clockVideo }}
+{{ $hasVideo := and $v (fileExists (printf "static%s" $v.src)) }}
+<div class="collage-board"><div class="stage">
   {{ range $stickers }}
     {{ $path := printf "stickers/%s.png" .file }}
     {{ if fileExists (printf "static/%s" $path) }}
-      <img class="stk {{ .class }}" src="/{{ $path }}" alt="">
+      {{ if eq .file "grandfather-clock" }}
+      {{/* the clock is a box so its video can sit in the front panel of the case */}}
+      <div class="stk {{ .class }}">
+        <img class="clock-img" src="/{{ $path }}" alt="" aria-hidden="true">
+        {{ if $hasVideo }}
+        <div class="clock-video" aria-hidden="true">
+          <video src="{{ $v.src }}{{ with $v.start }}#t={{ . }}{{ end }}" muted playsinline loop preload="metadata"
+                 data-start="{{ $v.start | default 0 }}" data-end="{{ $v.end | default 0 }}"></video>
+        </div>
+        {{ end }}
+      </div>
+      {{ else }}
+      <img class="stk {{ .class }}" src="/{{ $path }}" alt="" aria-hidden="true">
+      {{ end }}
     {{ end }}
   {{ end }}
 </div></div>
