@@ -68,7 +68,7 @@
 
   window.blowBubbles = blow;
   document.querySelectorAll(TRIGGERS).forEach(function (el) {
-    el.addEventListener("mouseenter", function () { blow(el); });
+    el.addEventListener("pointerenter", function () { blow(el); });   // mouse hover, or the start of a tap
   });
 
   // name letters: on phones, tap to show the photo (tap again to hide)
@@ -76,7 +76,6 @@
     el.addEventListener("click", function () {
       var open = el.classList.toggle("open");
       document.querySelectorAll(".ransom .cut.open").forEach(function (o) { if (o !== el) o.classList.remove("open"); });
-      if (open && matchMedia("(hover: none)").matches) blow(el);
     });
   });
 })();

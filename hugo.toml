@@ -23,5 +23,5 @@ enableRobotsTXT = true
 # end = 0 if the file is already trimmed to just the part you want).
 [params.clockVideo]
   src = "/video/clock.mp4"
-  start = 4
-  end = 21
+  start = 0   # already trimmed, so play (and loop) the whole clip
+  end = 0

@@ -20,10 +20,13 @@
   v.addEventListener("timeupdate", function () {
     if ((end && v.currentTime >= end) || v.currentTime < start - 0.3) v.currentTime = start;
   });
-  clock.addEventListener("mouseenter", play);
-  clock.addEventListener("mouseleave", stop);
+  // mouse: play while hovering. touch: tap to start, tap again to stop.
+  clock.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") play(); });
+  clock.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") stop(); });
+  var lastType = "mouse";
+  clock.addEventListener("pointerdown", function (e) { lastType = e.pointerType; });
   clock.addEventListener("click", function () {
-    if (fig.classList.contains("on")) stop();
-    else { play(); if (window.blowBubbles && matchMedia("(hover: none)").matches) window.blowBubbles(clock); }
+    if (lastType === "mouse") return;
+    if (fig.classList.contains("on")) stop(); else play();
   });
 })();
