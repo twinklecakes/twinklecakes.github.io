@@ -66,6 +66,59 @@ body.quiet { max-width: none; padding: 50px 6vw 40px; font-size: 15px; line-heig
 .note p { margin: 0 0 2.6em; }
 .index-links { margin: 0; }
 
+/* ransom-note name: each letter flips between two cut-outs */
+.ransom { display: flex; align-items: flex-end; gap: 2px; margin: 0 0 1.6em; height: 84px; }
+.cut {
+  position: relative;
+  display: block;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  filter: drop-shadow(1px 2px 1.5px rgba(0, 0, 0, 0.35));
+}
+.cut-1 { height: 72%; } .cut-2 { height: 98%; margin-bottom: 4px; } .cut-3 { height: 68%; }
+.cut-4 { height: 80%; margin-bottom: -3px; } .cut-5 { height: 90%; margin-bottom: -10px; } .cut-6 { height: 70%; margin-bottom: 3px; }
+.cut img.v1, .cut img.v2 { display: block; height: 100%; width: auto; }
+.cut img.v2 { position: absolute; inset: 0; opacity: 0; }
+.cut img.v1 { animation: boil-a var(--boil, 0.36s) steps(1) infinite; }
+.cut img.v2 { animation: boil-b var(--boil, 0.36s) steps(1) infinite; }
+.cut-2 { --boil: 0.42s; } .cut-3 { --boil: 0.31s; } .cut-4 { --boil: 0.47s; } .cut-5 { --boil: 0.34s; } .cut-6 { --boil: 0.39s; }
+@keyframes boil-a { 0% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes boil-b { 0% { opacity: 0; } 50% { opacity: 1; } }
+
+/* the photo that pops out of a letter */
+.cut .pop {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 170px;
+  padding: 7px 7px 22px;
+  background: #fbf8ef;
+  box-shadow: 2px 6px 14px rgba(0, 0, 0, 0.3);
+  transform: translate(-50%, 10px) rotate(-4deg) scale(0.2);
+  transform-origin: top center;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.25s cubic-bezier(.3, 1.6, .5, 1), opacity 0.15s;
+  z-index: 20;
+}
+.cut:nth-child(even) .pop { transform: translate(-50%, 10px) rotate(5deg) scale(0.2); }
+.cut .pop img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.cut:hover .pop, .cut.open .pop { opacity: 1; transform: translate(-50%, 14px) rotate(-4deg) scale(1); }
+.cut:nth-child(even):hover .pop, .cut:nth-child(even).open .pop { transform: translate(-50%, 14px) rotate(5deg) scale(1); }
+.cut:hover, .cut.open { z-index: 20; }
+.confetto { position: fixed; z-index: 50; pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cut img.v1, .cut img.v2 { animation: none; }
+}
+@media (max-width: 700px) {
+  .ransom { height: 64px; }
+  .cut .pop { width: 140px; }
+}
+
 /* Sticker collage on the right two-thirds, running down to the bottom of the
    window. The .stage is a square pinned bottom-right; every sticker is sized
    as a % of it, so the arrangement keeps its shape at any screen size. */
