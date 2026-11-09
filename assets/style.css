@@ -78,7 +78,7 @@ body.quiet { max-width: none; padding: 50px 6vw 40px; font-size: 15px; line-heig
 .stk-clock  { left: 34%; top: 2%;  width: 24%; transform: rotate(2deg); z-index: 1; }
 .stk-lily-a { left: 6%;  top: 6%;  width: 30%; transform: rotate(-6deg); z-index: 2; }
 .stk-squid  { left: 40%; top: 4%;  width: 58%; transform: rotate(-8deg); z-index: 3; }
-.stk-lily-b { left: 62%; top: 40%; width: 30%; transform: rotate(7deg); z-index: 2; }
+.stk-lily-b { left: 58%; top: 36%; width: 30%; transform: rotate(7deg); z-index: 4; }
 
 .quiet-page { max-width: 46em; }
 .quiet-page p { margin: 0 0 1.4em; }
