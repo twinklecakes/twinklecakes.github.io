@@ -27,6 +27,7 @@ ap.add_argument("mode", choices=["scrap", "shape"])
 ap.add_argument("a")
 ap.add_argument("b")
 ap.add_argument("--thresh", type=float, default=40)
+ap.add_argument("--bright", action="store_true", help="find a light letter on a busy dark page by brightness")
 ap.add_argument("--margin", type=float, default=0.10, help="paper around the letter, as a fraction of its size (scrap mode)")
 args = ap.parse_args()
 
@@ -42,6 +43,8 @@ def letter_mask(rgb):
                            rgb[:, :10].reshape(-1, 3), rgb[:, -10:].reshape(-1, 3)])
     paper = np.median(edge, axis=0)
     m = np.sqrt(((rgb - paper) ** 2).sum(-1)) > args.thresh
+    if args.bright:
+        m = rgb.mean(-1) > 190
     m = ndi.binary_opening(m, iterations=2)
     lab, n = ndi.label(m)
     if n:                                   # keep the big pieces, drop specks
