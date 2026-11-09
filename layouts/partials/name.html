@@ -1,0 +1,14 @@
+{{/* "avelyn" in ransom-note letters. Each letter flickers between two cut-outs
+     (static/letters/N-a.png and N-b.png); hovering or tapping one pops up a
+     photo (static/me/N.jpg, falling back to the headshot) with soap bubbles. */}}
+<h1 class="ransom" aria-label="avelyn">
+  {{ range $i := seq 6 }}
+    {{ $photo := "/Headshot.jpeg" }}
+    {{ if fileExists (printf "static/me/%d.jpg" $i) }}{{ $photo = printf "/me/%d.jpg" $i }}{{ end }}
+    <button class="cut cut-{{ $i }}" type="button" aria-hidden="true" tabindex="-1">
+      <img class="v1" src="/letters/{{ $i }}-a.png" alt="">
+      <img class="v2" src="/letters/{{ $i }}-b.png" alt="">
+      <span class="pop"><img src="{{ $photo }}" alt="" loading="lazy"></span>
+    </button>
+  {{ end }}
+</h1>
