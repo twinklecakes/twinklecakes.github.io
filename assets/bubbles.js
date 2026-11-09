@@ -12,7 +12,7 @@
   function blow(el) {
     if (still) return;
     var r = el.getBoundingClientRect();
-    var n = Math.min(18, MAX - live.length);
+    var n = Math.min(11, MAX - live.length);   // bubbles per hover
     for (var i = 0; i < n; i++) {
       var big = Math.random() < 0.22;
       var size = big ? rand(42, 78) : rand(8, 34);
