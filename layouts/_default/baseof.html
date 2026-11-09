@@ -10,8 +10,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   {{ with resources.Get "style.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ .RelPermalink }}">{{ end }}
 </head>
-<body class="{{ if .IsHome }}home{{ else }}{{ .Section }} {{ .Kind }}{{ end }}">
-  {{ if not .IsHome }}
+<body class="{{ if .IsHome }}home quiet{{ else }}{{ .Section }} {{ .Kind }}{{ if .Params.quiet }} quiet{{ end }}{{ end }}">
+  {{ if not (or .IsHome .Params.quiet) }}
   <header class="masthead">
     <a class="name" href="/">Avelyn Batts</a>
     <nav>
@@ -22,10 +22,12 @@
   </header>
   {{ end }}
   <main>{{ block "main" . }}{{ end }}</main>
+  {{ if not (or .IsHome .Params.quiet) }}
   <footer class="colophon">
     <span>© {{ now.Year }} Avelyn Batts</span>
     <span><a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a></span>
   </footer>
+  {{ end }}
   {{ block "scripts" . }}{{ end }}
 </body>
 </html>

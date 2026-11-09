@@ -4,6 +4,7 @@
   --paper: #fff;
   --muted: #6b6b66;
   --red: #d0021b;
+  --vermilion: #c4262e;
   --rule: #111;
   --display: "Anton", "Impact", "Arial Narrow", sans-serif;
   --serif: "EB Garamond", Garamond, Georgia, serif;
@@ -48,48 +49,44 @@ img, video { max-width: 100%; height: auto; display: block; }
 .masthead nav a { text-decoration: none; }
 .masthead nav a:hover { text-decoration: underline; }
 
-/* ---------- home ---------- */
+/* ---------- quiet pages: home + cv (after rogersmathews.com) ---------- */
+body.quiet { max-width: none; padding: 50px 6vw 40px; font-size: 15px; line-height: 1.5; }
+.quiet a { text-decoration: none; color: var(--ink); }
+.quiet a:hover { color: var(--vermilion); }
+.quiet .back-link { font: 14px var(--mono); }
+
 .front {
   display: grid;
-  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
-  grid-template-areas:
-    "name  name"
-    "photo note"
-    "photo links";
-  gap: 24px 48px;
+  grid-template-columns: minmax(200px, 1fr) 2fr;
+  gap: 4vw;
   align-items: start;
-  margin-top: 24px;
+  min-height: calc(100vh - 100px);
 }
-.big-name {
-  grid-area: name;
-  margin: 0 0 8px;
-  font: clamp(64px, 14vw, 150px)/0.95 var(--display);
-  text-transform: uppercase;
-  letter-spacing: -0.01em;
-  border-bottom: 3px solid var(--rule);
-  padding-bottom: 16px;
-}
-.portrait { grid-area: photo; width: 100%; filter: grayscale(1) contrast(1.05); }
-.note { grid-area: note; max-width: 34em; }
-.note p:first-child { margin-top: 0; }
-.index-links {
-  grid-area: links;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  font: 16px var(--mono);
-}
-.index-links li { border-top: 1px solid var(--rule); }
-.index-links li:last-child { border-bottom: 1px solid var(--rule); }
-.index-links a { display: block; padding: 10px 0; text-decoration: none; }
-.index-links a:hover { background: var(--ink); color: var(--paper); padding-left: 8px; }
+.front-text { max-width: 26em; }
+.note p { margin: 0 0 2.6em; }
+.index-links { margin: 0; }
 
-@media (max-width: 680px) {
-  .front {
-    grid-template-columns: 1fr;
-    grid-template-areas: "name" "photo" "note" "links";
-  }
-  .portrait { max-width: 260px; }
+/* sticker collage on the right two-thirds */
+.collage-board {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-height: calc(100vh - 100px);
+  margin-left: auto;
+}
+.stk { position: absolute; height: auto; max-width: none; pointer-events: none; }
+.stk-clock  { left: 34%; top: 2%;  width: 24%; transform: rotate(2deg); z-index: 1; }
+.stk-lily-a { left: 6%;  top: 6%;  width: 30%; transform: rotate(-6deg); z-index: 2; }
+.stk-squid  { left: 40%; top: 4%;  width: 58%; transform: rotate(-8deg); z-index: 3; }
+.stk-lily-b { left: 62%; top: 40%; width: 30%; transform: rotate(7deg); z-index: 2; }
+
+.quiet-page { max-width: 46em; }
+.quiet-page p { margin: 0 0 1.4em; }
+
+@media (max-width: 700px) {
+  body.quiet { padding: 32px 20px; }
+  .front { grid-template-columns: 1fr; min-height: 0; }
+  .collage-board { max-height: none; }
 }
 
 /* ---------- pages, posts ---------- */
