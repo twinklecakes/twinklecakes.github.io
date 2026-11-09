@@ -149,25 +149,31 @@ body.quiet { overflow-x: clip; max-width: none; padding: 50px 6vw 40px; font-siz
 .stk-lily-a { left: 17%; bottom: 1%; height: 76%; transform: rotate(-5deg); transform-origin: bottom center; z-index: 3; }
 .stk-lily-b { left: 60%; bottom: 0;  height: 64%; transform: rotate(6deg);  transform-origin: bottom center; z-index: 3; }
 
-/* the clock's video pops up beside it, like the photos do */
+/* the clock's video plays inside the front panel of its case (between the two
+   side columns), cropped to fit; the numbers are that panel's position in the
+   clock picture. A faint glass sheen sits on top. */
+.stk-clock { aspect-ratio: 634 / 1750; }
+.clock-img { display: block; width: 100%; height: 100%; }
 .clock-video {
   position: absolute;
-  left: 8%;
-  top: 2%;
-  width: 26%;       /* the video is portrait */
-  margin: 0;
-  padding: 8px 8px 26px;
-  background: #fbf8ef;
-  box-shadow: 2px 8px 18px rgba(0, 0, 0, 0.3);
-  transform: rotate(-3deg) scale(0.3);
-  transform-origin: right center;
+  left: 42.6%;
+  top: 31.3%;
+  width: 31.2%;
+  height: 36.8%;
+  overflow: hidden;
   opacity: 0;
-  pointer-events: none;
-  transition: transform 0.3s cubic-bezier(.3, 1.5, .5, 1), opacity 0.2s;
-  z-index: 10;
+  transition: opacity 0.35s;
+  box-shadow: inset 0 0 0 1px rgba(40, 25, 15, 0.6);
 }
-.clock-video.on { opacity: 1; transform: rotate(-3deg) scale(1); }
-.clock-video video { display: block; width: 100%; height: auto; }
+.clock-video::after {               /* glass */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.22) 42%, rgba(255,255,255,0) 52%);
+  box-shadow: inset 0 0 8px rgba(30, 18, 10, 0.55);
+}
+.clock-video.on { opacity: 1; }
+.clock-video video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 52% 50%; filter: sepia(0.15); }
 
 .quiet-page { max-width: 46em; }
 .quiet-page p { margin: 0 0 1.4em; }
