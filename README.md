@@ -1,6 +1,6 @@
 # avelynb.com
 
-My personal site, built with [Hugo](https://gohugo.io) and published by GitHub Pages.
+My personal site, built with [Hugo](https://gohugo.io) and Claude Code, and then published by GitHub Pages (pushed to my hosted domain name). 
 
 ## Preview it on your computer
 
@@ -11,7 +11,7 @@ Install Hugo once (`brew install hugo` on a Mac), then run this from this folder
 Then open http://localhost:1313. The page reloads every time you save a file.
 `-D` also shows drafts.
 
-## The routine, every time
+## The routine of publishing, written here until I memorize it
 
 1. Make the entry (one command, below). Hugo creates a folder with a text file in it.
 2. Write in the text file, and drop any images or videos into the same folder.
@@ -24,7 +24,7 @@ is always top-left.
 
 Note: an entry dated in the future stays hidden until that date.
 
-## Add a blog post (a book on the shelf)
+## Add a blog post (anotha book on ze shelf)
 
     hugo new content blog/my-post-title/index.md
 
