@@ -1,10 +1,8 @@
 ---
-layout: post
 title: "Welcome to My Blog"
-date: 2025-11-11 10:00:00 -0800
-author: Avelyn Batts
-excerpt: "An introduction to what you can expect from this blog - explorations of nature, storytelling, and adventures"
+date: 2025-11-11T10:00:00-08:00
 ---
+
 
 ## Hello World and Welcome!
 

@@ -1,0 +1,11 @@
+{{/* A mason jar holding .img (an image resource). Context: dict "img" "title" "href" "size" */}}
+{{ $img := .img }}
+{{ $small := $img.Fit "600x800 q80" }}
+<a class="jar {{ .size }}" href="{{ .href }}" title="{{ .title }}">
+  <span class="jar-lid"></span>
+  <span class="jar-glass">
+    <img class="jar-photo" src="{{ $small.RelPermalink }}" alt="{{ .title }}" loading="lazy">
+    <span class="jar-shine"></span>
+  </span>
+  {{ with .label }}<span class="jar-label">{{ . }}</span>{{ end }}
+</a>
