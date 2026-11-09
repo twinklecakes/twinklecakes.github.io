@@ -3,9 +3,7 @@
 // or a click on the dark background closes it.
 (function () {
   var imgs = Array.prototype.slice.call(document.querySelectorAll(".prose img"));
-  var hero = document.querySelector(".jar-hero .jar");      // the big jar at the top of a piece
   var items = imgs.map(function (im) { return { src: im.currentSrc || im.src, alt: im.alt }; });
-  if (hero) items.unshift({ src: hero.getAttribute("href"), alt: hero.title });
   if (!items.length) return;
 
   var box = document.createElement("div");
@@ -47,9 +45,8 @@
 
   imgs.forEach(function (im, i) {
     im.classList.add("zoomable");
-    im.addEventListener("click", function () { open(hero ? i + 1 : i); });
+    im.addEventListener("click", function () { open(i); });
   });
-  if (hero) hero.addEventListener("click", function (e) { e.preventDefault(); open(0); });
 
   box.querySelector(".lb-close").addEventListener("click", close);
   box.querySelector(".lb-prev").addEventListener("click", function (e) { e.stopPropagation(); show(at - 1); });

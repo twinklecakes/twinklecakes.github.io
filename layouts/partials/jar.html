@@ -1,9 +1,11 @@
-{{/* A mason jar holding .img (an image resource). Context: dict "img" "title" "href" "size" "lid" */}}
+{{/* A mason jar holding .img (an image resource).
+     Context: dict "img" "title" "href" "size" "lid" "date" (a time; optional).
+     Without "href" the jar isn't a link. */}}
 {{ $small := .img.Fit "600x800 q80" }}
-<a class="jar {{ .size }}" href="{{ .href }}" title="{{ .title }}"{{ with .lid }} style="--lid: {{ . | safeCSS }};"{{ end }}>
-  <span class="jar-lid"></span>
-  <span class="jar-glass">
-    <img class="jar-photo" src="{{ $small.RelPermalink }}" alt="{{ .title }}" loading="lazy">
-    <span class="jar-shine"></span>
-  </span>
-</a>
+{{ $style := "" }}{{ with .lid }}{{ $style = printf "--lid: %s;" . }}{{ end }}
+{{ $inner := partial "jar-inner.html" (dict "src" $small.RelPermalink "title" .title "date" .date) }}
+{{ if .href }}
+<a class="jar {{ .size }}" href="{{ .href }}" title="{{ .title }}" style="{{ $style | safeCSS }}">{{ $inner }}</a>
+{{ else }}
+<span class="jar {{ .size }}" title="{{ .title }}" style="{{ $style | safeCSS }}">{{ $inner }}</span>
+{{ end }}
