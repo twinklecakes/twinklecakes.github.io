@@ -7,8 +7,7 @@ enableRobotsTXT = true
   tagline = "Nature. Storytelling. Untangling problems."
   email = "avelyn@stanford.edu"
   linkedin = "https://www.linkedin.com/in/avelyn-batts-a457a0290"
-  # TODO: put your real Instagram handle here
-  instagram = "https://www.instagram.com/yourprofile"
+  instagram = "https://www.instagram.com/avelynbatts/"
 
 [permalinks]
   blog = "/blog/:slug/"

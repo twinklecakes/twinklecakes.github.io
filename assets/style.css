@@ -133,70 +133,79 @@ img, video { max-width: 100%; height: auto; display: block; }
 .collage img { width: 100%; height: 100%; object-fit: cover; margin: 0; }
 
 /* ---------- shelves ---------- */
+/* Items are in date order (oldest first). row-reverse + wrap-reverse starts
+   them at the bottom-right; each full shelf pushes a new one on top, and the
+   newest item ends up top-left. */
 .shelf {
-  --row: 250px;
+  --row: 280px;            /* one shelf: must match the shelf.png tile (560px @2x) */
+  --rest: 46px;            /* gap from row bottom to the top surface of the plank */
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row-reverse;
+  flex-wrap: wrap-reverse;
+  justify-content: flex-end;
   align-items: flex-end;
-  gap: 0 6px;
-  padding: 0 12px;
-  /* a shelf plank at the bottom of every row */
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0 calc(var(--row) - 10px),
-    var(--ink) calc(var(--row) - 10px) var(--row)
-  );
+  gap: 0 3px;
+  padding: 0 4%;
+  background: url("/textures/shelf.png") left bottom / 100% var(--row) repeat-y;
 }
 .slot {
   height: var(--row);
-  padding-bottom: 10px;
+  padding-bottom: var(--rest);
   display: flex;
   align-items: flex-end;
 }
 .shelf .empty { height: var(--row); margin: 0; padding-top: 24px; }
 
-/* books */
+/* books: cloth weave + dust + rounded-spine shading, all over the palette colour */
 .book {
   position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 0 10px;
-  background: var(--spine);
-  color: #fff;
+  justify-content: center;
+  padding: 18px 0 16px;
+  color: var(--spine-ink);
   text-decoration: none;
-  border-radius: 2px 2px 0 0;
-  box-shadow: inset 3px 0 0 rgba(255, 255, 255, 0.15), inset -3px 0 0 rgba(0, 0, 0, 0.2);
-  transition: transform 0.15s ease;
+  border-radius: 3px 3px 1px 1px;
+  background:
+    linear-gradient(180deg, rgba(238, 232, 220, 0.75) 0, rgba(238, 232, 220, 0.25) 4px, rgba(238, 232, 220, 0) 22%),
+    url("/textures/dust.png") 0 0 / 220px,
+    linear-gradient(90deg, rgba(0,0,0,0.45), rgba(255,255,255,0.14) 16%, rgba(255,255,255,0) 38%, rgba(0,0,0,0.08) 72%, rgba(0,0,0,0.5)),
+    url("/textures/cloth.png") 0 0 / 128px,
+    var(--spine);
+  background-blend-mode: normal, normal, normal, overlay, normal;
+  box-shadow: 1px 0 0 rgba(0,0,0,0.35), 0 1px 2px rgba(0,0,0,0.3);
+  filter: saturate(0.82) contrast(0.96);  /* a little faded */
+  transition: transform 0.15s ease, filter 0.15s ease;
 }
-.book::before, .book::after {     /* two bands across the spine */
+.book::before, .book::after {     /* worn foil bands across the spine */
   content: "";
   position: absolute;
-  left: 0; right: 0;
+  left: 3px; right: 3px;
   height: 2px;
-  background: rgba(255, 255, 255, 0.35);
+  background: var(--spine-ink);
+  opacity: 0.45;
 }
-.book::before { top: 8px; }
-.book::after { bottom: 28px; }
-.book:hover { transform: translateY(-14px); color: #fff; }
+.book::before { top: 10px; }
+.book::after { bottom: 10px; }
+.slot:nth-child(7n + 3) .book { transform: rotate(-1.2deg); transform-origin: bottom left; }
+.book:hover { transform: translateY(-12px); filter: none; color: var(--spine-ink); }
 .spine-title {
   writing-mode: vertical-rl;
   transform: rotate(180deg);
-  font: 13px/1.1 var(--mono);
+  font: 12px/1.1 var(--mono);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  max-height: calc(100% - 30px);
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+  max-height: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.spine-year { font: 10px var(--mono); opacity: 0.8; }
 
 /* jars */
-.jars { --row: 300px; gap: 0 28px; }
+.jars { gap: 0 22px; }
 .jar {
-  --w: 140px;
+  --w: 132px;
+  --lid: #9c988b;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -205,17 +214,21 @@ img, video { max-width: 100%; height: auto; display: block; }
   color: var(--ink);
   transition: transform 0.2s ease;
 }
-.jar:hover { transform: translateY(-6px); color: var(--ink); }
+.jar:hover { transform: translateY(-6px); }
 .jar-lid {
-  width: 64%;
+  width: 66%;
   height: 18px;
   border-radius: 3px 3px 1px 1px;
   background:
-    repeating-linear-gradient(90deg, rgba(0,0,0,0.18) 0 2px, transparent 2px 6px),
-    linear-gradient(180deg, #d9d6cc, #9c988b 60%, #c6c2b5);
-  border: 1px solid rgba(0, 0, 0, 0.35);
+    linear-gradient(180deg, rgba(238,232,220,0.8), rgba(238,232,220,0) 40%),
+    url("/textures/dust.png") 0 0 / 160px,
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.22) 0 2px, transparent 2px 6px),
+    linear-gradient(180deg, rgba(255,255,255,0.35), rgba(0,0,0,0.25) 60%, rgba(255,255,255,0.15)),
+    var(--lid);
+  border: 1px solid rgba(0, 0, 0, 0.4);
   position: relative;
   z-index: 2;
+  filter: saturate(0.8);
 }
 .jar-glass {
   position: relative;
@@ -227,47 +240,48 @@ img, video { max-width: 100%; height: auto; display: block; }
   border-radius: 42% 42% 14% 14% / 17% 17% 6% 6%;
   background: #e8eef0;
   border: 1.5px solid rgba(0, 0, 0, 0.45);
+  border-bottom-width: 4px;          /* thick glass base */
+  border-bottom-color: rgba(60, 70, 66, 0.7);
+  box-shadow: 0 3px 3px -1px rgba(0,0,0,0.35);   /* contact shadow on the shelf */
 }
 .jar-photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  filter: saturate(0.85) sepia(0.12);
 }
-/* glass: dark edges, highlights, a thread line near the neck */
+/* glass: dust, dark edges, highlights, thread lines at the neck */
 .jar-shine {
   position: absolute;
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(255,255,255,0.55) 0 4%, rgba(0,0,0,0.18) 4% 5%, transparent 5% 9%, rgba(0,0,0,0.12) 9% 10%, transparent 10%),
+    url("/textures/dust.png") 0 0 / 180px,
+    linear-gradient(180deg, rgba(238,232,220,0.55) 0 3%, rgba(238,232,220,0.15) 14%, transparent 30%, transparent 80%, rgba(238,232,220,0.25)),
+    linear-gradient(180deg, transparent 0 4%, rgba(0,0,0,0.18) 4% 5%, transparent 5% 9%, rgba(0,0,0,0.12) 9% 10%, transparent 10%),
     linear-gradient(90deg,
       rgba(0,0,0,0.38) 0%,
       rgba(0,0,0,0.05) 10%,
-      rgba(255,255,255,0.55) 15%,
+      rgba(255,255,255,0.5) 15%,
       rgba(255,255,255,0.08) 22%,
       transparent 45%,
       transparent 75%,
-      rgba(255,255,255,0.25) 84%,
+      rgba(255,255,255,0.22) 84%,
       rgba(255,255,255,0.04) 88%,
       rgba(0,0,0,0.38) 100%);
-  mix-blend-mode: normal;
   box-shadow: inset 0 -10px 18px rgba(0, 0, 0, 0.25);
 }
-.jar-label {
-  margin-top: 8px;
-  font: 12px/1.25 var(--mono);
-  text-align: center;
-  text-transform: lowercase;
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.empty-jar .jar-glass { background: repeating-linear-gradient(45deg, #f4f4f2 0 6px, #e6e6e2 6px 12px); }
+.empty-jar .jar-glass { background: #eef1ef; }
 
 .jar.large { --w: min(320px, 70vw); cursor: zoom-in; }
 .jar-hero { display: flex; justify-content: center; margin: 8px 0 32px; }
+
+@media (max-width: 560px) {
+  .shelf { padding: 0 3%; }
+  .jar { --w: 92px; }
+  .jars { gap: 0 10px; }
+}
 
 /* ---------- footer ---------- */
 .colophon {

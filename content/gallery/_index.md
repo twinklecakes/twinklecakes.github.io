@@ -1,4 +1,4 @@
 ---
 title: "Gallery"
+description: "Visual projects: collages, paintings, video, mixed media."
 ---
-Visual projects: collages, paintings, video, mixed media. Each jar holds one.

@@ -2,7 +2,7 @@
 title: "Example collage"
 date: 2026-11-08
 cover: "cover.jpg"     # this image goes in the jar on the gallery shelf
-draft: true            # drafts only show with `hugo server -D`; delete this folder when you add real work
+placeholder: true   # delete before launch (this one shows how to write a visual entry)
 ---
 
 A few lines about the piece, if you want them. You can skip writing completely.
