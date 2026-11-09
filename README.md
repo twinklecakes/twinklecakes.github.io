@@ -83,10 +83,3 @@ Keep videos small (under ~50 MB). For anything bigger, use YouTube or Vimeo.
 
 Pushing to `main` runs `.github/workflows/hugo.yml`, which builds the site and deploys it.
 One-time setup: in the repo go to **Settings → Pages → Source** and choose **GitHub Actions**.
-
-## Placeholders
-
-Entries with `placeholder: true` in their front matter are dummy books and jars for seeing the
-layout. Delete those folders before launch:
-
-    grep -rl "placeholder: true" content | xargs -n1 dirname | xargs rm -rf

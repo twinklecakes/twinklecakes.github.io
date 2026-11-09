@@ -2,4 +2,4 @@
 title: "Avelyn Batts"
 ---
 
-Avelyn Batts is a student at Stanford who likes nature, storytelling, and untangling problems.
+avelyn is an adventurer, an artist, & an academic from the south. she is sailing ever outwards.
