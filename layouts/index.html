@@ -1,14 +1,16 @@
 {{ define "main" }}
 <div class="front">
-  <h1 class="big-name">Avelyn<br>Batts</h1>
-  <img class="portrait" src="/Headshot.jpeg" alt="Avelyn Batts" width="1504" height="2005">
-  <div class="note">{{ .Content }}</div>
-  <ul class="index-links">
-    <li><a href="/cv/">my cv</a></li>
-    <li><a href="/gallery/">gallery</a></li>
-    <li><a href="/blog/">blog</a></li>
-    <li><a href="{{ site.Params.linkedin }}" rel="noopener">linkedin ↗</a></li>
-    <li><a href="{{ site.Params.instagram }}" rel="noopener">instagram ↗</a></li>
-  </ul>
+  <div class="front-text">
+    <div class="note">{{ .Content }}</div>
+    <p class="index-links">
+      <a href="/cv/">~ my cv</a><br>
+      <a href="/gallery/">~ gallery</a><br>
+      <a href="/blog/">~ blog</a><br>
+      <br>
+      <a href="{{ site.Params.linkedin }}" rel="noopener">~ linkedin</a><br>
+      <a href="{{ site.Params.instagram }}" rel="noopener">~ instagram</a>
+    </p>
+  </div>
+  {{ partial "collage.html" . }}
 </div>
 {{ end }}

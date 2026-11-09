@@ -1,23 +1,29 @@
 ---
 title: "CV"
-# Drop a PDF at static/cv.pdf and uncomment the next line to add a download link.
+layout: quiet
+quiet: true
+# Drop a PDF at static/cv.pdf and uncomment the next line to add a link to it.
 # pdf: "/cv.pdf"
 ---
 
-## Education
+<!-- Each section: the heading in *italics*, then one line per item.
+     End every line except the last in a section with a backslash \ so it stays a separate line. -->
 
-**Stanford University**, 20XX–20XX
-Degree / field
+*Education*\
+20XX – B.A. in Something, Stanford University
 
-## Experience
+*Research*\
+20XX–present – Lab or project, Department, Stanford University\
+20XX – Field work, Place
 
-**Role**, Organization, 20XX–present
-One line on what you did.
+*Work*\
+20XX–20XX – Role, Organization, City
 
-## Projects
+*Art & Exhibitions*\
+20XX – *Title of show or piece*, Venue
 
-**Project name**, a short description.
+*Writing*\
+20XX – *Title*, Publication
 
-## Skills
-
-Things, you, are, good, at.
+*Volunteer*\
+20XX–present – Role, Organization

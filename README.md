@@ -13,10 +13,29 @@ Then open http://localhost:1313. The page reloads every time you save a file.
 
 ## The routine of publishing, written here until I memorize it
 
-1. Make the entry (one command, below). Hugo creates a folder with a text file in it.
-2. Write in the text file, and drop any images or videos into the same folder.
-3. Run `hugo server` and look at http://localhost:1313. Fix things until you like it.
-4. Commit and push to `main` (GitHub Desktop is the easiest way). The site updates in about a minute.
+**Option A: no terminal at all (use GitHub's website)**
+1. On github.com, open the repo, go into `content/blog/` (or `content/gallery/`), then click
+   **Add file → Create new file**.
+2. Name it `my-title/index.md` (typing the `/` makes the folder). Paste this at the top:
+
+       ---
+       title: "My title"
+       date: 2026-11-09
+       ---
+
+   then write the post under it.
+3. For a gallery piece, open the new folder, click **Add file → Upload files** and drag in
+   your images (call the jar image `cover.jpg`).
+4. Commit to `main`. The site rebuilds itself in about a minute.
+
+**Option B: on your laptop (lets you preview before it goes live)**
+1. In Terminal, inside this folder: `hugo new content blog/my-title/index.md`
+   (or `gallery/my-piece/index.md`). This only creates a folder with a starter text file.
+2. Write in that file; drop images or videos into the same folder.
+3. `hugo server` and look at http://localhost:1313.
+4. Commit and push with GitHub Desktop. You push the whole repo; git only sends what changed.
+
+**Option C: ask Claude** to "add a gallery entry called X" and attach the images.
 
 New entries show up on the shelf by themselves; nothing else needs editing. Shelves fill from
 the bottom-right (oldest) and a new shelf starts on top when one is full, so the newest entry
@@ -51,8 +70,9 @@ Keep videos small (under ~50 MB). For anything bigger, use YouTube or Vimeo.
 | What | File |
 |---|---|
 | Home page note | `content/_index.md` |
-| CV | `content/cv.md` (put a PDF at `static/cv.pdf`) |
+| CV | `content/cv.md` (italic heading, then one `year – thing \` line per item) |
 | Links, email, Instagram | `hugo.toml` |
+| Home collage | `layouts/partials/collage.html`, images in `static/stickers/` |
 | Look and feel | `assets/style.css` |
 | Jar warping effect | `assets/jar.js` |
 | Book / lid colours | `data/palette.yaml` |
