@@ -1,0 +1,6 @@
+{{ $src := .Get "src" }}
+{{ with $.Page.Resources.GetMatch $src }}{{ $src = .RelPermalink }}{{ end }}
+<figure class="media">
+  <video src="{{ $src }}" controls playsinline preload="metadata" {{ with .Get "poster" }}poster="{{ . }}"{{ end }} {{ if .Get "loop" }}loop muted autoplay{{ end }}></video>
+  {{ with .Get "caption" }}<figcaption>{{ . }}</figcaption>{{ end }}
+</figure>

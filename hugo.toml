@@ -1,0 +1,19 @@
+baseURL = "https://avelynb.com/"
+languageCode = "en-us"
+title = "Avelyn Batts"
+enableRobotsTXT = true
+
+[params]
+  tagline = "Nature. Storytelling. Untangling problems."
+  email = "avelyn@stanford.edu"
+  linkedin = "https://www.linkedin.com/in/avelyn-batts-a457a0290"
+  instagram = "https://www.instagram.com/avelynbatts/"
+
+[permalinks]
+  blog = "/blog/:slug/"
+  gallery = "/gallery/:slug/"
+
+[markup.goldmark.renderer]
+  unsafe = true   # lets you drop raw HTML into posts when you need it
+
+[taxonomies]

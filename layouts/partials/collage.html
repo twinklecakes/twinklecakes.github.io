@@ -1,0 +1,15 @@
+{{/* Home-page collage: public-domain engravings cut out like stickers.
+     Sources in static/stickers/CREDITS.md. A sticker only shows once its PNG exists. */}}
+{{ $stickers := slice
+  (dict "file" "grandfather-clock" "class" "stk-clock")
+  (dict "file" "lily-red"          "class" "stk-lily-a")
+  (dict "file" "vampire-squid"     "class" "stk-squid")
+  (dict "file" "lily-white"        "class" "stk-lily-b") }}
+<div class="collage-board" aria-hidden="true"><div class="stage">
+  {{ range $stickers }}
+    {{ $path := printf "stickers/%s.png" .file }}
+    {{ if fileExists (printf "static/%s" $path) }}
+      <img class="stk {{ .class }}" src="/{{ $path }}" alt="">
+    {{ end }}
+  {{ end }}
+</div></div>

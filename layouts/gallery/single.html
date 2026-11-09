@@ -1,0 +1,13 @@
+{{ define "main" }}
+<article class="page visual">
+  <p class="meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time></p>
+  <h1 class="page-title">{{ .Title }}</h1>
+  {{ $c := partial "pick-color.html" (dict "title" .Title "want" .Params.lid) }}
+  {{ with .Resources.GetMatch (.Params.cover | default "cover.*") }}
+    <div class="jar-hero">{{ partial "jar.html" (dict "img" . "title" $.Title "href" .RelPermalink "lid" $c.color "size" "large") }}</div>
+  {{ end }}
+  <div class="prose">{{ .Content }}</div>
+  <p class="back"><a href="/gallery/">← back to the shelf</a></p>
+</article>
+{{ end }}
+{{ define "scripts" }}{{ partial "jar-script.html" . }}{{ end }}
