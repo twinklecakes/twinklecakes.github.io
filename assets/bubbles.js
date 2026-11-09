@@ -71,11 +71,20 @@
     el.addEventListener("pointerenter", function () { blow(el); });   // mouse hover, or the start of a tap
   });
 
-  // name letters: on phones, tap to show the photo (tap again to hide)
+  // name letters on touch screens: tap a letter to open its photo; tap the
+  // letter again, the photo, or anywhere else to close it.
+  var lastType = "mouse";
+  document.addEventListener("pointerdown", function (e) { lastType = e.pointerType; }, true);
   document.querySelectorAll(".ransom .cut").forEach(function (el) {
-    el.addEventListener("click", function () {
+    el.addEventListener("click", function (e) {
+      if (lastType === "mouse") return;       // with a mouse, hovering is enough
+      e.stopPropagation();
       var open = el.classList.toggle("open");
       document.querySelectorAll(".ransom .cut.open").forEach(function (o) { if (o !== el) o.classList.remove("open"); });
+      if (!open) el.blur();
     });
+  });
+  document.addEventListener("click", function () {
+    document.querySelectorAll(".ransom .cut.open").forEach(function (o) { o.classList.remove("open"); });
   });
 })();
