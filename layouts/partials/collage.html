@@ -16,7 +16,7 @@
   {{ end }}
   {{ if $hasVideo }}
   <figure class="clock-video" aria-hidden="true">
-    <video src="{{ $v.src }}#t={{ $v.start }}" muted playsinline loop preload="metadata"
+    <video src="{{ $v.src }}{{ with $v.start }}#t={{ . }}{{ end }}" muted playsinline loop preload="metadata"
            data-start="{{ $v.start | default 0 }}" data-end="{{ $v.end | default 0 }}"></video>
   </figure>
   {{ end }}

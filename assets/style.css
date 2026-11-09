@@ -152,9 +152,9 @@ body.quiet { overflow-x: clip; max-width: none; padding: 50px 6vw 40px; font-siz
 /* the clock's video pops up beside it, like the photos do */
 .clock-video {
   position: absolute;
-  left: -4%;
-  top: 4%;
-  width: 46%;
+  left: 8%;
+  top: 2%;
+  width: 26%;       /* the video is portrait */
   margin: 0;
   padding: 8px 8px 26px;
   background: #fbf8ef;
