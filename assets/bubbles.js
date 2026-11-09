@@ -2,7 +2,7 @@
 // handful of bubbles that wander on a swirling breeze. Some pop after a while;
 // others get caught by a gust and drift off the left, right or top edge.
 (function () {
-  var TRIGGERS = ".ransom .cut, .book, .jar, .stk-clock";
+  var TRIGGERS = ".ransom .cut, .jar, .stk-clock";
   var tints = ["#29adc0", "#5a6fd8", "#eb8d5f", "#c4262e", "#6a8a4c", "#2e3c96"];
   var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var live = [], running = false, MAX = 140;
@@ -12,7 +12,7 @@
   function blow(el) {
     if (still) return;
     var r = el.getBoundingClientRect();
-    var n = Math.min(18, MAX - live.length);
+    var n = Math.min(11, MAX - live.length);   // bubbles per hover
     for (var i = 0; i < n; i++) {
       var big = Math.random() < 0.22;
       var size = big ? rand(42, 78) : rand(8, 34);
