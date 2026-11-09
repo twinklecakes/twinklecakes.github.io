@@ -1,5 +1,5 @@
 """Turns photos of letters clipped from magazines into the flickering
-ransom-note letters on the home page (static/letters/N-a.png and N-b.png).
+ransom-note letters on the home page (assets/letters/N-a.png and N-b.png).
 
     python3 tools/make_ransom_letters.py SLOT MODE PHOTO_A PHOTO_B [--thresh 40]
 
@@ -18,7 +18,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageOps
 from scipy import ndimage as ndi
 
-OUT = Path(__file__).resolve().parent.parent / "static" / "letters"
+OUT = Path(__file__).resolve().parent.parent / "assets" / "letters"
 H_OUT = 240                       # px tall (shown at ~half that, so crisp on retina)
 
 ap = argparse.ArgumentParser()

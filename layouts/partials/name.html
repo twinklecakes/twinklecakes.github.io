@@ -1,5 +1,6 @@
 {{/* "avelyn" in ransom-note letters. Each letter flickers between two cut-outs
-     (static/letters/N-a.png and N-b.png); hovering or tapping one pops up its
+     (assets/letters/N-a.png and N-b.png, fingerprinted so a new
+     version is never hidden by a cached old one); hovering or tapping one pops up its
      photo, static/me/N.jpg (or .jpeg / .png / .webp), with soap bubbles. */}}
 <h1 class="ransom" aria-label="avelyn">
   {{ range $i := seq 6 }}
@@ -9,8 +10,8 @@
       {{ if and (not $photo) (fileExists (printf "static/%s" $f)) }}{{ $photo = printf "/%s" $f }}{{ end }}
     {{ end }}
     <button class="cut cut-{{ $i }}" type="button" aria-hidden="true" tabindex="-1">
-      <img class="v1" src="/letters/{{ $i }}-a.png" alt="">
-      <img class="v2" src="/letters/{{ $i }}-b.png" alt="">
+      {{ with resources.Get (printf "letters/%d-a.png" $i) | fingerprint }}<img class="v1" src="{{ .RelPermalink }}" alt="">{{ end }}
+      {{ with resources.Get (printf "letters/%d-b.png" $i) | fingerprint }}<img class="v2" src="{{ .RelPermalink }}" alt="">{{ end }}
       {{ with $photo }}<span class="pop"><img src="{{ . }}" alt="" loading="lazy"></span>{{ end }}
     </button>
   {{ end }}
