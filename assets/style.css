@@ -50,7 +50,7 @@ img, video { max-width: 100%; height: auto; display: block; }
 .masthead nav a:hover { text-decoration: underline; }
 
 /* ---------- quiet pages: home + cv (after rogersmathews.com) ---------- */
-body.quiet { max-width: none; padding: 50px 6vw 40px; font-size: 15px; line-height: 1.5; }
+body.quiet { overflow-x: clip; max-width: none; padding: 50px 6vw 40px; font-size: 15px; line-height: 1.5; }
 .quiet a { text-decoration: none; color: var(--ink); }
 .quiet a:hover { color: var(--vermilion); }
 .quiet .back-link { font: 14px var(--mono); }
@@ -60,7 +60,6 @@ body.quiet { max-width: none; padding: 50px 6vw 40px; font-size: 15px; line-heig
   grid-template-columns: minmax(200px, 1fr) 2fr;
   gap: 4vw;
   align-items: start;
-  overflow-x: clip;
 }
 .front-text { max-width: 26em; position: relative; z-index: 1; }
 .note p { margin: 0 0 2.6em; }
@@ -111,6 +110,9 @@ body.quiet { max-width: none; padding: 50px 6vw 40px; font-size: 15px; line-heig
 .cut:hover, .cut.open { z-index: 20; }
 .bubble {
   position: fixed;
+  left: 0;
+  top: 0;
+  will-change: transform, opacity;
   z-index: 50;
   pointer-events: none;
   border-radius: 50%;
@@ -142,10 +144,30 @@ body.quiet { max-width: none; padding: 50px 6vw 40px; font-size: 15px; line-heig
 /* squid: at the back, its body poking out to the left toward the text */
 .stk-squid  { left: -18%; top: 30.5%; height: 50%; transform: rotate(-8deg); z-index: 1; }
 /* clock: 50% bigger, standing on the bottom edge */
-.stk-clock  { left: 36%; bottom: 0; height: 100%; transform: rotate(1deg); transform-origin: bottom center; z-index: 2; }
+.stk-clock  { pointer-events: auto; cursor: pointer; left: 36%; bottom: 0; height: 100%; transform: rotate(1deg); transform-origin: bottom center; z-index: 2; }
 /* lilies: in front, overlapping either side of the clock */
 .stk-lily-a { left: 17%; bottom: 1%; height: 76%; transform: rotate(-5deg); transform-origin: bottom center; z-index: 3; }
 .stk-lily-b { left: 60%; bottom: 0;  height: 64%; transform: rotate(6deg);  transform-origin: bottom center; z-index: 3; }
+
+/* the clock's video pops up beside it, like the photos do */
+.clock-video {
+  position: absolute;
+  left: -4%;
+  top: 4%;
+  width: 46%;
+  margin: 0;
+  padding: 8px 8px 26px;
+  background: #fbf8ef;
+  box-shadow: 2px 8px 18px rgba(0, 0, 0, 0.3);
+  transform: rotate(-3deg) scale(0.3);
+  transform-origin: right center;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.3s cubic-bezier(.3, 1.5, .5, 1), opacity 0.2s;
+  z-index: 10;
+}
+.clock-video.on { opacity: 1; transform: rotate(-3deg) scale(1); }
+.clock-video video { display: block; width: 100%; height: auto; }
 
 .quiet-page { max-width: 46em; }
 .quiet-page p { margin: 0 0 1.4em; }
