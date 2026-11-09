@@ -8,7 +8,7 @@
       {{ $c := partial "pick-color.html" (dict "title" .Title "want" .Params.lid) }}
       <div class="slot">
         {{ if $cover }}
-          {{ partial "jar.html" (dict "img" $cover "title" .Title "href" .RelPermalink "lid" $c.color "size" "") }}
+          {{ partial "jar.html" (dict "img" $cover "title" .Title "href" .RelPermalink "lid" $c.color "size" "" "date" .Date) }}
         {{ else }}
           <a class="jar empty-jar" href="{{ .RelPermalink }}" title="{{ .Title }}" style="--lid: {{ $c.color | safeCSS }};"><span class="jar-lid"></span><span class="jar-glass"><span class="jar-shine"></span></span></a>
         {{ end }}
