@@ -1,6 +1,7 @@
 {{ define "main" }}
 <div class="front">
   <div class="front-text">
+    {{ partial "name.html" . }}
     <div class="note">{{ .Content }}</div>
     <p class="index-links">
       <a href="/cv/">~ my cv</a><br>
@@ -14,3 +15,4 @@
   {{ partial "collage.html" . }}
 </div>
 {{ end }}
+{{ define "scripts" }}{{ with resources.Get "bubbles.js" | minify | fingerprint }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}{{ end }}
