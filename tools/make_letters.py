@@ -28,7 +28,7 @@ LETTERS = [
     ("e", SYS / "liberation/LiberationSerif-BoldItalic.ttf", 230, (236, 205, 198), (40, 18, 20), -2),
     ("L", FONT_DIR / "AlfaSlabOne-Regular.ttf", 170, (196, 38, 46), (246, 238, 227), 5),
     ("y", FONT_DIR / "Rye-Regular.ttf", 190, (233, 214, 160), (40, 30, 20), -6),
-    ("N", FONT_DIR / "Bungee-Regular.ttf", 150, (41, 173, 192), (12, 30, 36), 2),
+    ("N", FONT_DIR / "Bungee-Regular.ttf", 150, (106, 138, 76), (20, 32, 14), 2),
 ]
 
 WORDS = ("the of and to in is was for on that with as by at from his her it an be "
