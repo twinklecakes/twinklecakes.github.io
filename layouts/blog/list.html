@@ -1,0 +1,24 @@
+{{ define "main" }}
+<section class="page">
+  <h1 class="page-title">{{ .Title }}</h1>
+  {{ with .Content }}<div class="intro">{{ . }}</div>{{ end }}
+  {{/* Oldest first in the HTML; CSS lays them out from the bottom-right so the
+       newest end up top-left and a new shelf starts above when one fills. */}}
+  <div class="shelf books">
+    {{ range .Pages.ByDate }}
+      {{ $h := hash.FNV32a .Title }}
+      {{ $c := partial "pick-color.html" (dict "title" .Title "want" .Params.spine) }}
+      {{ $height := add 150 (mod $h 62) }}
+      {{ $width := add 34 (mod (div $h 7) 20) }}
+      <div class="slot">
+        <a class="book" href="{{ .RelPermalink }}" title="{{ .Title }} — {{ .Date.Format "Jan 2, 2006" }}"
+           style="--spine: {{ $c.color | safeCSS }}; --spine-ink: {{ $c.text | safeCSS }}; height: {{ $height }}px; width: {{ $width }}px;">
+          <span class="spine-title">{{ .Title }}</span>
+        </a>
+      </div>
+    {{ else }}
+      <p class="empty">The shelf is empty for now.</p>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

@@ -1,0 +1,300 @@
+/* ---------- basics ---------- */
+:root {
+  --ink: #111;
+  --paper: #fff;
+  --muted: #6b6b66;
+  --red: #d0021b;
+  --vermilion: #c4262e;
+  --rule: #111;
+  --display: "Anton", "Impact", "Arial Narrow", sans-serif;
+  --serif: "EB Garamond", Garamond, Georgia, serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { background: var(--paper); }
+body {
+  margin: 0 auto;
+  max-width: 980px;
+  padding: 32px 20px 48px;
+  background: var(--paper);
+  color: var(--ink);
+  font: 20px/1.55 var(--serif);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--red); }
+img, video { max-width: 100%; height: auto; display: block; }
+
+/* ---------- masthead (every page except home) ---------- */
+.masthead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  border-bottom: 3px solid var(--rule);
+  padding-bottom: 8px;
+  margin-bottom: 40px;
+}
+.masthead .name {
+  font: 30px/1 var(--display);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+}
+.masthead nav { font: 14px var(--mono); display: flex; gap: 20px; }
+.masthead nav a { text-decoration: none; }
+.masthead nav a:hover { text-decoration: underline; }
+
+/* ---------- quiet pages: home + cv (after rogersmathews.com) ---------- */
+body.quiet { max-width: none; padding: 50px 6vw 40px; font-size: 15px; line-height: 1.5; }
+.quiet a { text-decoration: none; color: var(--ink); }
+.quiet a:hover { color: var(--vermilion); }
+.quiet .back-link { font: 14px var(--mono); }
+
+.front {
+  display: grid;
+  grid-template-columns: minmax(200px, 1fr) 2fr;
+  gap: 4vw;
+  align-items: start;
+  overflow-x: clip;
+}
+.front-text { max-width: 26em; position: relative; z-index: 1; }
+.note p { margin: 0 0 2.6em; }
+.index-links { margin: 0; }
+
+/* Sticker collage on the right two-thirds, running down to the bottom of the
+   window. The .stage is a square pinned bottom-right; every sticker is sized
+   as a % of it, so the arrangement keeps its shape at any screen size. */
+.collage-board {
+  position: relative;
+  height: calc(100vh - 90px);   /* top + bottom page padding */
+  min-height: 480px;
+}
+.stage { position: absolute; right: 0; bottom: -40px; height: calc(100% + 40px); aspect-ratio: 1 / 1; }
+.stk { position: absolute; max-width: none; width: auto; pointer-events: none; }
+/* squid: at the back, its body poking out to the left toward the text */
+.stk-squid  { left: -18%; top: 30.5%; height: 50%; transform: rotate(-8deg); z-index: 1; }
+/* clock: 50% bigger, standing on the bottom edge */
+.stk-clock  { left: 36%; bottom: 0; height: 100%; transform: rotate(1deg); transform-origin: bottom center; z-index: 2; }
+/* lilies: in front, overlapping either side of the clock */
+.stk-lily-a { left: 17%; bottom: 1%; height: 76%; transform: rotate(-5deg); transform-origin: bottom center; z-index: 3; }
+.stk-lily-b { left: 60%; bottom: 0;  height: 64%; transform: rotate(6deg);  transform-origin: bottom center; z-index: 3; }
+
+.quiet-page { max-width: 46em; }
+.quiet-page p { margin: 0 0 1.4em; }
+
+@media (max-width: 700px) {
+  body.quiet { padding: 32px 20px; }
+  .front { grid-template-columns: 1fr; }
+  .collage-board { height: 84vw; min-height: 0; margin-top: 24px; }
+  .stage { bottom: -32px; height: calc(100% + 32px); }
+  .stk-squid { left: 0; }
+}
+
+/* ---------- pages, posts ---------- */
+.page-title {
+  font: clamp(40px, 8vw, 72px)/0.95 var(--display);
+  text-transform: uppercase;
+  margin: 0 0 24px;
+}
+.meta, .back, .empty { font: 14px var(--mono); color: var(--muted); }
+.meta { margin: 0 0 8px; }
+.back { margin-top: 48px; }
+.intro { max-width: 34em; margin-bottom: 32px; }
+.prose { max-width: 34em; }
+.prose h2, .prose h3, .prose h4 {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 2em 0 0.4em;
+}
+.prose h2 { border-top: 1px solid var(--rule); padding-top: 10px; }
+.prose hr { border: 0; border-top: 1px solid var(--rule); margin: 2em 0; }
+.prose code { font: 0.8em var(--mono); }
+.prose pre { font-size: 15px; overflow-x: auto; }
+.prose blockquote { margin: 1.5em 0; padding-left: 1em; border-left: 3px solid var(--red); font-style: italic; }
+
+/* visual entries get the full width */
+.visual .prose { max-width: none; }
+.visual .prose > p { max-width: 34em; }
+.prose img, .media { margin: 24px 0; }
+.media figcaption { font: 13px var(--mono); color: var(--muted); margin-top: 6px; }
+
+.collage {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+  margin: 24px 0;
+}
+.collage > p { display: contents; }
+.collage img { width: 100%; height: 100%; object-fit: cover; margin: 0; }
+
+/* ---------- shelves ---------- */
+/* Items are in date order (oldest first). row-reverse + wrap-reverse starts
+   them at the bottom-right; each full shelf pushes a new one on top, and the
+   newest item ends up top-left. */
+.shelf {
+  --row: 280px;            /* one shelf: must match the shelf.png tile (560px @2x) */
+  --rest: 46px;            /* gap from row bottom to the top surface of the plank */
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap-reverse;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 0 3px;
+  padding: 0 4%;
+  background: url("/textures/shelf.png") left bottom / 100% var(--row) repeat-y;
+}
+.slot {
+  height: var(--row);
+  padding-bottom: var(--rest);
+  display: flex;
+  align-items: flex-end;
+}
+.shelf .empty { height: var(--row); margin: 0; padding-top: 24px; }
+
+/* books: cloth weave + dust + rounded-spine shading, all over the palette colour */
+.book {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 18px 0 16px;
+  color: var(--spine-ink);
+  text-decoration: none;
+  border-radius: 3px 3px 1px 1px;
+  background:
+    linear-gradient(180deg, rgba(238, 232, 220, 0.75) 0, rgba(238, 232, 220, 0.25) 4px, rgba(238, 232, 220, 0) 22%),
+    url("/textures/dust.png") 0 0 / 220px,
+    linear-gradient(90deg, rgba(0,0,0,0.45), rgba(255,255,255,0.14) 16%, rgba(255,255,255,0) 38%, rgba(0,0,0,0.08) 72%, rgba(0,0,0,0.5)),
+    url("/textures/cloth.png") 0 0 / 128px,
+    var(--spine);
+  background-blend-mode: normal, normal, normal, overlay, normal;
+  box-shadow: 1px 0 0 rgba(0,0,0,0.35), 0 1px 2px rgba(0,0,0,0.3);
+  filter: saturate(0.82) contrast(0.96);  /* a little faded */
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+.book::before, .book::after {     /* worn foil bands across the spine */
+  content: "";
+  position: absolute;
+  left: 3px; right: 3px;
+  height: 2px;
+  background: var(--spine-ink);
+  opacity: 0.45;
+}
+.book::before { top: 10px; }
+.book::after { bottom: 10px; }
+.slot:nth-child(7n + 3) .book { transform: rotate(-1.2deg); transform-origin: bottom left; }
+.book:hover { transform: translateY(-12px); filter: none; color: var(--spine-ink); }
+.spine-title {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font: 12px/1.1 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+  max-height: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* jars */
+.jars { gap: 0 22px; }
+.jar {
+  --w: 132px;
+  --lid: #9c988b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: var(--w);
+  text-decoration: none;
+  color: var(--ink);
+  transition: transform 0.2s ease;
+}
+.jar:hover { transform: translateY(-6px); }
+.jar-lid {
+  width: 66%;
+  height: 18px;
+  border-radius: 3px 3px 1px 1px;
+  background:
+    linear-gradient(180deg, rgba(238,232,220,0.8), rgba(238,232,220,0) 40%),
+    url("/textures/dust.png") 0 0 / 160px,
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.22) 0 2px, transparent 2px 6px),
+    linear-gradient(180deg, rgba(255,255,255,0.35), rgba(0,0,0,0.25) 60%, rgba(255,255,255,0.15)),
+    var(--lid);
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  position: relative;
+  z-index: 2;
+  filter: saturate(0.8);
+}
+.jar-glass {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: calc(var(--w) * 1.35);
+  margin-top: -2px;
+  overflow: hidden;
+  border-radius: 42% 42% 14% 14% / 17% 17% 6% 6%;
+  background: #e8eef0;
+  border: 1.5px solid rgba(0, 0, 0, 0.45);
+  border-bottom-width: 4px;          /* thick glass base */
+  border-bottom-color: rgba(60, 70, 66, 0.7);
+  box-shadow: 0 3px 3px -1px rgba(0,0,0,0.35);   /* contact shadow on the shelf */
+}
+.jar-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.85) sepia(0.12);
+}
+/* glass: dust, dark edges, highlights, thread lines at the neck */
+.jar-shine {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    url("/textures/dust.png") 0 0 / 180px,
+    linear-gradient(180deg, rgba(238,232,220,0.55) 0 3%, rgba(238,232,220,0.15) 14%, transparent 30%, transparent 80%, rgba(238,232,220,0.25)),
+    linear-gradient(180deg, transparent 0 4%, rgba(0,0,0,0.18) 4% 5%, transparent 5% 9%, rgba(0,0,0,0.12) 9% 10%, transparent 10%),
+    linear-gradient(90deg,
+      rgba(0,0,0,0.38) 0%,
+      rgba(0,0,0,0.05) 10%,
+      rgba(255,255,255,0.5) 15%,
+      rgba(255,255,255,0.08) 22%,
+      transparent 45%,
+      transparent 75%,
+      rgba(255,255,255,0.22) 84%,
+      rgba(255,255,255,0.04) 88%,
+      rgba(0,0,0,0.38) 100%);
+  box-shadow: inset 0 -10px 18px rgba(0, 0, 0, 0.25);
+}
+.empty-jar .jar-glass { background: #eef1ef; }
+
+.jar.large { --w: min(320px, 70vw); cursor: zoom-in; }
+.jar-hero { display: flex; justify-content: center; margin: 8px 0 32px; }
+
+@media (max-width: 560px) {
+  .shelf { padding: 0 3%; }
+  .jar { --w: 92px; }
+  .jars { gap: 0 10px; }
+}
+
+/* ---------- footer ---------- */
+.colophon {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 72px;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule);
+  font: 12px var(--mono);
+  color: var(--muted);
+}

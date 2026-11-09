@@ -1,0 +1,11 @@
+# Colours from the "Colors" page of the Earthly Delights moodboard.
+# Books and jar lids pick from this list. `text` is the colour for writing on top of it.
+- { name: oxblood,   color: "#9b0a0a", text: "#f6eee3" }
+- { name: vermilion, color: "#c4262e", text: "#f6eee3" }
+- { name: apricot,   color: "#eb8d5f", text: "#2a1410" }
+- { name: lagoon,    color: "#29adc0", text: "#0c2a30" }
+- { name: indigo,    color: "#2e3c96", text: "#f6eee3" }
+- { name: cream,     color: "#f6eee3", text: "#5a0a0a" }
+- { name: moss,      color: "#6a8a4c", text: "#f6eee3" }
+- { name: abyss,     color: "#121212", text: "#eb8d5f" }
+- { name: cornflower,color: "#5a6fd8", text: "#f6eee3" }
