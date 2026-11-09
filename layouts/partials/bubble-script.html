@@ -1,0 +1,1 @@
+{{ with resources.Get "bubbles.js" | minify | fingerprint }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}

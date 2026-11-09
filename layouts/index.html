@@ -15,4 +15,7 @@
   {{ partial "collage.html" . }}
 </div>
 {{ end }}
-{{ define "scripts" }}{{ with resources.Get "bubbles.js" | minify | fingerprint }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}{{ end }}
+{{ define "scripts" }}
+{{ partial "bubble-script.html" . }}
+{{ with resources.Get "clock.js" | minify | fingerprint }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}
+{{ end }}
