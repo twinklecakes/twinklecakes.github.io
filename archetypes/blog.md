@@ -1,6 +1,6 @@
 ---
 title: "{{ replace .File.ContentBaseName "-" " " | title }}"
 date: {{ .Date }}
-# spine: "#b33a2b"   # optional: pick this book's color
+# spine: indigo   # optional: oxblood, vermilion, apricot, lagoon, indigo, cream, moss, abyss, cornflower (or any #hex)
 ---
 

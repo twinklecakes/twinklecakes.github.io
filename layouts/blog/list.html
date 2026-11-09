@@ -1,19 +1,19 @@
 {{ define "main" }}
 <section class="page">
   <h1 class="page-title">{{ .Title }}</h1>
-  <div class="intro">{{ .Content }}</div>
-  {{ $palette := slice "#b33a2b" "#1f3a5f" "#2f4f3a" "#c9a227" "#5a3d5c" "#7a4a2a" "#111111" "#8c8c84" }}
+  {{ with .Content }}<div class="intro">{{ . }}</div>{{ end }}
+  {{/* Oldest first in the HTML; CSS lays them out from the bottom-right so the
+       newest end up top-left and a new shelf starts above when one fills. */}}
   <div class="shelf books">
     {{ range .Pages.ByDate }}
       {{ $h := hash.FNV32a .Title }}
-      {{ $color := .Params.spine | default (index $palette (mod $h (len $palette))) }}
-      {{ $height := add 170 (mod $h 50) }}
-      {{ $width := add 38 (mod (div $h 7) 18) }}
+      {{ $c := partial "pick-color.html" (dict "title" .Title "want" .Params.spine) }}
+      {{ $height := add 150 (mod $h 62) }}
+      {{ $width := add 34 (mod (div $h 7) 20) }}
       <div class="slot">
         <a class="book" href="{{ .RelPermalink }}" title="{{ .Title }} — {{ .Date.Format "Jan 2, 2006" }}"
-           style="--spine: {{ $color | safeCSS }}; height: {{ $height }}px; width: {{ $width }}px;">
+           style="--spine: {{ $c.color | safeCSS }}; --spine-ink: {{ $c.text | safeCSS }}; height: {{ $height }}px; width: {{ $width }}px;">
           <span class="spine-title">{{ .Title }}</span>
-          <span class="spine-year">{{ .Date.Format "06" }}</span>
         </a>
       </div>
     {{ else }}

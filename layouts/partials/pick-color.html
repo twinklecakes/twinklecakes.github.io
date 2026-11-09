@@ -1,0 +1,9 @@
+{{/* Returns a palette entry for a page: its own `spine`/`lid` name or hex if set, else one chosen from its title. */}}
+{{ $p := site.Data.palette }}
+{{ $want := .want }}
+{{ $pick := index $p (mod (hash.FNV32a .title) (len $p)) }}
+{{ with $want }}
+  {{ $found := where $p "name" . }}
+  {{ if $found }}{{ $pick = index $found 0 }}{{ else }}{{ $pick = dict "color" . "text" "#f6eee3" }}{{ end }}
+{{ end }}
+{{ return $pick }}
