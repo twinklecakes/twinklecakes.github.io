@@ -22,12 +22,10 @@
   </header>
   {{ end }}
   <main>{{ block "main" . }}{{ end }}</main>
-  {{ if not (or .IsHome .Params.quiet) }}
   <footer class="colophon">
     <span>© {{ now.Year }} Avelyn Batts</span>
     <span><a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a></span>
   </footer>
-  {{ end }}
   {{ block "scripts" . }}{{ end }}
 </body>
 </html>
