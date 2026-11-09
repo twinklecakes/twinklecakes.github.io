@@ -1,0 +1,21 @@
+{{ define "main" }}
+<section class="page">
+  <h1 class="page-title">{{ .Title }}</h1>
+  <div class="intro">{{ .Content }}</div>
+  <div class="shelf jars">
+    {{ range .Pages.ByDate }}
+      {{ $cover := .Resources.GetMatch (.Params.cover | default "cover.*") }}
+      <div class="slot">
+        {{ if $cover }}
+          {{ partial "jar.html" (dict "img" $cover "title" .Title "href" .RelPermalink "label" .Title "size" "") }}
+        {{ else }}
+          <a class="jar empty-jar" href="{{ .RelPermalink }}"><span class="jar-lid"></span><span class="jar-glass"></span><span class="jar-label">{{ .Title }}</span></a>
+        {{ end }}
+      </div>
+    {{ else }}
+      <p class="empty">No jars on the shelf yet.</p>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+{{ define "scripts" }}{{ partial "jar-script.html" . }}{{ end }}

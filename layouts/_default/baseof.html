@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.tagline }}{{ end }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  {{ with resources.Get "style.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ .RelPermalink }}">{{ end }}
+</head>
+<body class="{{ if .IsHome }}home{{ else }}{{ .Section }} {{ .Kind }}{{ end }}">
+  {{ if not .IsHome }}
+  <header class="masthead">
+    <a class="name" href="/">Avelyn Batts</a>
+    <nav>
+      <a href="/cv/">cv</a>
+      <a href="/gallery/">gallery</a>
+      <a href="/blog/">blog</a>
+    </nav>
+  </header>
+  {{ end }}
+  <main>{{ block "main" . }}{{ end }}</main>
+  <footer class="colophon">
+    <span>© {{ now.Year }} Avelyn Batts</span>
+    <span><a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a></span>
+  </footer>
+  {{ block "scripts" . }}{{ end }}
+</body>
+</html>
