@@ -1,0 +1,6 @@
+{{/* Email link that spam bots can't read: the address is stored base64-encoded
+     and decoded in the visitor's browser (see the little script in baseof.html).
+     Without JavaScript it shows "user [at] domain [dot] tld". */}}
+{{ $user := site.Params.emailUser }}{{ $domain := site.Params.emailDomain }}
+{{ $plain := printf "%s [at] %s" $user (replace $domain "." " [dot] ") }}
+<a class="email" data-e="{{ printf "%s@%s" $user $domain | base64Encode }}" href="#">{{ $plain }}</a>

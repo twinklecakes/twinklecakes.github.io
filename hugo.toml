@@ -5,7 +5,11 @@ enableRobotsTXT = true
 
 [params]
   tagline = "Nature. Storytelling. Untangling problems."
-  email = "avelyn@stanford.edu"
+  # Email is kept in two parts so bots scanning this public repo don't find it
+  # whole; the site puts it back together and hides it from bots on the page too.
+  emailUser = "avelyn"
+  emailDomain = "stanford.edu"
+  repo = "https://github.com/twinklecakes/twinklecakes.github.io"
   linkedin = "https://www.linkedin.com/in/avelyn-batts-a457a0290"
   instagram = "https://www.instagram.com/avelynbatts/"
 
