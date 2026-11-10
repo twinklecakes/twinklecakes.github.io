@@ -16,10 +16,10 @@
 /* custom cursors, from Avelyn's drawings: a paper crane normally, the real
    crane over anything you can click. The tip of the beak is the pointer.
    (plain url first for browsers without image-set, then the sharp retina one) */
-html, body, .lightbox.single .lb-img, .jar.tipped { cursor: url("/cursors/crane-paper.png") 1 1, auto; cursor: image-set(url("/cursors/crane-paper.png") 1x, url("/cursors/crane-paper@2x.png") 2x) 1 1, auto; }
+html, body, .lightbox.single .lb-img { cursor: url("/cursors/crane-paper.png") 1 1, auto; cursor: image-set(url("/cursors/crane-paper.png") 1x, url("/cursors/crane-paper@2x.png") 2x) 1 1, auto; }
 a, button, [role="button"], label, summary, .jar, .book, .cut, .stk-clock, img.zoomable,
 .lightbox .lb-img, .lb-btn, a *, button * { cursor: url("/cursors/crane-real.png") 1 1, pointer !important; cursor: image-set(url("/cursors/crane-real.png") 1x, url("/cursors/crane-real@2x.png") 2x) 1 1, pointer !important; }
-.lightbox.single .lb-img, a.jar.tipped, .jar.tipped * { cursor: url("/cursors/crane-paper.png") 1 1, auto !important; cursor: image-set(url("/cursors/crane-paper.png") 1x, url("/cursors/crane-paper@2x.png") 2x) 1 1, auto !important; }
+.lightbox.single .lb-img { cursor: url("/cursors/crane-paper.png") 1 1, auto !important; cursor: image-set(url("/cursors/crane-paper.png") 1x, url("/cursors/crane-paper@2x.png") 2x) 1 1, auto !important; }
 
 html { background: var(--paper); }
 body {
@@ -65,20 +65,21 @@ body.quiet { overflow-x: clip; max-width: none; padding: 50px 6vw 40px; font-siz
 body.home { font-size: 18px; }
 .quiet a { text-decoration: none; color: var(--ink); }
 .quiet a:hover { color: var(--vermilion); }
-.quiet .back-link { font: 18px var(--mono); }
 
 .front {
   display: grid;
   grid-template-columns: minmax(200px, 1fr) 2fr;
   gap: 4vw;
   align-items: start;
+  container-type: inline-size;   /* lets the name size itself to the whole front area */
 }
-.front-text { max-width: 26em; position: relative; z-index: 1; }
+.front-text { max-width: 26em; position: relative; z-index: 5; }
 .note p { margin: 0 0 2.6em; }
 .index-links { margin: 0; }
 
 /* ransom-note name: each letter flips between two cut-outs */
-.ransom { display: flex; align-items: flex-end; gap: 20px; margin: 0 0 1.6em; height: 84px; }
+/* stretches across the front area to end above the squid's eye */
+.ransom { display: flex; align-items: flex-end; justify-content: space-between; width: 50cqw; margin: 0 0 1.8em; height: clamp(110px, 10.5cqw, 180px); }
 .cut {
   position: relative;
   display: block;
@@ -104,7 +105,7 @@ body.home { font-size: 18px; }
   position: absolute;
   left: 50%;
   top: 100%;
-  width: 170px;
+  width: clamp(200px, 17cqw, 270px);
   padding: 7px 7px 22px;
   background: #fbf8ef;
   box-shadow: 2px 6px 14px rgba(0, 0, 0, 0.3);
@@ -141,8 +142,8 @@ body.home { font-size: 18px; }
   .cut img.v1, .cut img.v2 { animation: none; }
 }
 @media (max-width: 700px) {
-  .ransom { height: 64px; gap: 10px; }
-  .cut .pop { width: 140px; }
+  .ransom { width: auto; justify-content: flex-start; height: 64px; gap: 10px; }
+  .cut .pop { width: 160px; }
 }
 
 /* Sticker collage on the right two-thirds, running down to the bottom of the

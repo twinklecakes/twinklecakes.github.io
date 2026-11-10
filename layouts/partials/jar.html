@@ -1,11 +1,11 @@
-{{/* A mason jar (Avelyn's drawing, assets/art/jar.png) holding .img.
-     Context: dict "img" (optional) "title" "href" "size" "date" (optional).
-     Without "href" the jar isn't a link. */}}
+{{/* A jar on the gallery shelf: Avelyn's jar drawing (assets/art/jar.png) with
+     the piece's cover photo inside the glass and a date label on it.
+     Context: dict "img" (cover image, optional) "title" "href" "date" */}}
 {{ $art := resources.Get "art/jar.png" | fingerprint }}
-{{ $src := "" }}{{ with .img }}{{ $src = (.Fit "600x800 q80").RelPermalink }}{{ end }}
-{{ $inner := partial "jar-inner.html" (dict "src" $src "title" .title "date" .date "art" $art.RelPermalink) }}
-{{ if .href }}
-<a class="jar {{ .size }}" href="{{ .href }}" title="{{ .title }}">{{ $inner }}</a>
-{{ else }}
-<span class="jar {{ .size }}" title="{{ .title }}">{{ $inner }}</span>
-{{ end }}
+<a class="jar" href="{{ .href }}" title="{{ .title }}">
+  <span class="jar-glass">
+    {{ with .img }}<img class="jar-photo" src="{{ (.Fit "600x800 q80").RelPermalink }}" alt="{{ $.title }}" loading="lazy">{{ end }}
+    {{ with .date }}<span class="jar-label"><time datetime="{{ .Format "2006-01-02" }}">{{ .Format "Jan 2" }}<br>{{ .Format "2006" }}</time></span>{{ end }}
+  </span>
+  <img class="jar-art" src="{{ $art.RelPermalink }}" alt="">
+</a>

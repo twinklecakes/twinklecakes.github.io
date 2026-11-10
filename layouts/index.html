@@ -1,7 +1,7 @@
 {{ define "main" }}
 <div class="front">
   <div class="front-text">
-    {{ partial "name.html" . }}
+    {{ partial "ransom-name.html" . }}
     <div class="note">{{ .Content }}</div>
     <p class="index-links">
       <a href="/cv/">~ my cv</a><br>
@@ -17,5 +17,5 @@
 {{ end }}
 {{ define "scripts" }}
 {{ partial "bubble-script.html" . }}
-{{ with resources.Get "clock.js" | minify | fingerprint }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}
+{{ partial "script.html" "clock.js" }}
 {{ end }}

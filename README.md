@@ -56,13 +56,14 @@ without one, each book gets a colour picked from its title.
     hugo new content gallery/my-piece/index.md
 
 Put your images and videos in that `gallery/my-piece/` folder. Name the jar image
-`cover.jpg`, or set `cover:` in the front matter. `lid: moss` picks the lid colour. In the text you can use:
+`cover.jpg`, or set `cover:` in the front matter. In the text you can use:
 
 - `![caption](photo.jpg)` for one image
 - `![](photo.jpg "a description")` adds a description that shows under the image when it's enlarged
 - `{{< collage >}} ...images... {{< /collage >}}` for a grid
 - `{{< video src="clip.mp4" >}}` for a video file
 - `{{< youtube ID >}}` / `{{< vimeo ID >}}` for embedded videos
+- `{{< email >}}` for your email address, hidden from spam bots
 
 Keep videos small (under ~50 MB). For anything bigger, use YouTube or Vimeo.
 
@@ -71,14 +72,29 @@ Keep videos small (under ~50 MB). For anything bigger, use YouTube or Vimeo.
 | What | File |
 |---|---|
 | Home page note | `content/_index.md` |
-| CV | `content/cv.md` (italic heading, then one `year – thing \` line per item) |
-| Links, email, Instagram | `hugo.toml` |
-| Home collage | `layouts/partials/collage.html`, images in `static/stickers/` |
+| Gallery / blog intro lines | `content/gallery/_index.md`, `content/blog/_index.md` |
+| CV | `content/cv.md` (note at the top explains the format) |
+| Links, email, clock video | `hugo.toml` |
 | Look and feel | `assets/style.css` |
-| Jar warping effect | `assets/jar.js` |
-| Book / lid colours | `data/palette.yaml` |
-| Shelf, dust, cloth textures | `static/textures/` (made by `tools/make_textures.py`) |
-| Page templates | `layouts/` |
+| Fonts | EB Garamond for text, Anton for post titles (loaded in `layouts/_default/baseof.html`) |
+| Page templates | `layouts/` (one folder per section; small shared pieces in `layouts/partials/`) |
+| Scripts | `assets/*.js`: bubbles, clock video, jar warp, lightbox |
+| Book spine colours | `data/palette.yaml` (from the moodboard) |
+
+### Pictures
+
+| What | File | Made with |
+|---|---|---|
+| "avelyn" letters on the home page | `assets/letters/1-a.png` … `6-b.png` | `tools/make_ransom_letters.py` |
+| Photos that pop out of the letters | `static/me/1.jpg` … `6.jpg` (or .jpeg/.png/.webp; 1 = "a", 6 = "n") | resized to ~900px, metadata removed |
+| Hand-lettered name, page titles, jars, lid | `assets/art/` | `tools/make_art.py` |
+| Bubbles | `assets/bubbles/` | `tools/make_art.py --square 220` |
+| Shelf, dust, book cloth | `static/textures/` | `tools/make_art.py --shelf`, `tools/make_textures.py` |
+| Home collage engravings | `static/stickers/` (credits in `CREDITS.md`) | `tools/make_cutouts.py` |
+| Cursors, favicon | `static/cursors/`, `static/favicon*` | |
+
+Every image tool writes fresh PNGs with no metadata (no GPS, camera or date).
+The tools need Python with `numpy`, `pillow` and `scipy`.
 
 ## Publishing
 

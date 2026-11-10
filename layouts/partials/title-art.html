@@ -1,0 +1,3 @@
+{{/* A hand-drawn page title from assets/art/ (title-gallery, title-blog) */}}
+{{ $img := resources.Get (printf "art/%s.png" .file) | fingerprint }}
+<h1 class="page-title title-art"><img src="{{ $img.RelPermalink }}" alt="{{ .title }}" width="{{ $img.Width }}" height="{{ $img.Height }}"></h1>

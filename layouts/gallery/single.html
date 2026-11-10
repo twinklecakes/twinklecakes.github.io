@@ -2,7 +2,6 @@
 <article class="page visual">
   <p class="meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time></p>
   <h1 class="page-title">{{ .Title }}</h1>
-  {{ $c := partial "pick-color.html" (dict "title" .Title "want" .Params.lid) }}
   {{ with .Resources.GetMatch (.Params.cover | default "cover.*") }}
     {{ partial "spill.html" (dict "img" . "title" $.Title "date" $.Date) }}
   {{ end }}
@@ -10,4 +9,4 @@
   <p class="back"><a href="/gallery/">← back to the shelf</a></p>
 </article>
 {{ end }}
-{{ define "scripts" }}{{ partial "jar-script.html" . }}{{ partial "lightbox-script.html" . }}{{ end }}
+{{ define "scripts" }}{{ partial "script.html" "lightbox.js" }}{{ end }}

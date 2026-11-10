@@ -1,30 +1,16 @@
-{{/* Home-page collage: public-domain engravings cut out like stickers.
-     Sources in static/stickers/CREDITS.md. A sticker only shows once its PNG exists. */}}
-{{ $stickers := slice
-  (dict "file" "grandfather-clock" "class" "stk-clock")
-  (dict "file" "lily-red"          "class" "stk-lily-a")
-  (dict "file" "vampire-squid"     "class" "stk-squid")
-  (dict "file" "lily-white"        "class" "stk-lily-b") }}
-{{ $v := site.Params.clockVideo }}
-{{ $hasVideo := and $v (fileExists (printf "static%s" $v.src)) }}
+{{/* Home-page collage: public-domain engravings cut out like stickers
+     (sources in static/stickers/CREDITS.md). The clock is a box so its video
+     can play inside the front panel of the case. */}}
 <div class="collage-board"><div class="stage">
-  {{ range $stickers }}
-    {{ $path := printf "stickers/%s.png" .file }}
-    {{ if fileExists (printf "static/%s" $path) }}
-      {{ if eq .file "grandfather-clock" }}
-      {{/* the clock is a box so its video can sit in the front panel of the case */}}
-      <div class="stk {{ .class }}">
-        <img class="clock-img" src="/{{ $path }}" alt="" aria-hidden="true">
-        {{ if $hasVideo }}
-        <div class="clock-video" aria-hidden="true">
-          <video src="{{ $v.src }}{{ with $v.start }}#t={{ . }}{{ end }}" muted playsinline loop preload="metadata"
-                 data-start="{{ $v.start | default 0 }}" data-end="{{ $v.end | default 0 }}"></video>
-        </div>
-        {{ end }}
-      </div>
-      {{ else }}
-      <img class="stk {{ .class }}" src="/{{ $path }}" alt="" aria-hidden="true">
-      {{ end }}
+  <div class="stk stk-clock">
+    <img class="clock-img" src="/stickers/grandfather-clock.png" alt="" aria-hidden="true">
+    {{ with site.Params.clockVideo }}
+    <div class="clock-video" aria-hidden="true">
+      <video src="{{ . }}" muted playsinline loop preload="metadata"></video>
+    </div>
     {{ end }}
-  {{ end }}
+  </div>
+  <img class="stk stk-lily-a" src="/stickers/lily-red.png" alt="" aria-hidden="true">
+  <img class="stk stk-squid" src="/stickers/vampire-squid.png" alt="" aria-hidden="true">
+  <img class="stk stk-lily-b" src="/stickers/lily-white.png" alt="" aria-hidden="true">
 </div></div>

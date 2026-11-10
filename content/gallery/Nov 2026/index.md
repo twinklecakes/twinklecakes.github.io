@@ -2,7 +2,6 @@
 title: "November 2026 Musings"
 date: 2026-11-09
 cover: "2026-11-1.jpg" 
-lid: lagoon
 ---
 
 all of these returnings upon campus has me finding snapshots of inspiration in common tracks, especially when roaming the stacks of green library. while it may seem cold or ansty to roam the silent, endless bookcases while listening to the cure, I find it brings me much relishment of existing with my own mind and body.
