@@ -5,7 +5,7 @@
      rim. Units are the drawing's pixels: jar-tipped.png is 1200×724. */}}
 {{ $pour := .img.Fit "1400x1400 q80" }}
 {{ $jar := resources.Get "art/jar-tipped.png" | fingerprint }}
-{{ $lid := resources.Get "art/lid.png" | fingerprint }}
+{{ $lid := resources.Get "art/lid-trim.png" | fingerprint }}
 <div class="spill" aria-hidden="true">
   <svg viewBox="0 0 2250 830" preserveAspectRatio="xMidYMid meet">
     <defs>
@@ -15,6 +15,7 @@
         </feTurbulence>
         <feDisplacementMap in="SourceGraphic" in2="n" scale="70" xChannelSelector="R" yChannelSelector="G"/>
       </filter>
+      <filter id="lid-shadow" x="-10%" y="-20%" width="130%" height="160%"><feDropShadow dx="4" dy="8" stdDeviation="6" flood-color="#1a0d05" flood-opacity="0.35"/></filter>
       <filter id="soft"><feGaussianBlur stdDeviation="10"/></filter>
       <!-- what's left in the jar: the low side of the body, neck and mouth, below the waterline (y 400) -->
       <clipPath id="in-jar">
@@ -55,6 +56,6 @@
     {{ end }}
 
     <!-- the lid, off, lying on the ground -->
-    <image href="{{ $lid.RelPermalink }}" x="1950" y="612" width="270" height="93" transform="rotate(-6 2085 658)"/>
+    <image href="{{ $lid.RelPermalink }}" x="1934" y="596" width="302" height="121" transform="rotate(-6 2085 658)" filter="url(#lid-shadow)"/>
   </svg>
 </div>
