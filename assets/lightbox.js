@@ -3,7 +3,7 @@
 // or a click on the dark background closes it.
 (function () {
   var imgs = Array.prototype.slice.call(document.querySelectorAll(".prose img"));
-  var items = imgs.map(function (im) { return { src: im.currentSrc || im.src, alt: im.alt }; });
+  var items = imgs.map(function (im) { return { src: im.currentSrc || im.src, alt: im.alt, caption: im.getAttribute("data-caption") || "" }; });
   if (!items.length) return;
 
   var box = document.createElement("div");
@@ -12,19 +12,21 @@
   box.setAttribute("aria-modal", "true");
   box.setAttribute("aria-label", "Enlarged image");
   box.innerHTML =
-    '<img class="lb-img" alt="">' +
+    '<figure class="lb-fig"><img class="lb-img" alt=""><figcaption class="lb-caption"></figcaption></figure>' +
     '<button class="lb-btn lb-close" type="button" aria-label="Close">×</button>' +
     '<button class="lb-btn lb-prev" type="button" aria-label="Previous image">‹</button>' +
     '<button class="lb-btn lb-next" type="button" aria-label="Next image">›</button>' +
     '<span class="lb-count"></span>';
   document.body.appendChild(box);
-  var big = box.querySelector(".lb-img"), count = box.querySelector(".lb-count");
+  var big = box.querySelector(".lb-img"), count = box.querySelector(".lb-count"), cap = box.querySelector(".lb-caption");
   var at = 0, lastFocus = null;
 
   function show(i) {
     at = (i + items.length) % items.length;
     big.src = items[at].src;
     big.alt = items[at].alt || "";
+    cap.textContent = items[at].caption;
+    cap.hidden = !items[at].caption;
     count.textContent = items.length > 1 ? (at + 1) + " / " + items.length : "";
     // preload the neighbours so stepping through is instant
     [at + 1, at - 1].forEach(function (j) { new Image().src = items[(j + items.length) % items.length].src; });
@@ -51,7 +53,7 @@
   box.querySelector(".lb-close").addEventListener("click", close);
   box.querySelector(".lb-prev").addEventListener("click", function (e) { e.stopPropagation(); show(at - 1); });
   box.querySelector(".lb-next").addEventListener("click", function (e) { e.stopPropagation(); show(at + 1); });
-  box.addEventListener("click", function (e) { if (e.target === box) close(); });
+  box.addEventListener("click", function (e) { if (e.target === box || e.target.classList.contains("lb-fig")) close(); });
   big.addEventListener("click", function (e) { e.stopPropagation(); if (items.length > 1) show(at + 1); });
   document.addEventListener("keydown", function (e) {
     if (!box.classList.contains("on")) return;
