@@ -3,7 +3,11 @@
 // others get caught by a gust and drift off the left, right or top edge.
 (function () {
   var TRIGGERS = ".ransom .cut, .jar, .stk-clock";
-  var tints = ["#29adc0", "#5a6fd8", "#eb8d5f", "#c4262e", "#6a8a4c", "#2e3c96"];
+  // Avelyn's hand-drawn bubbles (paths handed over by the page template)
+  var me = document.currentScript;
+  var drawings = [];
+  try { drawings = JSON.parse(me.getAttribute("data-bubbles") || "[]"); } catch (e) {}
+  drawings.forEach(function (src) { new Image().src = src; });   // preload
   var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var live = [], running = false, MAX = 140;
 
@@ -19,7 +23,8 @@
       var b = document.createElement("span");
       b.className = "bubble";
       b.style.width = b.style.height = size + "px";
-      b.style.setProperty("--tint", tints[(Math.random() * tints.length) | 0]);
+      if (drawings.length) b.style.backgroundImage = "url(" + drawings[(Math.random() * drawings.length) | 0] + ")";
+      var spin = rand(0, 360);
       document.body.appendChild(b);
       var edge = Math.random() < 0.38 ? ["left", "right", "top"][(Math.random() * 3) | 0] : null;
       live.push({
@@ -27,6 +32,7 @@
         x: r.left + rand(0.1, 0.9) * r.width, y: r.top + rand(0.3, 0.9) * r.height,
         vx: rand(-0.6, 0.6), vy: rand(-0.9, -0.35),   // px per frame (60fps), slow
         edge: edge, pull: rand(0.006, 0.02),
+        spin: spin, turn: rand(-0.15, 0.15),
         phase: rand(0, 1000), born: performance.now() + rand(0, 300),
         life: edge ? Infinity : rand(4500, 9000), popAt: 0
       });
@@ -60,8 +66,9 @@
       }
       if (gone) { p.el.remove(); live.splice(i, 1); continue; }
       p.el.style.opacity = op;
-      p.el.style.transform = "translate3d(" + (p.x - p.size / 2) + "px," + (p.y - p.size / 2) + "px,0) scale(" +
-        scale + "," + (2 - scale) + ")";
+      p.spin += p.turn;
+      p.el.style.transform = "translate3d(" + (p.x - p.size / 2) + "px," + (p.y - p.size / 2) + "px,0) rotate(" +
+        p.spin + "deg) scale(" + scale + "," + (2 - scale) + ")";
     }
     if (live.length) requestAnimationFrame(step); else running = false;
   }

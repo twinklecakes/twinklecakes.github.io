@@ -1,1 +1,4 @@
-{{ with resources.Get "bubbles.js" | minify | fingerprint }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}
+{{/* Hand-drawn bubbles from assets/bubbles/*.png (fingerprinted), handed to bubbles.js */}}
+{{ $imgs := slice }}
+{{ range resources.Match "bubbles/*.png" }}{{ $imgs = $imgs | append (. | fingerprint).RelPermalink }}{{ end }}
+{{ with resources.Get "bubbles.js" | minify | fingerprint }}<script src="{{ .RelPermalink }}" data-bubbles="{{ $imgs | jsonify }}" defer></script>{{ end }}
