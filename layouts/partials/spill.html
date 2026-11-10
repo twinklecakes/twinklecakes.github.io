@@ -7,7 +7,7 @@
 {{ $jar := resources.Get "art/jar-tipped.png" | fingerprint }}
 {{ $lid := resources.Get "art/lid-trim.png" | fingerprint }}
 <div class="spill" aria-hidden="true">
-  <svg viewBox="0 0 2250 830" preserveAspectRatio="xMidYMid meet">
+  <svg viewBox="0 0 2250 870" preserveAspectRatio="xMidYMid meet">
     <defs>
       <filter id="liquid" x="-5%" y="-10%" width="110%" height="120%">
         <feTurbulence type="fractalNoise" baseFrequency="0.004 0.02" numOctaves="2" seed="7" result="n">
@@ -23,26 +23,27 @@
       </clipPath>
       <!-- the pour: leaves the mouth at the same waterline, falls, spreads into a wiggly puddle -->
       <clipPath id="poured">
-        <path d="M1100,400 C1180,398 1230,430 1250,480 C1268,525 1262,575 1280,610 C1300,640 1350,632 1420,628 C1500,624 1540,610 1620,618 C1700,626 1740,612 1830,620 C1920,628 1990,640 2060,660 C2140,684 2170,720 2140,750 C2110,780 2040,790 1960,784 C1880,778 1850,800 1760,796 C1670,792 1640,810 1550,804 C1460,798 1430,812 1340,802 C1270,794 1230,772 1205,740 C1180,708 1170,660 1160,620 C1155,602 1150,592 1140,590 L1100,590 Z"/>
+        <path d="M1100,400 C1180,398 1230,430 1250,480 C1268,525 1262,575 1280,605 C1300,630 1340,612 1400,596 C1480,575 1560,566 1660,570 C1760,574 1820,556 1920,560 C2020,564 2110,578 2170,604 C2230,630 2245,676 2228,716 C2210,756 2150,786 2070,792 C1990,798 1950,816 1860,812 C1770,808 1740,826 1640,820 C1540,814 1510,830 1410,820 C1320,812 1260,790 1225,756 C1192,724 1176,676 1164,630 C1158,606 1150,594 1140,590 L1100,590 Z"/>
       </clipPath>
     </defs>
 
     <!-- shadows on the ground -->
     <ellipse cx="560" cy="712" rx="560" ry="26" fill="rgba(0,0,0,0.22)" filter="url(#soft)"/>
-    <ellipse cx="1660" cy="806" rx="520" ry="22" fill="rgba(0,0,0,0.16)" filter="url(#soft)"/>
+    <ellipse cx="1700" cy="814" rx="560" ry="24" fill="rgba(0,0,0,0.16)" filter="url(#soft)"/>
 
     <!-- the picture, settled inside the jar -->
     <g clip-path="url(#in-jar)">
-      <image href="{{ $pour.RelPermalink }}" x="0" y="300" width="2250" height="560" preserveAspectRatio="xMidYMid slice" filter="url(#liquid)"/>
+      <image href="{{ $pour.RelPermalink }}" x="0" y="300" width="2250" height="580" preserveAspectRatio="xMidYMid slice" filter="url(#liquid)"/>
     </g>
     <!-- the jar drawing, over it, so the glass tints and streaks what's inside -->
     <image href="{{ $jar.RelPermalink }}" x="0" y="0" width="1200" height="724"/>
     <!-- the same picture, poured out over the rim -->
     <g clip-path="url(#poured)">
-      <image href="{{ $pour.RelPermalink }}" x="0" y="300" width="2250" height="560" preserveAspectRatio="xMidYMid slice" filter="url(#liquid)"/>
+      <image href="{{ $pour.RelPermalink }}" x="0" y="300" width="2250" height="580" preserveAspectRatio="xMidYMid slice" filter="url(#liquid)"/>
+      <ellipse cx="1780" cy="590" rx="470" ry="62" fill="#fff" fill-opacity="0.38" filter="url(#soft)"/>
       <path d="M1160,410 C1205,418 1230,455 1240,510" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="9" stroke-linecap="round"/>
-      <path d="M1320,640 C1420,632 1520,626 1640,632" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="8" stroke-linecap="round"/>
-      <path d="M1760,636 C1880,634 1990,650 2080,684" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="7" stroke-linecap="round"/>
+      <path d="M1300,612 C1420,586 1560,574 1700,578" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="8" stroke-linecap="round"/>
+      <path d="M1780,574 C1900,566 2040,576 2140,608" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="7" stroke-linecap="round"/>
     </g>
 
     {{ with .date }}
@@ -54,8 +55,8 @@
       <text x="520" y="336" text-anchor="middle" font-family="EB Garamond, Georgia, serif" font-style="italic" font-size="40" fill="#2a1a10">{{ .Format "2006" }}</text>
     </g>
     {{ end }}
-
-    <!-- the lid, off, lying on the ground -->
-    <image href="{{ $lid.RelPermalink }}" x="1713" y="599" width="520" height="209" transform="rotate(189 1973 704)" filter="url(#lid-shadow)"/>
+    <!-- the lid, off, resting flat on the ground with its own shadow -->
+    <ellipse cx="1965" cy="832" rx="250" ry="16" fill="rgba(0,0,0,0.32)" filter="url(#soft)"/>
+    <image href="{{ $lid.RelPermalink }}" x="1705" y="612" width="520" height="209" transform="rotate(180 1965 716)" filter="url(#lid-shadow)"/>
   </svg>
 </div>
