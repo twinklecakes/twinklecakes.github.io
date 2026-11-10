@@ -7,7 +7,7 @@
 {{ $jar := resources.Get "art/jar-tipped.png" | fingerprint }}
 {{ $lid := resources.Get "art/lid-trim.png" | fingerprint }}
 <div class="spill" aria-hidden="true">
-  <svg viewBox="0 0 2250 870" preserveAspectRatio="xMidYMid meet">
+  <svg viewBox="0 0 2250 935" preserveAspectRatio="xMidYMid meet">
     <defs>
       <filter id="liquid" x="-5%" y="-10%" width="110%" height="120%">
         <feTurbulence type="fractalNoise" baseFrequency="0.004 0.02" numOctaves="2" seed="7" result="n">
@@ -40,7 +40,6 @@
     <!-- the same picture, poured out over the rim -->
     <g clip-path="url(#poured)">
       <image href="{{ $pour.RelPermalink }}" x="0" y="300" width="2250" height="580" preserveAspectRatio="xMidYMid slice" filter="url(#liquid)"/>
-      <ellipse cx="1780" cy="590" rx="470" ry="62" fill="#fff" fill-opacity="0.38" filter="url(#soft)"/>
       <path d="M1160,410 C1205,418 1230,455 1240,510" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="9" stroke-linecap="round"/>
       <path d="M1300,612 C1420,586 1560,574 1700,578" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="8" stroke-linecap="round"/>
       <path d="M1780,574 C1900,566 2040,576 2140,608" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="7" stroke-linecap="round"/>
@@ -56,7 +55,7 @@
     </g>
     {{ end }}
     <!-- the lid, off, resting flat on the ground with its own shadow -->
-    <ellipse cx="1965" cy="832" rx="250" ry="16" fill="rgba(0,0,0,0.32)" filter="url(#soft)"/>
-    <image href="{{ $lid.RelPermalink }}" x="1705" y="612" width="520" height="209" transform="rotate(180 1965 716)" filter="url(#lid-shadow)"/>
+    <ellipse cx="1965" cy="892" rx="285" ry="18" fill="rgba(0,0,0,0.32)" filter="url(#soft)"/>
+    <image href="{{ $lid.RelPermalink }}" x="1679" y="695" width="572" height="230" transform="rotate(180 1965 810)" filter="url(#lid-shadow)"/>
   </svg>
 </div>
