@@ -4,7 +4,7 @@
   <h1 class="page-title">{{ .Title }}</h1>
   {{ $c := partial "pick-color.html" (dict "title" .Title "want" .Params.lid) }}
   {{ with .Resources.GetMatch (.Params.cover | default "cover.*") }}
-    {{ partial "spill.html" (dict "img" . "title" $.Title "lid" $c.color "date" $.Date) }}
+    {{ partial "spill.html" (dict "img" . "title" $.Title "date" $.Date) }}
   {{ end }}
   <div class="prose">{{ .Content }}</div>
   <p class="back"><a href="/gallery/">← back to the shelf</a></p>
