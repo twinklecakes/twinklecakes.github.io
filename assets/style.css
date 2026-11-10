@@ -458,3 +458,4 @@ img.zoomable { cursor: zoom-in; }
   font: 15px var(--mono);
   color: var(--muted);
 }
+.colophon .credits { flex-basis: 100%; font-style: italic; font-size: 14px; }
