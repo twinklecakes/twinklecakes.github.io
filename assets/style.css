@@ -300,9 +300,9 @@ body.home { font-size: 18px; }
 
 /* jars: Avelyn's drawing (jar.png, 497x900) over the cover photo, which
    fills the inside of the glass */
-.jars { --row: 330px; gap: 0 22px; }
+.jars { --row: 410px; gap: 0 22px; }
 .jar {
-  --w: 128px;
+  --w: 154px;
   position: relative;
   display: block;
   width: var(--w);
@@ -327,7 +327,7 @@ body.home { font-size: 18px; }
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: saturate(0.85) sepia(0.12);
+  filter: url(#jar-liquid) saturate(0.85) sepia(0.12);
 }
 
 /* date label stuck on the glass, like a canning label */
@@ -358,8 +358,8 @@ body.home { font-size: 18px; }
 
 @media (max-width: 560px) {
   .shelf { padding: 0 3%; }
-  .jars { --row: 250px; }
-  .jar { --w: 88px; }
+  .jars { --row: 300px; }
+  .jar { --w: 106px; }
   .jars { gap: 0 10px; }
 }
 
@@ -425,3 +425,4 @@ img.zoomable { cursor: zoom-in; }
   font: 12px var(--mono);
   color: var(--muted);
 }
+.home .colophon { font: 15px var(--serif); }

@@ -2,6 +2,15 @@
 <section class="page">
   <h1 class="page-title">{{ .Title }}</h1>
   {{ with .Content }}<div class="intro">{{ . }}</div>{{ end }}
+  {{/* slow liquid swirl for the pictures inside the jars (used by .jar-photo) */}}
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <filter id="jar-liquid" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.03" numOctaves="2" seed="3" result="n">
+        <animate attributeName="baseFrequency" dur="12s" values="0.012 0.03;0.016 0.024;0.012 0.03" repeatCount="indefinite"/>
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="14" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </svg>
   <div class="shelf jars">
     {{ range .Pages.ByDate }}
       {{ $cover := .Resources.GetMatch (.Params.cover | default "cover.*") }}
