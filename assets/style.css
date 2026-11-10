@@ -13,6 +13,14 @@
 
 * { box-sizing: border-box; }
 
+/* custom cursors, from Avelyn's drawings: a paper crane normally, the real
+   crane over anything you can click. The tip of the beak is the pointer.
+   (plain url first for browsers without image-set, then the sharp retina one) */
+html, body, .lightbox.single .lb-img, .jar.tipped { cursor: url("/cursors/crane-paper.png") 1 1, auto; cursor: image-set(url("/cursors/crane-paper.png") 1x, url("/cursors/crane-paper@2x.png") 2x) 1 1, auto; }
+a, button, [role="button"], label, summary, .jar, .book, .cut, .stk-clock, img.zoomable,
+.lightbox .lb-img, .lb-btn, a *, button * { cursor: url("/cursors/crane-real.png") 1 1, pointer !important; cursor: image-set(url("/cursors/crane-real.png") 1x, url("/cursors/crane-real@2x.png") 2x) 1 1, pointer !important; }
+.lightbox.single .lb-img, a.jar.tipped, .jar.tipped * { cursor: url("/cursors/crane-paper.png") 1 1, auto !important; cursor: image-set(url("/cursors/crane-paper.png") 1x, url("/cursors/crane-paper@2x.png") 2x) 1 1, auto !important; }
+
 html { background: var(--paper); }
 body {
   margin: 0 auto;
