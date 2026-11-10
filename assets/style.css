@@ -72,13 +72,15 @@ body.home { font-size: 18px; }
   grid-template-columns: minmax(200px, 1fr) 2fr;
   gap: 4vw;
   align-items: start;
+  container-type: inline-size;   /* lets the name size itself to the whole front area */
 }
-.front-text { max-width: 26em; position: relative; z-index: 1; }
+.front-text { max-width: 26em; position: relative; z-index: 5; }
 .note p { margin: 0 0 2.6em; }
 .index-links { margin: 0; }
 
 /* ransom-note name: each letter flips between two cut-outs */
-.ransom { display: flex; align-items: flex-end; gap: 20px; margin: 0 0 1.6em; height: 84px; }
+/* stretches across the front area to end above the squid, just short of the clock */
+.ransom { display: flex; align-items: flex-end; justify-content: space-between; width: 61cqw; margin: 0 0 1.8em; height: clamp(110px, 10.5cqw, 180px); }
 .cut {
   position: relative;
   display: block;
@@ -104,7 +106,7 @@ body.home { font-size: 18px; }
   position: absolute;
   left: 50%;
   top: 100%;
-  width: 170px;
+  width: clamp(200px, 17cqw, 270px);
   padding: 7px 7px 22px;
   background: #fbf8ef;
   box-shadow: 2px 6px 14px rgba(0, 0, 0, 0.3);
@@ -141,8 +143,8 @@ body.home { font-size: 18px; }
   .cut img.v1, .cut img.v2 { animation: none; }
 }
 @media (max-width: 700px) {
-  .ransom { height: 64px; gap: 10px; }
-  .cut .pop { width: 140px; }
+  .ransom { width: auto; justify-content: flex-start; height: 64px; gap: 10px; }
+  .cut .pop { width: 160px; }
 }
 
 /* Sticker collage on the right two-thirds, running down to the bottom of the
