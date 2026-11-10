@@ -109,5 +109,5 @@ def cloth(W=256, H=256):
     Image.fromarray(np.clip(v, 0, 255).astype(np.uint8), "L").convert("RGB").save(OUT / "cloth.png", optimize=True)
 
 
-shelf_tile(); dust(); cloth()
+dust(); cloth()   # the shelf now comes from Avelyn's plank drawing (tools/make_art.py --shelf)
 print("wrote", *sorted(p.name for p in OUT.iterdir()))

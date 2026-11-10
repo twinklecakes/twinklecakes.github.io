@@ -235,7 +235,7 @@ body.home { font-size: 18px; }
    newest item ends up top-left. */
 .shelf {
   --row: 280px;            /* one shelf: must match the shelf.png tile (560px @2x) */
-  --rest: 46px;            /* gap from row bottom to the top surface of the plank */
+  --rest: calc(var(--row) * 0.31);   /* row bottom up to the plank's top face (Avelyn's drawing) */
   display: flex;
   flex-direction: row-reverse;
   flex-wrap: wrap-reverse;
@@ -243,7 +243,7 @@ body.home { font-size: 18px; }
   align-items: flex-end;
   gap: 0 3px;
   padding: 0 4%;
-  background: url("/textures/shelf.png") left bottom / 100% var(--row) repeat-y;
+  background: url("/textures/shelf-plank.png") left bottom / 100% var(--row) repeat-y;
 }
 .slot {
   height: var(--row);
@@ -298,48 +298,29 @@ body.home { font-size: 18px; }
   white-space: nowrap;
 }
 
-/* jars */
-.jars { gap: 0 22px; }
+/* jars: Avelyn's drawing (jar.png, 497x900) over the cover photo, which
+   fills the inside of the glass */
+.jars { --row: 330px; gap: 0 22px; }
 .jar {
-  --w: 132px;
-  --lid: #9c988b;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  --w: 128px;
+  position: relative;
+  display: block;
   width: var(--w);
+  aspect-ratio: 497 / 900;
   text-decoration: none;
   color: var(--ink);
   transition: transform 0.2s ease;
 }
 .jar:hover { transform: translateY(-6px); }
-.jar-lid {
-  width: 66%;
-  height: 18px;
-  border-radius: 3px 3px 1px 1px;
-  background:
-    linear-gradient(180deg, rgba(238,232,220,0.8), rgba(238,232,220,0) 40%),
-    url("/textures/dust.png") 0 0 / 160px,
-    repeating-linear-gradient(90deg, rgba(0,0,0,0.22) 0 2px, transparent 2px 6px),
-    linear-gradient(180deg, rgba(255,255,255,0.35), rgba(0,0,0,0.25) 60%, rgba(255,255,255,0.15)),
-    var(--lid);
-  border: 1px solid rgba(0, 0, 0, 0.4);
-  position: relative;
-  z-index: 2;
-  filter: saturate(0.8);
-}
+.jar-art { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .jar-glass {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: calc(var(--w) * 1.35);
-  margin-top: -2px;
+  position: absolute;
+  left: 8%;
+  top: 22%;
+  width: 84%;
+  height: 74.5%;
   overflow: hidden;
-  border-radius: 42% 42% 14% 14% / 17% 17% 6% 6%;
-  background: #e8eef0;
-  border: 1.5px solid rgba(0, 0, 0, 0.45);
-  border-bottom-width: 4px;          /* thick glass base */
-  border-bottom-color: rgba(60, 70, 66, 0.7);
-  box-shadow: 0 3px 3px -1px rgba(0,0,0,0.35);   /* contact shadow on the shelf */
+  border-radius: 30% 30% 9% 9% / 14% 14% 4% 4%;
 }
 .jar-photo {
   width: 100%;
@@ -348,35 +329,13 @@ body.home { font-size: 18px; }
   display: block;
   filter: saturate(0.85) sepia(0.12);
 }
-/* glass: dust, dark edges, highlights, thread lines at the neck */
-.jar-shine {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    url("/textures/dust.png") 0 0 / 180px,
-    linear-gradient(180deg, rgba(238,232,220,0.55) 0 3%, rgba(238,232,220,0.15) 14%, transparent 30%, transparent 80%, rgba(238,232,220,0.25)),
-    linear-gradient(180deg, transparent 0 4%, rgba(0,0,0,0.18) 4% 5%, transparent 5% 9%, rgba(0,0,0,0.12) 9% 10%, transparent 10%),
-    linear-gradient(90deg,
-      rgba(0,0,0,0.38) 0%,
-      rgba(0,0,0,0.05) 10%,
-      rgba(255,255,255,0.5) 15%,
-      rgba(255,255,255,0.08) 22%,
-      transparent 45%,
-      transparent 75%,
-      rgba(255,255,255,0.22) 84%,
-      rgba(255,255,255,0.04) 88%,
-      rgba(0,0,0,0.38) 100%);
-  box-shadow: inset 0 -10px 18px rgba(0, 0, 0, 0.25);
-}
-.empty-jar .jar-glass { background: #eef1ef; }
 
 /* date label stuck on the glass, like a canning label */
 .jar-label {
   position: absolute;
   left: 50%;
-  top: 54%;
-  width: 60%;
+  top: 50%;
+  width: 62%;
   padding: 0.35em 0.2em 0.3em;
   transform: translate(-50%, -50%) rotate(-2.5deg);
   background:
@@ -387,57 +346,20 @@ body.home { font-size: 18px; }
   outline-offset: -4px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   color: #2a1a10;
-  font: italic calc(var(--w) * 0.095) / 1.1 var(--serif);
+  font: italic calc(var(--w) * 0.1) / 1.1 var(--serif);
   text-align: center;
   pointer-events: none;
 }
 .jar-label time { display: block; }
 
-/* top of a gallery piece: the jar tipped over, pouring its picture out.
-   Laid out on a 640×300 grid; 1cqw = 6.4 grid units at full width. */
-.spill {
-  position: relative;
-  width: min(640px, 100%);
-  aspect-ratio: 640 / 220;
-  margin: 8px auto 32px;
-  container-type: inline-size;
-}
-.spill-liquid { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.spill-jar {
-  position: absolute;
-  left: 9.75cqw;
-  top: 1.65cqw;          /* 14.15cqw on the full grid, minus the 12.5cqw cropped off the top */
-  width: 22cqw;
-  transform: rotate(92deg);           /* mouth to the right */
-  z-index: 2;
-}
-.jar.tipped { --w: 22cqw; cursor: default; }
-.jar.tipped:hover { transform: none; }
-.jar.tipped .jar-lid { display: none; }
-.jar.tipped .jar-glass {
-  margin-top: 0;
-  box-shadow: none;
-  background: rgba(232, 238, 240, 0.35);   /* the emptied half is clear glass */
-  border-top-color: rgba(0, 0, 0, 0.12);   /* lid's off: the mouth is open */
-}
-/* what's left inside has settled to the low side of the jar */
-.jar.tipped .jar-photo {
-  -webkit-mask-image: linear-gradient(to left, #000 40%, transparent 46%);
-          mask-image: linear-gradient(to left, #000 40%, transparent 46%);
-}
-.loose-lid {
-  position: absolute;
-  left: 86cqw;
-  top: 29.4cqw;
-  width: 12cqw;
-  height: 3.2cqw;
-  transform: rotate(-9deg);
-  z-index: 3;
-}
+/* top of a gallery piece: the tipped jar pouring its picture out (all SVG) */
+.spill { width: min(720px, 100%); margin: 8px auto 32px; }
+.spill svg { display: block; width: 100%; height: auto; overflow: visible; }
 
 @media (max-width: 560px) {
   .shelf { padding: 0 3%; }
-  .jar { --w: 92px; }
+  .jars { --row: 250px; }
+  .jar { --w: 88px; }
   .jars { gap: 0 10px; }
 }
 

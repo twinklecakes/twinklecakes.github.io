@@ -1,37 +1,60 @@
-{{/* Top of a gallery piece: the jar tipped on its side, lid off, its picture
-     pouring out of the mouth into a rippling puddle. Everything is laid out
-     on a 640×300 grid, showing the lower 220 (SVG units = px at full size) and scales down evenly. */}}
-{{ $pour := .img.Fit "1000x1000 q80" }}
+{{/* Top of a gallery piece: Avelyn's drawing of the jar on its side, lid off,
+     its picture pouring out of the mouth into a rippling puddle, and the lid
+     lying loose. One copy of the picture is laid across the whole scene and
+     clipped twice (inside the jar / poured out), so it continues across the
+     rim. Units are the drawing's pixels: jar-tipped.png is 1200×724. */}}
+{{ $pour := .img.Fit "1400x1400 q80" }}
+{{ $jar := resources.Get "art/jar-tipped.png" | fingerprint }}
+{{ $lid := resources.Get "art/lid.png" | fingerprint }}
 <div class="spill" aria-hidden="true">
-  <svg class="spill-liquid" viewBox="0 80 640 220" preserveAspectRatio="xMidYMid meet">
+  <svg viewBox="0 0 2250 830" preserveAspectRatio="xMidYMid meet">
     <defs>
-      <filter id="liquid" x="-10%" y="-10%" width="120%" height="120%">
-        <feTurbulence type="fractalNoise" baseFrequency="0.008 0.035" numOctaves="2" seed="7" result="n">
-          <animate attributeName="baseFrequency" dur="14s" values="0.008 0.035;0.010 0.028;0.008 0.035" repeatCount="indefinite"/>
+      <filter id="liquid" x="-5%" y="-10%" width="110%" height="120%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.004 0.02" numOctaves="2" seed="7" result="n">
+          <animate attributeName="baseFrequency" dur="14s" values="0.004 0.02;0.005 0.016;0.004 0.02" repeatCount="indefinite"/>
         </feTurbulence>
-        <feDisplacementMap in="SourceGraphic" in2="n" scale="38" xChannelSelector="R" yChannelSelector="G"/>
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="70" xChannelSelector="R" yChannelSelector="G"/>
       </filter>
-      <clipPath id="puddle">
-        <!-- starts just inside the mouth, between the waterline inside the jar (y≈199)
-             and its inner bottom wall (y≈258), so the pour continues the liquid in the jar -->
-        <path d="M212,199 L227,199 C245,200 257,209 264,223 C271,239 284,246 310,243 C336,240 352,231 381,235 C410,239 421,229 453,231 C487,233 499,244 531,241 C567,238 601,247 607,261 C613,276 585,285 557,281 C531,277 521,291 491,289 C459,287 447,297 411,293 C379,289 363,299 331,293 C303,288 291,295 267,287 C245,280 232,270 228,258 C224,252 218,248 212,247 Z"/>
+      <filter id="soft"><feGaussianBlur stdDeviation="10"/></filter>
+      <!-- what's left in the jar: the low side of the body, neck and mouth, below the waterline (y 400) -->
+      <clipPath id="in-jar">
+        <path d="M70,404 C200,392 330,412 460,400 C600,388 740,410 880,400 C980,393 1080,406 1150,400 L1150,585 C1120,592 1090,600 1040,610 C1020,640 990,668 940,676 L120,680 C88,676 66,650 62,610 Z"/>
       </clipPath>
-      <filter id="puddle-shadow" x="-5%" y="-20%" width="110%" height="160%">
-        <feGaussianBlur stdDeviation="4"/>
-      </filter>
+      <!-- the pour: leaves the mouth at the same waterline, falls, spreads into a wiggly puddle -->
+      <clipPath id="poured">
+        <path d="M1100,400 C1180,398 1230,430 1250,480 C1268,525 1262,575 1280,610 C1300,640 1350,632 1420,628 C1500,624 1540,610 1620,618 C1700,626 1740,612 1830,620 C1920,628 1990,640 2060,660 C2140,684 2170,720 2140,750 C2110,780 2040,790 1960,784 C1880,778 1850,800 1760,796 C1670,792 1640,810 1550,804 C1460,798 1430,812 1340,802 C1270,794 1230,772 1205,740 C1180,708 1170,660 1160,620 C1155,602 1150,592 1140,590 L1100,590 Z"/>
+      </clipPath>
     </defs>
-    <!-- soft shadow under the puddle -->
-    <ellipse cx="415" cy="286" rx="205" ry="12" fill="rgba(0,0,0,0.18)" filter="url(#puddle-shadow)"/>
-    <g clip-path="url(#puddle)">
-      <image href="{{ $pour.RelPermalink }}" x="175" y="140" width="470" height="185" preserveAspectRatio="xMidYMid slice" filter="url(#liquid)"/>
-      <!-- wet sheen -->
-      <path d="M232,201 C250,204 260,214 266,227 C274,240 300,245 340,243" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="3" stroke-linecap="round"/>
-      <path d="M392,240 C420,235 462,233 528,245" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2.5" stroke-linecap="round"/>
-      <path d="M300,284 C360,288 430,280 520,282" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="5" stroke-linecap="round"/>
+
+    <!-- shadows on the ground -->
+    <ellipse cx="560" cy="712" rx="560" ry="26" fill="rgba(0,0,0,0.22)" filter="url(#soft)"/>
+    <ellipse cx="1660" cy="806" rx="520" ry="22" fill="rgba(0,0,0,0.16)" filter="url(#soft)"/>
+
+    <!-- the picture, settled inside the jar -->
+    <g clip-path="url(#in-jar)">
+      <image href="{{ $pour.RelPermalink }}" x="0" y="300" width="2250" height="560" preserveAspectRatio="xMidYMid slice" filter="url(#liquid)"/>
     </g>
+    <!-- the jar drawing, over it, so the glass tints and streaks what's inside -->
+    <image href="{{ $jar.RelPermalink }}" x="0" y="0" width="1200" height="724"/>
+    <!-- the same picture, poured out over the rim -->
+    <g clip-path="url(#poured)">
+      <image href="{{ $pour.RelPermalink }}" x="0" y="300" width="2250" height="560" preserveAspectRatio="xMidYMid slice" filter="url(#liquid)"/>
+      <path d="M1160,410 C1205,418 1230,455 1240,510" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="9" stroke-linecap="round"/>
+      <path d="M1320,640 C1420,632 1520,626 1640,632" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="8" stroke-linecap="round"/>
+      <path d="M1760,636 C1880,634 1990,650 2080,684" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="7" stroke-linecap="round"/>
+    </g>
+
+    {{ with .date }}
+    <!-- date label stuck on the glass; reads sideways like a knocked-over jar -->
+    <g transform="rotate(90 520 300)">
+      <rect x="430" y="235" width="180" height="130" fill="#f4ecd8" stroke="rgba(60,40,20,0.6)" stroke-width="3"/>
+      <rect x="442" y="247" width="156" height="106" fill="none" stroke="rgba(60,40,20,0.35)" stroke-width="2"/>
+      <text x="520" y="292" text-anchor="middle" font-family="EB Garamond, Georgia, serif" font-style="italic" font-size="40" fill="#2a1a10">{{ .Format "Jan 2" }}</text>
+      <text x="520" y="336" text-anchor="middle" font-family="EB Garamond, Georgia, serif" font-style="italic" font-size="40" fill="#2a1a10">{{ .Format "2006" }}</text>
+    </g>
+    {{ end }}
+
+    <!-- the lid, off, lying on the ground -->
+    <image href="{{ $lid.RelPermalink }}" x="1950" y="612" width="270" height="93" transform="rotate(-6 2085 658)"/>
   </svg>
-  <div class="spill-jar">
-    {{ partial "jar.html" (dict "img" .img "title" .title "lid" .lid "size" "tipped" "date" .date) }}
-  </div>
-  <span class="jar-lid loose-lid" style="--lid: {{ .lid | safeCSS }};"></span>
 </div>

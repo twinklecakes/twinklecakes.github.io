@@ -1,6 +1,5 @@
-<span class="jar-lid"></span>
 <span class="jar-glass">
-  <img class="jar-photo" src="{{ .src }}" alt="{{ .title }}" loading="lazy">
-  <span class="jar-shine"></span>
+  {{ with .src }}<img class="jar-photo" src="{{ . }}" alt="{{ $.title }}" loading="lazy">{{ end }}
   {{ with .date }}<span class="jar-label"><time datetime="{{ .Format "2006-01-02" }}">{{ .Format "Jan 2" }}<br>{{ .Format "2006" }}</time></span>{{ end }}
 </span>
+<img class="jar-art" src="{{ .art }}" alt="">
