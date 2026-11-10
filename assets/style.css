@@ -48,11 +48,11 @@ img, video { max-width: 100%; height: auto; display: block; }
   margin-bottom: 40px;
 }
 /* Avelyn's hand-lettered name; the red version shows on hover / tap */
-.masthead .name { position: relative; display: block; width: 190px; line-height: 0; }
-.masthead .name img { width: 100%; height: auto; display: block; }
-.masthead .name .name-red { position: absolute; inset: 0; opacity: 0; transition: opacity 0.15s; }
-.masthead .name:hover .name-red, .masthead .name:focus-visible .name-red, .masthead .name:active .name-red { opacity: 1; }
-.masthead .name:hover .name-ink, .masthead .name:focus-visible .name-ink, .masthead .name:active .name-ink { opacity: 0; }
+.masthead .name, .quiet-home .name { position: relative; display: block; width: 190px; line-height: 0; }
+.masthead .name img, .quiet-home .name img { width: 100%; height: auto; display: block; }
+.masthead .name .name-red, .quiet-home .name .name-red { position: absolute; inset: 0; opacity: 0; transition: opacity 0.15s; }
+.name:hover .name-red, .name:focus-visible .name-red, .name:active .name-red { opacity: 1; }
+.name:hover .name-ink, .name:focus-visible .name-ink, .name:active .name-ink { opacity: 0; }
 /* hand-drawn page titles (gallery, blog) */
 .page-title.title-art { margin: -10px 0 8px -18px; line-height: 0; }
 .page-title.title-art img { width: min(420px, 80vw); height: auto; }

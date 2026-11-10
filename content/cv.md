@@ -25,13 +25,13 @@ Spring 2021 – May 2023 — University of North Carolina at Chapel Hill\
 *Work Experience*\
 Jun 2026 – Aug 2026 — Salvage Yard Floor Staff, Triangle Rock Club\
 May 2026 – Aug 2026 — Gear Management and Retail Staff, Carolina Dive Center\
-Jun 2026 – Aug 2026 — Russian Translator and Archival Researcher, University of Tartu, Estonia, Stanford Global Studies\
-<span class="sub">Projects on Russian Imperial Borderlands, integration of dogs in urban locations, and early women scholars in Estonia</span>\
 Mar 2026 – present — Senior Trip Leader, Stanford Adventure Programs\
 Sep 2025 – Mar 2026 — Residential Student Leader, Outdoor House\
 <span class="sub">Event planning, adventure trip management</span>\
 <span class="sub">Planned and led 3-day camping and boating retreat for 80 people</span>\
 <span class="sub">Planned and led 4-day remote camping retreat for 10 people</span>\
+Jun 2025 – Aug 2025 — Russian Translator and Archival Researcher, University of Tartu, Estonia, Stanford Global Studies\
+<span class="sub">Projects on Russian Imperial Borderlands, integration of dogs in urban locations, and early women scholars in Estonia</span>\
 Jan 2025 – present — Gear Specialist, Stanford Outdoor Center\
 <span class="sub">Maintenance, repairs, organization, and cleaning of rental adventure equipment</span>\
 <span class="sub">Front-facing retail and rental operations; customer service</span>\

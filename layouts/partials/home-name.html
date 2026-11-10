@@ -1,0 +1,6 @@
+{{/* Avelyn's hand-lettered name, linking home; turns red on hover / tap */}}
+{{ $n := resources.Get "art/name.png" | fingerprint }}{{ $nr := resources.Get "art/name-red.png" | fingerprint }}
+<a class="name" href="/" aria-label="Avelyn Batts, home">
+  <img class="name-ink" src="{{ $n.RelPermalink }}" alt="Avelyn Batts" width="1000" height="394">
+  <img class="name-red" src="{{ $nr.RelPermalink }}" alt="" width="1000" height="394">
+</a>
