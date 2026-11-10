@@ -1,6 +1,6 @@
 {{ define "main" }}
 <article class="quiet-page">
-  <p><a href="/" class="back-link">←</a></p>
+  <p class="quiet-home">{{ partial "home-name.html" . }}</p>
   <p>{{ partial "email.html" . }}{{ with .Params.pdf }}<br><a href="{{ . }}">pdf</a>{{ end }}</p>
   {{ .Content }}
 </article>
