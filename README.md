@@ -59,6 +59,7 @@ Put your images and videos in that `gallery/my-piece/` folder. Name the jar imag
 `cover.jpg`, or set `cover:` in the front matter. `lid: moss` picks the lid colour. In the text you can use:
 
 - `![caption](photo.jpg)` for one image
+- `![](photo.jpg "a description")` adds a description that shows under the image when it's enlarged
 - `{{< collage >}} ...images... {{< /collage >}}` for a grid
 - `{{< video src="clip.mp4" >}}` for a video file
 - `{{< youtube ID >}}` / `{{< vimeo ID >}}` for embedded videos
