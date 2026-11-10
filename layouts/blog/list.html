@@ -1,6 +1,8 @@
 {{ define "main" }}
 <section class="page">
-  <h1 class="page-title">{{ .Title }}</h1>
+  {{ with resources.Get "art/title-blog.png" | fingerprint }}
+  <h1 class="page-title title-art"><img src="{{ .RelPermalink }}" alt="{{ $.Title }}" width="1100" height="624"></h1>
+  {{ else }}<h1 class="page-title">{{ .Title }}</h1>{{ end }}
   {{ with .Content }}<div class="intro">{{ . }}</div>{{ end }}
   {{/* Oldest first in the HTML; CSS lays them out from the bottom-right so the
        newest end up top-left and a new shelf starts above when one fills. */}}

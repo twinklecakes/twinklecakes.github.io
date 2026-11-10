@@ -8,7 +8,7 @@
   --rule: #111;
   --display: "Anton", "Impact", "Arial Narrow", sans-serif;
   --serif: "EB Garamond", Garamond, Georgia, serif;
-  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --mono: var(--serif);   /* everything that was IBM Plex Mono is now EB Garamond */
 }
 
 * { box-sizing: border-box; }
@@ -39,13 +39,16 @@ img, video { max-width: 100%; height: auto; display: block; }
   padding-bottom: 8px;
   margin-bottom: 40px;
 }
-.masthead .name {
-  font: 30px/1 var(--display);
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  text-decoration: none;
-}
-.masthead nav { font: 14px var(--mono); display: flex; gap: 20px; }
+/* Avelyn's hand-lettered name; the red version shows on hover / tap */
+.masthead .name { position: relative; display: block; width: 190px; line-height: 0; }
+.masthead .name img { width: 100%; height: auto; display: block; }
+.masthead .name .name-red { position: absolute; inset: 0; opacity: 0; transition: opacity 0.15s; }
+.masthead .name:hover .name-red, .masthead .name:focus-visible .name-red, .masthead .name:active .name-red { opacity: 1; }
+.masthead .name:hover .name-ink, .masthead .name:focus-visible .name-ink, .masthead .name:active .name-ink { opacity: 0; }
+/* hand-drawn page titles (gallery, blog) */
+.page-title.title-art { margin: -10px 0 8px -18px; line-height: 0; }
+.page-title.title-art img { width: min(420px, 80vw); height: auto; }
+.masthead nav { font: 18px var(--mono); display: flex; gap: 20px; }
 .masthead nav a { text-decoration: none; }
 .masthead nav a:hover { text-decoration: underline; }
 
@@ -54,7 +57,7 @@ body.quiet { overflow-x: clip; max-width: none; padding: 50px 6vw 40px; font-siz
 body.home { font-size: 18px; }
 .quiet a { text-decoration: none; color: var(--ink); }
 .quiet a:hover { color: var(--vermilion); }
-.quiet .back-link { font: 14px var(--mono); }
+.quiet .back-link { font: 18px var(--mono); }
 
 .front {
   display: grid;
@@ -195,15 +198,15 @@ body.home { font-size: 18px; }
   text-transform: uppercase;
   margin: 0 0 24px;
 }
-.meta, .back, .empty { font: 14px var(--mono); color: var(--muted); }
+.meta, .back, .empty { font: 17px var(--mono); color: var(--muted); }
 .meta { margin: 0 0 8px; }
 .back { margin-top: 48px; }
 .intro { max-width: 34em; margin-bottom: 32px; }
 .prose { max-width: 34em; }
 .prose h2, .prose h3, .prose h4 {
   font-family: var(--mono);
-  font-weight: 500;
-  font-size: 15px;
+  font-weight: 600;
+  font-size: 17px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   margin: 2em 0 0.4em;
@@ -218,7 +221,7 @@ body.home { font-size: 18px; }
 .visual .prose { max-width: none; }
 .visual .prose > p { max-width: 34em; }
 .prose img, .media { margin: 24px 0; }
-.media figcaption { font: 13px var(--mono); color: var(--muted); margin-top: 6px; }
+.media figcaption { font: italic 16px var(--mono); color: var(--muted); margin-top: 6px; }
 
 .collage {
   display: grid;
@@ -288,9 +291,9 @@ body.home { font-size: 18px; }
 .spine-title {
   writing-mode: vertical-rl;
   transform: rotate(180deg);
-  font: 12px/1.1 var(--mono);
+  font: 13px/1.1 var(--mono);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.02em;
   opacity: 0.85;
   max-height: 100%;
   overflow: hidden;
@@ -300,9 +303,9 @@ body.home { font-size: 18px; }
 
 /* jars: Avelyn's drawing (jar.png, 497x900) over the cover photo, which
    fills the inside of the glass */
-.jars { --row: 330px; gap: 0 22px; }
+.jars { --row: 410px; gap: 0 22px; }
 .jar {
-  --w: 128px;
+  --w: 154px;
   position: relative;
   display: block;
   width: var(--w);
@@ -327,7 +330,7 @@ body.home { font-size: 18px; }
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: saturate(0.85) sepia(0.12);
+  filter: url(#jar-liquid) saturate(0.85) sepia(0.12);
 }
 
 /* date label stuck on the glass, like a canning label */
@@ -358,8 +361,8 @@ body.home { font-size: 18px; }
 
 @media (max-width: 560px) {
   .shelf { padding: 0 3%; }
-  .jars { --row: 250px; }
-  .jar { --w: 88px; }
+  .jars { --row: 300px; }
+  .jar { --w: 106px; }
   .jars { gap: 0 10px; }
 }
 
@@ -407,7 +410,7 @@ img.zoomable { cursor: zoom-in; }
 .lb-prev { left: 8px; top: 50%; transform: translateY(-50%); }
 .lb-next { right: 8px; top: 50%; transform: translateY(-50%); }
 .lightbox.single .lb-prev, .lightbox.single .lb-next { display: none; }
-.lb-count { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); color: #f6eee3; font: 13px var(--mono); opacity: 0.75; }
+.lb-count { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); color: #f6eee3; font: 16px var(--mono); opacity: 0.75; }
 @media (max-width: 600px) {
   .lightbox { padding: 56px 10px; }
   .lb-prev, .lb-next { top: auto; bottom: 4px; transform: none; }
@@ -422,6 +425,6 @@ img.zoomable { cursor: zoom-in; }
   margin-top: 72px;
   padding-top: 10px;
   border-top: 1px solid var(--rule);
-  font: 12px var(--mono);
+  font: 15px var(--mono);
   color: var(--muted);
 }
