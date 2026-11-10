@@ -191,6 +191,10 @@ body.home { font-size: 18px; }
 
 .quiet-page { max-width: 46em; }
 .quiet-page p { margin: 0 0 1.4em; }
+.quiet-page { font-size: 17px; line-height: 1.55; }
+.quiet-page em:first-child { display: inline-block; margin-bottom: 0.15em; }
+.quiet-page .sub { display: inline-block; padding-left: 1.6em; color: var(--muted); font-size: 0.94em; }
+.quiet-page a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 
 @media (max-width: 700px) {
   body.quiet { padding: 32px 20px; }
