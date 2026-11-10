@@ -1,6 +1,8 @@
 {{ define "main" }}
 <section class="page">
-  <h1 class="page-title">{{ .Title }}</h1>
+  {{ with resources.Get "art/title-gallery.png" | fingerprint }}
+  <h1 class="page-title title-art"><img src="{{ .RelPermalink }}" alt="{{ $.Title }}" width="1100" height="624"></h1>
+  {{ else }}<h1 class="page-title">{{ .Title }}</h1>{{ end }}
   {{ with .Content }}<div class="intro">{{ . }}</div>{{ end }}
   {{/* slow liquid swirl for the pictures inside the jars (used by .jar-photo) */}}
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
