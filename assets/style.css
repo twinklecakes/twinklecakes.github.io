@@ -56,8 +56,8 @@ img, video { max-width: 100%; height: auto; display: block; }
 /* hand-drawn page titles (gallery, blog) */
 .page-title.title-art { margin: -10px 0 8px -18px; line-height: 0; }
 .page-title.title-art img { width: min(420px, 80vw); height: auto; }
-.masthead nav { font: 18px var(--mono); display: flex; gap: 20px; }
-.masthead nav a { text-decoration: none; }
+.masthead nav { font: 18px var(--mono); display: flex; gap: 8px; margin-right: -8px; }
+.masthead nav a { text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; padding: 0 8px; }   /* 44px tap target */
 .masthead nav a:hover { text-decoration: underline; }
 
 /* ---------- quiet pages: home + cv (after rogersmathews.com) ---------- */
@@ -75,7 +75,9 @@ body.home { font-size: 18px; }
 }
 .front-text { max-width: 26em; position: relative; z-index: 5; }
 .note p { margin: 0 0 2.6em; }
-.index-links { margin: 0; }
+.index-links { list-style: none; margin: 0; padding: 0; }
+.index-links a { display: inline-flex; align-items: center; min-height: 44px; }   /* 44px tap target */
+.index-links .gap { margin-top: 0.9em; }
 
 /* ransom-note name: each letter flips between two cut-outs */
 /* stretches across the front area to end above the squid's eye */
@@ -138,8 +140,49 @@ body.home { font-size: 18px; }
   background: center / contain no-repeat;
 }
 
+/* ---------- motion: off when the pause button says so, or when the device asks
+   for reduced motion (unless the visitor pressed play) ---------- */
+.motion-off .cut img.v1, .motion-off .cut img.v2 { animation: none; }
+.motion-off .jar-photo { filter: saturate(0.85) sepia(0.12); }   /* no swirl */
 @media (prefers-reduced-motion: reduce) {
-  .cut img.v1, .cut img.v2 { animation: none; }
+  html:not(.motion-on) .cut img.v1, html:not(.motion-on) .cut img.v2 { animation: none; }
+  html:not(.motion-on) .jar-photo { filter: saturate(0.85) sepia(0.12); }
+  html:not(.motion-on) *, html:not(.motion-on) *::before, html:not(.motion-on) *::after { transition-duration: 0.01ms !important; }
+}
+
+/* the pause / play button, lower right, lifted above the footer by motion.js */
+.motion-toggle {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 60;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid rgba(17, 17, 17, 0.25);
+  border-radius: 50%;
+  background: rgba(251, 248, 239, 0.92);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+  color: var(--ink);
+  opacity: 0.7;
+  transition: opacity 0.15s;
+}
+.motion-toggle:hover, .motion-toggle:focus-visible { opacity: 1; }
+.motion-toggle:focus-visible { outline: 2px solid var(--vermilion); outline-offset: 2px; }
+.motion-toggle svg { width: 18px; height: 18px; fill: currentColor; }
+.motion-toggle .i-play, .motion-off .motion-toggle .i-pause { display: none; }
+.motion-off .motion-toggle .i-play { display: block; }
+
+/* text only screen readers hear */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 @media (max-width: 700px) {
   .ransom { width: auto; justify-content: flex-start; height: 64px; gap: 10px; }
@@ -199,6 +242,8 @@ body.home { font-size: 18px; }
 
 @media (max-width: 700px) {
   body.quiet { padding: 32px 20px; }
+  .index-links a { min-height: 52px; }   /* fewer mis-taps on phones */
+  .colophon a { display: inline-block; padding: 12px 0; }
   .front { grid-template-columns: 1fr; }
   .collage-board { height: 84vw; min-height: 0; margin-top: 24px; }
   .stage { bottom: -32px; height: calc(100% + 32px); }
