@@ -1,0 +1,2 @@
+{{/* <script> for one file in assets/, minified and fingerprinted. Usage: partial "script.html" "lightbox.js" */}}
+{{ with resources.Get . | minify | fingerprint }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}

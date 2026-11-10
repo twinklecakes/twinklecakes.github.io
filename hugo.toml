@@ -4,12 +4,14 @@ title = "Avelyn Batts"
 enableRobotsTXT = true
 
 [params]
-  tagline = "Nature. Storytelling. Untangling problems."
+  tagline = "avelyn batts is an adventurer, an artist, & an academic. she is sailing ever outwards."   # used as the page description for search engines
   # Email is kept in two parts so bots scanning this public repo don't find it
   # whole; the site puts it back together and hides it from bots on the page too.
   emailUser = "avelyn"
   emailDomain = "stanford.edu"
   repo = "https://github.com/twinklecakes/twinklecakes.github.io"
+  # Video that loops inside the grandfather clock on the home page (in static/video/).
+  clockVideo = "/video/clock.mp4"
   linkedin = "https://www.linkedin.com/in/avelyn-batts-a457a0290"
   instagram = "https://www.instagram.com/avelynbatts/"
 
@@ -20,12 +22,4 @@ enableRobotsTXT = true
 [markup.goldmark.renderer]
   unsafe = true   # lets you drop raw HTML into posts when you need it
 
-[taxonomies]
-
-# Video that plays when you hover over the grandfather clock on the home page.
-# Put the file in static/video/. start/end are in seconds (set start = 0 and
-# end = 0 if the file is already trimmed to just the part you want).
-[params.clockVideo]
-  src = "/video/clock.mp4"
-  start = 0   # already trimmed, so play (and loop) the whole clip
-  end = 0
+[taxonomies]   # none: no tag or category pages

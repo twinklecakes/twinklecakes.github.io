@@ -1,8 +1,6 @@
 {{ define "main" }}
 <section class="page">
-  {{ with resources.Get "art/title-gallery.png" | fingerprint }}
-  <h1 class="page-title title-art"><img src="{{ .RelPermalink }}" alt="{{ $.Title }}" width="1100" height="624"></h1>
-  {{ else }}<h1 class="page-title">{{ .Title }}</h1>{{ end }}
+  {{ partial "title-art.html" (dict "file" "title-gallery" "title" .Title) }}
   {{ with .Content }}<div class="intro">{{ . }}</div>{{ end }}
   {{/* slow liquid swirl for the pictures inside the jars (used by .jar-photo) */}}
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -16,13 +14,8 @@
   <div class="shelf jars">
     {{ range .Pages.ByDate }}
       {{ $cover := .Resources.GetMatch (.Params.cover | default "cover.*") }}
-      {{ $c := partial "pick-color.html" (dict "title" .Title "want" .Params.lid) }}
       <div class="slot">
-        {{ if $cover }}
-          {{ partial "jar.html" (dict "img" $cover "title" .Title "href" .RelPermalink "size" "" "date" .Date) }}
-        {{ else }}
-          {{ partial "jar.html" (dict "title" .Title "href" .RelPermalink "size" "empty-jar" "date" .Date) }}
-        {{ end }}
+        {{ partial "jar.html" (dict "img" $cover "title" .Title "href" .RelPermalink "date" .Date) }}
       </div>
     {{ else }}
       <p class="empty">No jars on the shelf yet.</p>
@@ -30,4 +23,4 @@
   </div>
 </section>
 {{ end }}
-{{ define "scripts" }}{{ partial "jar-script.html" . }}{{ partial "bubble-script.html" . }}{{ end }}
+{{ define "scripts" }}{{ partial "script.html" "jar.js" }}{{ partial "bubble-script.html" . }}{{ end }}

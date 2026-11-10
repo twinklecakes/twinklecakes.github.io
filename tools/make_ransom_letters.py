@@ -1,11 +1,10 @@
 """Turns photos of letters clipped from magazines into the flickering
 ransom-note letters on the home page (assets/letters/N-a.png and N-b.png).
 
-    python3 tools/make_ransom_letters.py SLOT MODE PHOTO_A PHOTO_B [--thresh 40]
+    python3 tools/make_ransom_letters.py SLOT PHOTO_A PHOTO_B [--thresh 40] [--margin 0.1] [--bright]
 
-SLOT   1-6 (a v e l y n)
-MODE   "scrap"  keep a scissor-cut piece of the paper around the letter
-       "shape"  cut along the letter's own outline (for letters on plain white)
+SLOT is 1-6 (a v e l y n). Each letter is cut as a scissor-edged scrap of its
+paper; use --bright for a light letter on a busy dark page.
 
 Output PNGs are written fresh from pixel data, so no camera metadata (GPS,
 dates, device) is carried over. Needs numpy, pillow, scipy.
@@ -23,7 +22,6 @@ H_OUT = 240                       # px tall (shown at ~half that, so crisp on re
 
 ap = argparse.ArgumentParser()
 ap.add_argument("slot", type=int)
-ap.add_argument("mode", choices=["scrap", "shape"])
 ap.add_argument("a")
 ap.add_argument("b")
 ap.add_argument("--thresh", type=float, default=40)
@@ -75,20 +73,10 @@ def scrap(rgb, seed):
     return out
 
 
-def shape(rgb):
-    m = ndi.binary_closing(letter_mask(rgb), iterations=2)   # no hole-filling: loops (like the l's curl) stay open
-    m = ndi.binary_dilation(m, iterations=3)             # a hair of paper edge, like a careful cut
-    ys, xs = np.where(m)
-    y0, y1, x0, x1 = ys.min(), ys.max() + 1, xs.min(), xs.max() + 1
-    alpha = ndi.gaussian_filter(m[y0:y1, x0:x1].astype(float), 1.0)
-    out = np.dstack([rgb[y0:y1, x0:x1], alpha * 255]).astype(np.uint8)
-    return Image.fromarray(out, "RGBA")
-
-
 imgs = []
 for i, p in enumerate([args.a, args.b]):
     rgb = load(p)
-    im = scrap(rgb, args.slot * 10 + i) if args.mode == "scrap" else shape(rgb)
+    im = scrap(rgb, args.slot * 10 + i)
     im = im.resize((round(im.width * H_OUT / im.height), H_OUT), Image.LANCZOS)
     imgs.append(im)
 
