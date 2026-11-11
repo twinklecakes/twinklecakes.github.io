@@ -7,7 +7,8 @@
   var me = document.currentScript;
   var drawings = [];
   try { drawings = JSON.parse(me.getAttribute("data-bubbles") || "[]"); } catch (e) {}
-  drawings.forEach(function (src) { new Image().src = src; });   // preload
+  var lite = document.documentElement.classList.contains("lite");
+  if (!lite) drawings.forEach(function (src) { new Image().src = src; });   // preload
   // paused by the motion button, or by the device's reduced-motion setting
   function still() { return document.documentElement.classList.contains("motion-off"); }
   var live = [], running = false, MAX = 140;
@@ -15,7 +16,7 @@
   function rand(a, b) { return a + Math.random() * (b - a); }
 
   function blow(el) {
-    if (still()) return;
+    if (still() || lite) return;
     var r = el.getBoundingClientRect();
     var n = Math.min(11, MAX - live.length);   // bubbles per hover
     for (var i = 0; i < n; i++) {

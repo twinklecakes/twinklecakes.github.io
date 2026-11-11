@@ -506,3 +506,37 @@ img.zoomable { cursor: zoom-in; }
   color: var(--muted);
 }
 .colophon .credits { flex-basis: 100%; font-style: italic; font-size: 14px; }
+
+/* ---------- lite version (slow connections / data saver / ?lite=1) ----------
+   Hidden pictures are lazy-loaded, so hiding them here means they're never
+   downloaded. Everything readable and clickable stays. */
+.lite .collage-board,
+.lite .spill,
+.lite .name .name-red,
+.lite .title-art img,
+.lite .jar-art,
+.lite .cut img.v2 { display: none; }   /* letters: one version each, no flicker */
+.lite .cut img.v1 { animation: none; }
+.lite .name:hover .name-ink, .lite .name:active .name-ink, .lite .name:focus-visible .name-ink { opacity: 1; }
+/* photos behind the name letters load only when someone opens one */
+.lite .cut .pop { display: none; }
+.lite .cut:hover .pop, .lite .cut.open .pop { display: block; }
+/* drawn titles become plain text */
+.lite .title-art { line-height: 0.95; margin: 0 0 24px; }
+.lite .title-art .visually-hidden {
+  position: static !important; width: auto; height: auto; margin: 0;
+  overflow: visible; clip: auto; white-space: normal;
+}
+/* a plain plank instead of the drawing; plain cloth books; simple glass jars */
+.lite .shelf {
+  background: repeating-linear-gradient(to bottom,
+    transparent 0 calc(var(--row) - var(--rest)),
+    #8a5a35 calc(var(--row) - var(--rest)) calc(var(--row) - var(--rest) + 12px),
+    transparent calc(var(--row) - var(--rest) + 12px) var(--row));
+}
+.lite .book { background: var(--spine); }
+.lite .jar-glass { left: 6%; top: 12%; width: 88%; height: 86%; border: 3px solid #29adc0; border-radius: 14% 14% 10% 10% / 8% 8% 5% 5%; }
+.lite .jar-photo { filter: none; }
+/* footer switch between the two versions */
+.lite-switch .to-full, .lite .lite-switch .to-lite { display: none; }
+.lite .lite-switch .to-full { display: inline; }

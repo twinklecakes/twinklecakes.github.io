@@ -3,14 +3,14 @@
      can play inside the front panel of the case. */}}
 <div class="collage-board"><div class="stage">
   <div class="stk stk-clock">
-    <img class="clock-img" src="/stickers/grandfather-clock.png" alt="" aria-hidden="true">
+    <img class="clock-img" src="/stickers/grandfather-clock.png" alt="" aria-hidden="true" loading="lazy">
     {{ with site.Params.clockVideo }}
     <div class="clock-video" aria-hidden="true">
-      <video src="{{ . }}" muted playsinline loop preload="metadata"></video>
+      <video data-src="{{ . }}" muted playsinline loop preload="none"></video>
     </div>
     {{ end }}
   </div>
-  <img class="stk stk-lily-a" src="/stickers/lily-red.png" alt="" aria-hidden="true">
-  <img class="stk stk-squid" src="/stickers/vampire-squid.png" alt="" aria-hidden="true">
-  <img class="stk stk-lily-b" src="/stickers/lily-white.png" alt="" aria-hidden="true">
+  <img class="stk stk-lily-a" src="/stickers/lily-red.png" alt="" aria-hidden="true" loading="lazy">
+  <img class="stk stk-squid" src="/stickers/vampire-squid.png" alt="" aria-hidden="true" loading="lazy">
+  <img class="stk stk-lily-b" src="/stickers/lily-white.png" alt="" aria-hidden="true" loading="lazy">
 </div></div>

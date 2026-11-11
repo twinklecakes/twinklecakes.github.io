@@ -7,6 +7,7 @@
 {{ $jar := resources.Get "art/jar-tipped.png" | fingerprint }}
 {{ $lid := resources.Get "art/lid-trim.png" | fingerprint }}
 <div class="spill" aria-hidden="true">
+  {{/* the <image> tags get their href from motion.js, except in the lite version */}}
   <svg viewBox="0 0 2250 935" preserveAspectRatio="xMidYMid meet">
     <defs>
       <filter id="liquid" x="-5%" y="-10%" width="110%" height="120%">
@@ -33,13 +34,13 @@
 
     <!-- the picture, settled inside the jar -->
     <g clip-path="url(#in-jar)">
-      <image href="{{ $pour.RelPermalink }}" x="0" y="300" width="2250" height="580" preserveAspectRatio="xMidYMid slice" filter="url(#liquid)"/>
+      <image data-href="{{ $pour.RelPermalink }}" x="0" y="300" width="2250" height="580" preserveAspectRatio="xMidYMid slice" filter="url(#liquid)"/>
     </g>
     <!-- the jar drawing, over it, so the glass tints and streaks what's inside -->
-    <image href="{{ $jar.RelPermalink }}" x="0" y="0" width="1200" height="724"/>
+    <image data-href="{{ $jar.RelPermalink }}" x="0" y="0" width="1200" height="724"/>
     <!-- the same picture, poured out over the rim -->
     <g clip-path="url(#poured)">
-      <image href="{{ $pour.RelPermalink }}" x="0" y="300" width="2250" height="580" preserveAspectRatio="xMidYMid slice" filter="url(#liquid)"/>
+      <image data-href="{{ $pour.RelPermalink }}" x="0" y="300" width="2250" height="580" preserveAspectRatio="xMidYMid slice" filter="url(#liquid)"/>
       <path d="M1160,410 C1205,418 1230,455 1240,510" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="9" stroke-linecap="round"/>
       <path d="M1300,612 C1420,586 1560,574 1700,578" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="8" stroke-linecap="round"/>
       <path d="M1780,574 C1900,566 2040,576 2140,608" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="7" stroke-linecap="round"/>
@@ -56,6 +57,6 @@
     {{ end }}
     <!-- the lid, off, resting flat on the ground with its own shadow -->
     <ellipse cx="1965" cy="892" rx="285" ry="18" fill="rgba(0,0,0,0.32)" filter="url(#soft)"/>
-    <image href="{{ $lid.RelPermalink }}" x="1679" y="695" width="572" height="230" transform="rotate(180 1965 810)" filter="url(#lid-shadow)"/>
+    <image data-href="{{ $lid.RelPermalink }}" x="1679" y="695" width="572" height="230" transform="rotate(180 1965 810)" filter="url(#lid-shadow)"/>
   </svg>
 </div>

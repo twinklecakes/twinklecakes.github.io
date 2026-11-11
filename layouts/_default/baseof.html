@@ -12,6 +12,19 @@
       var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
       r.classList.add(m === "off" || (m !== "on" && reduce) ? "motion-off" : "motion-on");
     })(document.documentElement);
+    /* lite version: on a slow connection or with data saver, or by choice
+       (?lite=1 turns it on, ?lite=0 off; the choice is remembered) */
+    (function (r) {
+      var q = /[?&]lite=([01])/.exec(location.search), pick = null;
+      try {
+        if (q) localStorage.setItem("lite", q[1] === "1" ? "on" : "off");
+        pick = localStorage.getItem("lite");
+      } catch (e) { if (q) pick = q[1] === "1" ? "on" : "off"; }
+      var c = navigator.connection || {};
+      var slow = c.saveData || /(^|-)(2g|3g)$/.test(c.effectiveType || "") ||
+                 (window.matchMedia && matchMedia("(prefers-reduced-data: reduce)").matches);
+      if (pick === "on" || (pick !== "off" && slow)) r.classList.add("lite");
+    })(document.documentElement);
   </script>
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -36,7 +49,7 @@
   <main>{{ block "main" . }}{{ end }}</main>
   <footer class="colophon">
     <span>© {{ now.Year }} Avelyn Batts</span>
-    <span>{{ partial "email.html" . }} · <a href="{{ site.Params.repo }}" rel="noopener">the source</a></span>
+    <span>{{ partial "email.html" . }} · <a href="{{ site.Params.repo }}" rel="noopener">the source</a> · <span class="lite-switch"><a class="to-lite" href="?lite=1" title="a lighter page for slow connections">lite version</a><a class="to-full" href="?lite=0">full version</a></span></span>
     <span class="credits">all images, illustrations and visuals are by Avelyn Batts or from <a href="https://commons.wikimedia.org" rel="noopener">Wikimedia Commons</a></span>
   </footer>
   <script>

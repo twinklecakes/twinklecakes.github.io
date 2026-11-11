@@ -7,6 +7,7 @@
   var v = fig.querySelector("video");
 
   function play() {
+    if (!v.src && v.dataset.src) v.src = v.dataset.src;   // fetched only the first time it plays
     fig.classList.add("on");
     var p = v.play(); if (p && p.catch) p.catch(function () {});
   }

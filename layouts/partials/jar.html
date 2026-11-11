@@ -7,5 +7,5 @@
     {{ with .img }}<img class="jar-photo" src="{{ (.Fit "600x800 q80").RelPermalink }}" alt="{{ $.title }}" loading="lazy">{{ end }}
     {{ with .date }}<span class="jar-label"><time datetime="{{ .Format "2006-01-02" }}">{{ .Format "Jan 2" }}<br>{{ .Format "2006" }}</time></span>{{ end }}
   </span>
-  <img class="jar-art" src="{{ $art.RelPermalink }}" alt="">
+  <img class="jar-art" src="{{ $art.RelPermalink }}" alt="" loading="lazy">
 </a>

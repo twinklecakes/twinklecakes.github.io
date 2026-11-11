@@ -82,6 +82,16 @@ Keep videos small (under ~50 MB). For anything bigger, use YouTube or Vimeo.
 - Decorative pictures (collage stickers, textures, bubbles, the jar drawings) are hidden from
   screen readers; artwork in a piece should get alt text (see above).
 
+## Lite version
+
+For slow connections. It turns on by itself when the visitor's browser reports 2G/3G or
+data saver, or by choice from the footer ("lite version" / "full version", which is
+remembered; `?lite=1` / `?lite=0` in the address do the same). It skips the collage,
+the clock video, the spilled jar, the bubbles, the flicker's second letter images, the
+drawn titles (shown as text) and the jar/shelf drawings, and loads the name photos only
+when opened. The rules are at the bottom of `assets/style.css` (`.lite ...`) and in the
+small script in `layouts/_default/baseof.html`.
+
 ## Where things live
 
 | What | File |
