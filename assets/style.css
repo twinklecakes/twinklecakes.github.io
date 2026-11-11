@@ -541,3 +541,24 @@ img.zoomable { cursor: zoom-in; }
 /* footer switch between the two versions */
 .lite-switch .to-full, .lite .lite-switch .to-lite { display: none; }
 .lite .lite-switch .to-full { display: inline; }
+
+/* "loading slowly? try the lite version", shown only when pictures are still loading after 5s */
+.slow-note {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 90;
+  margin: 0;
+  padding: 6px 8px 6px 16px;
+  background: #fbf8ef;
+  border: 1px solid rgba(17, 17, 17, 0.25);
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  font: 16px var(--serif);
+  white-space: nowrap;
+}
+.slow-note[hidden] { display: none; }
+.slow-note a { text-decoration: underline; text-underline-offset: 3px; }
+.slow-close { border: 0; background: none; font: 20px/1 var(--serif); padding: 4px 8px; min-width: 32px; min-height: 32px; color: var(--muted); }
+.slow-close:hover { color: var(--vermilion); }
