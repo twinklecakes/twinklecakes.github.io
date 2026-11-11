@@ -49,7 +49,7 @@
   var footer = document.querySelector(".colophon");
   function place() {
     var lift = footer ? Math.max(0, window.innerHeight - footer.getBoundingClientRect().top) : 0;
-    btn.style.bottom = (16 + lift) + "px";
+    btn.style.bottom = (48 + lift) + "px";   // see .motion-toggle in style.css
   }
   var queued = false;
   function onScroll() { if (!queued) { queued = true; requestAnimationFrame(function () { queued = false; place(); }); } }
