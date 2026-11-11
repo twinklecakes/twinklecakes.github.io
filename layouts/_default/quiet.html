@@ -1,5 +1,6 @@
 {{ define "main" }}
 <article class="quiet-page">
+  <h1 class="visually-hidden">Avelyn Batts: {{ .Title }}</h1>
   <p class="quiet-home">{{ partial "home-name.html" . }}</p>
   <p>{{ partial "email.html" . }}{{ with .Params.pdf }}<br><a href="{{ . }}">pdf</a>{{ end }}</p>
   {{ .Content }}

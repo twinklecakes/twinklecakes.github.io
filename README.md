@@ -60,12 +60,23 @@ Put your images and videos in that `gallery/my-piece/` folder. Name the jar imag
 
 - `![caption](photo.jpg)` for one image
 - `![](photo.jpg "a description")` adds a description that shows under the image when it's enlarged
+- `![alt text](photo.jpg)`: the words in the square brackets are what screen readers say about the image.
+  Describe what's in it in a short sentence ("a stack of old library books lit by afternoon sun").
+  If you leave it empty, the description is used instead.
 - `{{< collage >}} ...images... {{< /collage >}}` for a grid
 - `{{< video src="clip.mp4" >}}` for a video file
 - `{{< youtube ID >}}` / `{{< vimeo ID >}}` for embedded videos
 - `{{< email >}}` for your email address, hidden from spam bots
 
 Keep videos small (under ~50 MB). For anything bigger, use YouTube or Vimeo.
+
+## Accessibility
+
+- A pause/play button (lower right on the home page and gallery) stops everything that moves.
+  It starts paused for visitors whose device asks for reduced motion, and remembers each visitor's choice.
+- Links have tap areas at least 44px tall (52px on phones).
+- Decorative pictures (collage stickers, textures, bubbles, the jar drawings) are hidden from
+  screen readers; artwork in a piece should get alt text (see above).
 
 ## Where things live
 

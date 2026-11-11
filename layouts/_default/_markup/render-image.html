@@ -1,5 +1,6 @@
-{{- /* ![alt text](photo.jpg "description") — the quoted description shows under
-       the image when it's enlarged in the lightbox. */ -}}
+{{- /* ![alt text](photo.jpg "description")
+       alt text: what screen readers say about the image (falls back to the description)
+       description: shows under the image when it's enlarged in the lightbox */ -}}
 {{- $src := .Destination -}}
 {{- with .Page.Resources.GetMatch .Destination -}}{{- $src = .RelPermalink -}}{{- end -}}
-<img src="{{ $src }}" alt="{{ .Text }}" loading="lazy"{{ with .Title }} data-caption="{{ . }}"{{ end }}>
+<img src="{{ $src }}" alt="{{ .Text | default .Title }}" loading="lazy"{{ with .Title }} data-caption="{{ . }}"{{ end }}>

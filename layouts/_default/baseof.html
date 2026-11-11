@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.tagline }}{{ end }}">
+  <script>
+    /* start paused if the visitor paused before, or their device asks for reduced motion */
+    (function (r) {
+      var m = null; try { m = localStorage.getItem("motion"); } catch (e) {}
+      var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+      r.classList.add(m === "off" || (m !== "on" && reduce) ? "motion-off" : "motion-on");
+    })(document.documentElement);
+  </script>
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
@@ -37,6 +45,13 @@
       var e = atob(a.dataset.e); a.href = "mailto:" + e; a.textContent = e;
     });
   </script>
+  {{ if or .IsHome (eq .Section "gallery") }}
+  <button class="motion-toggle" type="button" aria-pressed="false" aria-label="Pause animations" title="Pause animations">
+    <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+    <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+  </button>
+  {{ partial "script.html" "motion.js" }}
+  {{ end }}
   {{ block "scripts" . }}{{ end }}
 </body>
 </html>
