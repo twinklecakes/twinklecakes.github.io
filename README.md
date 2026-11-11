@@ -72,8 +72,12 @@ Keep videos small (under ~50 MB). For anything bigger, use YouTube or Vimeo.
 
 ## Accessibility
 
-- A pause/play button (lower right on the home page and gallery) stops everything that moves.
-  It starts paused for visitors whose device asks for reduced motion, and remembers each visitor's choice.
+- A pause/play button (lower right on the home page and gallery) stops everything that moves
+  and clears any floating bubbles. It starts paused for visitors whose device (or a browser
+  extension) asks for reduced motion, follows that setting if it changes, and remembers each
+  visitor's choice. The SVG ripples never start at all for those visitors.
+- Hand-drawn or cut-out titles carry the real words as hidden text for screen readers, with the
+  pictures themselves hidden from them.
 - Links have tap areas at least 44px tall (52px on phones).
 - Decorative pictures (collage stickers, textures, bubbles, the jar drawings) are hidden from
   screen readers; artwork in a piece should get alt text (see above).
