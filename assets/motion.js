@@ -12,6 +12,11 @@
   function apply(off, remember) {
     root.classList.toggle("motion-off", off);
     root.classList.toggle("motion-on", !off);
+    // SVG ripples are written with begin="indefinite", so they never start on
+    // their own: a paused or reduced-motion visitor never sees them move at all
+    if (!off) document.querySelectorAll("animate[begin=indefinite]").forEach(function (an) {
+      if (!an.dataset.started) { an.dataset.started = "1"; an.beginElement(); }
+    });
     svgs(off ? "pauseAnimations" : "unpauseAnimations");
     document.querySelectorAll("video[autoplay]").forEach(function (v) {
       if (off) v.pause(); else { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
@@ -22,9 +27,21 @@
       btn.title = off ? "Play animations" : "Pause animations";
     }
     if (remember) { try { localStorage.setItem("motion", off ? "off" : "on"); } catch (e) {} }
+    document.dispatchEvent(new CustomEvent("motionchange", { detail: { off: off } }));
   }
 
   apply(root.classList.contains("motion-off"), false);   // the <head> script already chose
+
+  // if the visitor turns reduced motion on (or off) in their device settings while
+  // the page is open, follow it, unless they've used the button on this site
+  if (window.matchMedia) {
+    var mq = matchMedia("(prefers-reduced-motion: reduce)");
+    var follow = function (e) {
+      var saved = null; try { saved = localStorage.getItem("motion"); } catch (err) {}
+      if (!saved) apply(e.matches, false);
+    };
+    if (mq.addEventListener) mq.addEventListener("change", follow); else if (mq.addListener) mq.addListener(follow);
+  }
   if (!btn) return;
   btn.addEventListener("click", function () { apply(!root.classList.contains("motion-off"), true); });
 

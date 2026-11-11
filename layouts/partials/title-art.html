@@ -1,3 +1,7 @@
-{{/* A hand-drawn page title from assets/art/ (title-gallery, title-blog) */}}
+{{/* A hand-drawn page title from assets/art/ (title-gallery, title-blog).
+     Screen readers hear the real title from the hidden text; the drawing itself
+     is hidden from them, so they don't announce "image" as well. The paper-letter
+     alphabet titles will follow the same pattern: real text for screen readers,
+     the cut-out letters aria-hidden. */}}
 {{ $img := resources.Get (printf "art/%s.png" .file) | fingerprint }}
-<h1 class="page-title title-art"><img src="{{ $img.RelPermalink }}" alt="{{ .title }}" width="{{ $img.Width }}" height="{{ $img.Height }}"></h1>
+<h1 class="page-title title-art"><span class="visually-hidden">{{ .title }}</span><img src="{{ $img.RelPermalink }}" alt="" aria-hidden="true" width="{{ $img.Width }}" height="{{ $img.Height }}"></h1>

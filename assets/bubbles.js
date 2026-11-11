@@ -75,6 +75,13 @@
     if (live.length) requestAnimationFrame(step); else running = false;
   }
 
+  // pausing clears the screen: every bubble still floating is removed at once
+  function clearAll() {
+    live.forEach(function (p) { p.el.remove(); });
+    live = [];
+  }
+  document.addEventListener("motionchange", function (e) { if (e.detail.off) clearAll(); });
+
   window.blowBubbles = blow;
   document.querySelectorAll(TRIGGERS).forEach(function (el) {
     el.addEventListener("pointerenter", function () { blow(el); });   // mouse hover, or the start of a tap
