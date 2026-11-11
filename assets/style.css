@@ -151,10 +151,12 @@ body.home { font-size: 18px; }
 }
 
 /* the pause / play button, lower right, lifted above the footer by motion.js */
+/* 48px in from the corner: the crane cursor (44px, hanging down-right from the
+   beak) has to fit inside the window, or Chrome swaps it for the plain hand */
 .motion-toggle {
   position: fixed;
-  right: 16px;
-  bottom: 16px;
+  right: 48px;
+  bottom: 48px;
   z-index: 60;
   width: 44px;
   height: 44px;
