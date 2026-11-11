@@ -6,6 +6,7 @@
   <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.tagline }}{{ end }}">
   <script>
+    document.documentElement.classList.add("js");   /* scripts run (see the spill's no-script copy) */
     /* start paused if the visitor paused before, or their device asks for reduced motion */
     (function (r) {
       var m = null; try { m = localStorage.getItem("motion"); } catch (e) {}

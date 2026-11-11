@@ -513,6 +513,7 @@ img.zoomable { cursor: zoom-in; }
 .lite-list, .name-text { display: none; }
 .lite .collage-board,
 .lite .spill,
+html:not(.js) .spill-js,
 .lite .shelf,
 .lite .intro,
 .lite .name img,
