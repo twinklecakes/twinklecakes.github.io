@@ -4,7 +4,7 @@
   {{ with .Content }}<div class="intro">{{ . }}</div>{{ end }}
   {{/* lite version: a plain list, newest first, instead of the shelf */}}
   <ul class="index-links lite-list">
-    {{ range .Pages.ByDate.Reverse }}<li><a href="{{ .RelPermalink }}"><span aria-hidden="true">~&nbsp;</span>{{ .Title }}</a></li>{{ end }}
+    {{ range .Pages.ByDate.Reverse }}<li><a href="{{ .RelPermalink }}"><span aria-hidden="true">~&nbsp;</span>{{ .Title }}</a> <time class="lite-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time></li>{{ end }}
   </ul>
   {{/* Oldest first in the HTML; CSS lays them out from the bottom-right so the
        newest end up top-left and a new shelf starts above when one fills. */}}

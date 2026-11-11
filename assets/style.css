@@ -525,6 +525,7 @@ img.zoomable { cursor: zoom-in; }
 /* the gallery and blog: a tilde list, newest at the top */
 .lite .lite-list { display: block; margin: 8px 0 0; }
 .lite .lite-list a, .lite .masthead .name { text-decoration: none; }
+.lite .lite-date { margin-left: 0.6em; color: var(--muted); font-size: 0.85em; }
 .lite .lite-list a:hover, .lite .name:hover .name-text { color: var(--vermilion); }
 /* nothing moves in the lite version, so no pause button */
 .lite .motion-toggle { display: none; }
