@@ -4,4 +4,4 @@
      alphabet titles will follow the same pattern: real text for screen readers,
      the cut-out letters aria-hidden. */}}
 {{ $img := resources.Get (printf "art/%s.png" .file) | fingerprint }}
-<h1 class="page-title title-art"><span class="visually-hidden">{{ .title }}</span><img src="{{ $img.RelPermalink }}" alt="" aria-hidden="true" width="{{ $img.Width }}" height="{{ $img.Height }}"></h1>
+<h1 class="page-title title-art"><span class="visually-hidden">{{ .title }}</span><img src="{{ $img.RelPermalink }}" alt="" aria-hidden="true" loading="lazy" width="{{ $img.Width }}" height="{{ $img.Height }}"></h1>

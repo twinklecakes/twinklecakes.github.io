@@ -506,3 +506,60 @@ img.zoomable { cursor: zoom-in; }
   color: var(--muted);
 }
 .colophon .credits { flex-basis: 100%; font-style: italic; font-size: 14px; }
+
+/* ---------- lite version (slow connections / data saver / ?lite=1) ----------
+   Almost plain HTML: text and links in the serif font, lists instead of shelves.
+   Hidden pictures are lazy-loaded, so hiding them means they're never downloaded. */
+.lite-list, .name-text { display: none; }
+.lite .collage-board,
+.lite .spill,
+html:not(.js) .spill-js,
+.lite .shelf,
+.lite .intro,
+.lite .name img,
+.lite .title-art img,
+.lite .cut img.v2 { display: none; }   /* letters: one version each, no flicker */
+.lite .cut img.v1 { animation: none; }
+/* photos behind the name letters load only when someone opens one */
+.lite .cut .pop { display: none; }
+.lite .cut:hover .pop, .lite .cut.open .pop { display: block; }
+/* the gallery and blog: a tilde list, newest at the top */
+.lite .lite-list { display: block; margin: 8px 0 0; }
+.lite .lite-list a, .lite .masthead .name { text-decoration: none; }
+.lite .lite-date { margin-left: 0.6em; color: var(--muted); font-size: 0.85em; }
+.lite .lite-list a:hover, .lite .name:hover .name-text { color: var(--vermilion); }
+/* nothing moves in the lite version, so no pause button */
+.lite .motion-toggle { display: none; }
+/* every title and the header name in the serif font, as plain text */
+.lite .masthead .name, .lite .quiet-home .name { width: auto; line-height: 1.2; }
+.lite .name-text { display: inline; font: 26px var(--serif); color: var(--ink); }
+.lite .page-title { font: 600 clamp(30px, 5vw, 44px)/1.15 var(--serif); text-transform: none; margin: 0 0 16px; }
+.lite .title-art { line-height: 1.15; }
+.lite .title-art .visually-hidden {
+  position: static !important; width: auto; height: auto; margin: 0;
+  overflow: visible; clip: auto; white-space: normal;
+}
+/* footer switch between the two versions */
+.lite-switch .to-full, .lite .lite-switch .to-lite { display: none; }
+.lite .lite-switch .to-full { display: inline; }
+
+/* "loading slowly? try the lite version", shown only when pictures are still loading after 5s */
+.slow-note {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 90;
+  margin: 0;
+  padding: 6px 8px 6px 16px;
+  background: #fbf8ef;
+  border: 1px solid rgba(17, 17, 17, 0.25);
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  font: 16px var(--serif);
+  white-space: nowrap;
+}
+.slow-note[hidden] { display: none; }
+.slow-note a { text-decoration: underline; text-underline-offset: 3px; }
+.slow-close { border: 0; background: none; font: 20px/1 var(--serif); padding: 4px 8px; min-width: 32px; min-height: 32px; color: var(--muted); }
+.slow-close:hover { color: var(--vermilion); }

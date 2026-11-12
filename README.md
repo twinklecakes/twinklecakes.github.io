@@ -82,6 +82,16 @@ Keep videos small (under ~50 MB). For anything bigger, use YouTube or Vimeo.
 - Decorative pictures (collage stickers, textures, bubbles, the jar drawings) are hidden from
   screen readers; artwork in a piece should get alt text (see above).
 
+## Lite version
+
+Almost plain HTML, for slow connections. It turns on by itself when the visitor's browser
+reports 2G/3G or data saver, or by choice from the footer ("lite version" / "full version",
+remembered; `?lite=1` / `?lite=0` in the address do the same). In it, the gallery and blog
+are tilde lists of titles, newest first; every title and the header name are plain serif
+text; there's no collage, video, spill, bubbles, shelves, jars or drawings (none of those
+are downloaded). The rules are at the bottom of `assets/style.css` (`.lite ...`) and in the
+small script in `layouts/_default/baseof.html`.
+
 ## Where things live
 
 | What | File |

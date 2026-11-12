@@ -6,11 +6,25 @@
   <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.tagline }}{{ end }}">
   <script>
+    document.documentElement.classList.add("js");   /* scripts run (see the spill's no-script copy) */
     /* start paused if the visitor paused before, or their device asks for reduced motion */
     (function (r) {
       var m = null; try { m = localStorage.getItem("motion"); } catch (e) {}
       var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
       r.classList.add(m === "off" || (m !== "on" && reduce) ? "motion-off" : "motion-on");
+    })(document.documentElement);
+    /* lite version: on a slow connection or with data saver, or by choice
+       (?lite=1 turns it on, ?lite=0 off; the choice is remembered) */
+    (function (r) {
+      var q = /[?&]lite=([01])/.exec(location.search), pick = null;
+      try {
+        if (q) localStorage.setItem("lite", q[1] === "1" ? "on" : "off");
+        pick = localStorage.getItem("lite");
+      } catch (e) { if (q) pick = q[1] === "1" ? "on" : "off"; }
+      var c = navigator.connection || {};
+      var slow = c.saveData || /(^|-)(2g|3g)$/.test(c.effectiveType || "") ||
+                 (window.matchMedia && matchMedia("(prefers-reduced-data: reduce)").matches);
+      if (pick === "on" || (pick !== "off" && slow)) r.classList.add("lite");
     })(document.documentElement);
   </script>
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -36,9 +50,33 @@
   <main>{{ block "main" . }}{{ end }}</main>
   <footer class="colophon">
     <span>© {{ now.Year }} Avelyn Batts</span>
-    <span>{{ partial "email.html" . }} · <a href="{{ site.Params.repo }}" rel="noopener">the source</a></span>
+    <span>{{ partial "email.html" . }} · <a href="{{ site.Params.repo }}" rel="noopener">the source</a> · <span class="lite-switch"><a class="to-lite" href="?lite=1" title="a lighter page for slow connections">lite version</a><a class="to-full" href="?lite=0">full version</a></span></span>
     <span class="credits">all images, illustrations and visuals are by Avelyn Batts or from <a href="https://commons.wikimedia.org" rel="noopener">Wikimedia Commons</a></span>
   </footer>
+  <p class="slow-note" role="status" hidden>loading slowly? try the <a href="?lite=1">lite version</a> <button type="button" class="slow-close" aria-label="Dismiss">×</button></p>
+  <script>
+    /* if pictures in view are still loading after 5 seconds, offer the lite version;
+       the note goes away by itself once they finish */
+    (function () {
+      var r = document.documentElement, note = document.querySelector(".slow-note");
+      if (!note || r.classList.contains("lite")) return;
+      function pending() {
+        return Array.prototype.filter.call(document.images, function (im) {
+          if (im.complete) return false;
+          var b = im.getBoundingClientRect();
+          return b.bottom > 0 && b.top < innerHeight && b.width > 0;
+        });
+      }
+      setTimeout(function () {
+        var left = pending();
+        if (!left.length) return;
+        note.hidden = false;
+        var done = function () { if (!pending().length) note.hidden = true; };
+        left.forEach(function (im) { im.addEventListener("load", done); im.addEventListener("error", done); });
+      }, 5000);
+      note.querySelector(".slow-close").addEventListener("click", function () { note.hidden = true; });
+    })();
+  </script>
   <script>
     /* turn the encoded email links back into real ones */
     document.querySelectorAll("a.email[data-e]").forEach(function (a) {

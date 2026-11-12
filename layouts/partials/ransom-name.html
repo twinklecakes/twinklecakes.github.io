@@ -11,7 +11,7 @@
     {{ end }}
     <button class="cut cut-{{ $i }}" type="button" aria-hidden="true" tabindex="-1">
       {{ with resources.Get (printf "letters/%d-a.png" $i) | fingerprint }}<img class="v1" src="{{ .RelPermalink }}" alt="">{{ end }}
-      {{ with resources.Get (printf "letters/%d-b.png" $i) | fingerprint }}<img class="v2" src="{{ .RelPermalink }}" alt="">{{ end }}
+      {{ with resources.Get (printf "letters/%d-b.png" $i) | fingerprint }}<img class="v2" src="{{ .RelPermalink }}" alt="" loading="lazy">{{ end }}
       {{ with $photo }}<span class="pop"><img src="{{ . }}" alt="" loading="lazy"></span>{{ end }}
     </button>
   {{ end }}

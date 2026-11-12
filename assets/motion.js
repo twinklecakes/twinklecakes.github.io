@@ -30,6 +30,12 @@
     document.dispatchEvent(new CustomEvent("motionchange", { detail: { off: off } }));
   }
 
+  // big decorative pictures inside SVGs (the spilled jar): attach them unless
+  // this is the lite version, where they're skipped to save the download
+  if (!root.classList.contains("lite")) {
+    document.querySelectorAll("image[data-href]").forEach(function (im) { im.setAttribute("href", im.getAttribute("data-href")); });
+  }
+
   apply(root.classList.contains("motion-off"), false);   // the <head> script already chose
 
   // if the visitor turns reduced motion on (or off) in their device settings while
